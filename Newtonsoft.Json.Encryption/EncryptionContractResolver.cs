@@ -26,7 +26,7 @@ namespace Newtonsoft.Json.Encryption
             {
                 jsonProperty.ValueProvider = provider;
             }
-            //jsonProperty.ItemConverter = new DictionaryItemConverter();
+            jsonProperty.ItemConverter = new DictionaryItemConverter(stringEncrypt);
             return jsonProperty;
         }
 

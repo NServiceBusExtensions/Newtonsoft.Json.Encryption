@@ -4,14 +4,21 @@ namespace Newtonsoft.Json.Encryption
 {
     public class DictionaryItemConverter : JsonConverter
     {
+        StringEncrypt stringEncrypt;
+
+        public DictionaryItemConverter(StringEncrypt stringEncrypt)
+        {
+            this.stringEncrypt = stringEncrypt;
+        }
+
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            writer.WriteValue(stringEncrypt.Encrypt((string) value));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            return stringEncrypt.Decrypt((string) reader.Value);
         }
 
         public override bool CanConvert(Type objectType)
