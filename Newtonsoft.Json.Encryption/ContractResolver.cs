@@ -3,11 +3,11 @@ using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Encryption
 {
-    public class EncryptionContractResolver : DefaultContractResolver
+    public class ContractResolver : DefaultContractResolver
     {
         StringEncrypt stringEncrypt;
 
-        public EncryptionContractResolver(StringEncrypt stringEncrypt)
+        public ContractResolver(StringEncrypt stringEncrypt)
         {
             this.stringEncrypt = stringEncrypt;
         }
@@ -19,14 +19,10 @@ namespace Newtonsoft.Json.Encryption
             {
                 return null;
             }
-            if (ValueProviderCreater.TryCreate(
+            JsonPropertyHelper.Manipulate(
                 member: member,
                 stringEncrypt: stringEncrypt,
-                provider: out var provider))
-            {
-                jsonProperty.ValueProvider = provider;
-            }
-            jsonProperty.ItemConverter = new DictionaryItemConverter(stringEncrypt);
+                jsonProperty: jsonProperty);
             return jsonProperty;
         }
 

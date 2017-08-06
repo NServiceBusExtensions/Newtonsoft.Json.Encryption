@@ -2,11 +2,11 @@
 
 namespace Newtonsoft.Json.Encryption
 {
-    public class DictionaryItemConverter : JsonConverter
+    public class ItemConverter : JsonConverter
     {
         StringEncrypt stringEncrypt;
 
-        public DictionaryItemConverter(StringEncrypt stringEncrypt)
+        public ItemConverter(StringEncrypt stringEncrypt)
         {
             this.stringEncrypt = stringEncrypt;
         }

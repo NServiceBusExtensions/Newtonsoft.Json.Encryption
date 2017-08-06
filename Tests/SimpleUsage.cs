@@ -10,9 +10,12 @@ public class SimpleUsage
     [Test]
     public void RoundTripStringProperty()
     {
-        var target = new ClassToEncrypt {Property = "Foo"};
+        var target = new ClassToEncrypt
+        {
+            Property = "Foo"
+        };
         var result = RoundTrip(target);
-        Assert.AreEqual("Foo",result.Property);
+        Assert.AreEqual("Foo", result.Property);
     }
 
     public class ClassToEncrypt
@@ -42,15 +45,38 @@ public class SimpleUsage
 
     public class ClassWithDictionary
     {
-        public Dictionary<string,string> Property { get; set; }
+        [Encrypt]
+        public Dictionary<string, string> Property { get; set; }
     }
+
+    [Test]
+    public void RoundTripListProperty()
+    {
+        var target = new ClassWithList
+        {
+            Property = new List<string>
+            {
+                "Value1",
+                "Value2"
+            }
+        };
+        var result = RoundTrip(target);
+        Assert.AreEqual("Value2", result.Property[1]);
+    }
+
+    public class ClassWithList
+    {
+        [Encrypt]
+        public List<string> Property { get; set; }
+    }
+
     public T RoundTrip<T>(T instance)
     {
         using (var crypto = CryptoBuilder.Build())
         {
             var serializer = new JsonSerializer
             {
-                ContractResolver = new EncryptionContractResolver(
+                ContractResolver = new ContractResolver(
                     stringEncrypt: new StringEncrypt(
                         encryptProvider: () => crypto.CreateEncryptor(),
                         decryptProvider: () => crypto.CreateDecryptor(),

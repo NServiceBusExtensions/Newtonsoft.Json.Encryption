@@ -4,24 +4,34 @@ using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Encryption
 {
-    public static class ValueProviderCreater {
+    public static class JsonPropertyHelper {
 
-        public static bool TryCreate(
+        public static void Manipulate(
             MemberInfo member,
             StringEncrypt stringEncrypt,
-            out IValueProvider provider)
+            JsonProperty jsonProperty)
         {
             if (member.GetCustomAttribute<EncryptAttribute>() == null)
             {
-                provider = null;
-                return false;
+                return;
             }
-            if (member.GetUnderlyingType() == typeof(string))
+            var propertyType = member.GetUnderlyingType();
+            if (propertyType == typeof(string))
             {
-                provider = new StringValueProvider(
+                jsonProperty.ValueProvider = new StringValueProvider(
                     targetMember: member,
                     stringEncrypt: stringEncrypt);
-                return true;
+                return;
+            }
+            if (propertyType.IsStringDictionary())
+            {
+                jsonProperty.ItemConverter = new ItemConverter(stringEncrypt);
+                return;
+            }
+            if (propertyType.IsStringEnumerable())
+            {
+                jsonProperty.ItemConverter = new ItemConverter(stringEncrypt);
+                return;
             }
             throw new Exception("Expected a string");
         }
