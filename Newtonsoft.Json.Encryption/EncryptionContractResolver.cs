@@ -19,14 +19,25 @@ namespace Newtonsoft.Json.Encryption
             {
                 return null;
             }
-            if (ValueProviderCreater.TryCreate(
-                member: member,
-                stringEncrypt: stringEncrypt,
-                provider: out var provider))
+
+            if (member.GetCustomAttribute<EncryptAttribute>() == null)
             {
-                jsonProperty.ValueProvider = provider;
+                return jsonProperty;
             }
-            jsonProperty.ItemConverter = new DictionaryItemConverter(stringEncrypt);
+            var underlyingType = member.GetUnderlyingType();
+
+            if (underlyingType == typeof(string))
+            {
+                jsonProperty.Converter = new EncryptionConverter(stringEncrypt);
+                return jsonProperty;
+            }
+
+            if (underlyingType.IsStringValuedDictionary())
+            {
+                jsonProperty.ItemConverter = new EncryptionConverter(stringEncrypt);
+                return jsonProperty;
+            }
+
             return jsonProperty;
         }
 

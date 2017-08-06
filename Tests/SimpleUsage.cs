@@ -12,7 +12,7 @@ public class SimpleUsage
     {
         var target = new ClassToEncrypt {Property = "Foo"};
         var result = RoundTrip(target);
-        Assert.AreEqual("Foo",result.Property);
+        Assert.AreEqual("Foo", result.Property);
     }
 
     public class ClassToEncrypt
@@ -42,8 +42,10 @@ public class SimpleUsage
 
     public class ClassWithDictionary
     {
-        public Dictionary<string,string> Property { get; set; }
+        [Encrypt]
+        public Dictionary<string, string> Property { get; set; }
     }
+
     public T RoundTrip<T>(T instance)
     {
         using (var crypto = CryptoBuilder.Build())
