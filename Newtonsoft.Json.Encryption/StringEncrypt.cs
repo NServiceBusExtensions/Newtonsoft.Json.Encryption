@@ -26,13 +26,12 @@ namespace Newtonsoft.Json.Encryption
             try
             {
                 using (var memoryStream = new MemoryStream())
-                using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
-                using (var writer = new StreamWriter(cryptoStream))
                 {
-                    writer.Write(target);
-                    writer.Flush();
-                    cryptoStream.Flush();
-                    cryptoStream.FlushFinalBlock();
+                    using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                    using (var writer = new StreamWriter(cryptoStream))
+                    {
+                        writer.Write(target);
+                    }
                     return Convert.ToBase64String(memoryStream.ToArray());
                 }
             }
@@ -41,7 +40,6 @@ namespace Newtonsoft.Json.Encryption
                 cryptoCleanup(encryptor);
             }
         }
-
 
         public string Decrypt(string value)
         {
