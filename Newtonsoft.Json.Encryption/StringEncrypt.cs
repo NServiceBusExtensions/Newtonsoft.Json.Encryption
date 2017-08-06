@@ -81,9 +81,8 @@ namespace Newtonsoft.Json.Encryption
                     using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
                     {
                         cryptoStream.Write(data, 0, data.Length);
-                        cryptoStream.FlushFinalBlock();
-                        return memoryStream.ToArray();
                     }
+                    return memoryStream.ToArray();
                 }
             }
             finally
