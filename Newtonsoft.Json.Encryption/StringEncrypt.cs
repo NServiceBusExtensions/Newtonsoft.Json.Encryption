@@ -59,12 +59,11 @@ namespace Newtonsoft.Json.Encryption
                 cryptoCleanup(decryptor);
             }
         }
-        public byte[] Encrypt(byte[] target)
+        public byte[] EncryptBytes(byte[] target)
         {
             var encryptor = encryptProvider();
             try
             {
-
                 return PerformCryptography(encryptor, target);
             }
             finally
@@ -73,7 +72,7 @@ namespace Newtonsoft.Json.Encryption
             }
         }
 
-        public byte[] Decrypt(byte[] value)
+        public byte[] DecryptBytes(byte[] value)
         {
             var decryptor = decryptProvider();
             try

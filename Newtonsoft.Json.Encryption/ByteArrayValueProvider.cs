@@ -19,12 +19,12 @@ namespace Newtonsoft.Json.Encryption
         public object GetValue(object target)
         {
             var value = targetMember.GetValue(target);
-            return stringEncrypt.Encrypt((byte[])value);
+            return stringEncrypt.EncryptBytes((byte[])value);
         }
 
         public void SetValue(object target, object value)
         {
-            var decrypt = stringEncrypt.Decrypt((byte[])value);
+            var decrypt = stringEncrypt.DecryptBytes((byte[])value);
             targetMember.SetValue(target, decrypt);
         }
 
