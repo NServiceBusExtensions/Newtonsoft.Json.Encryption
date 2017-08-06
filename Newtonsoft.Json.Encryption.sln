@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26724.1
+MinimumVisualStudioVersion = 15.0.26430.12
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Encryption", "Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj", "{72A1D8DC-FF19-40E0-866C-9CFD7EE4541D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D59EEA3C-ADFD-4595-B7A3-D6412AC9867E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72A1D8DC-FF19-40E0-866C-9CFD7EE4541D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72A1D8DC-FF19-40E0-866C-9CFD7EE4541D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72A1D8DC-FF19-40E0-866C-9CFD7EE4541D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72A1D8DC-FF19-40E0-866C-9CFD7EE4541D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D59EEA3C-ADFD-4595-B7A3-D6412AC9867E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59EEA3C-ADFD-4595-B7A3-D6412AC9867E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59EEA3C-ADFD-4595-B7A3-D6412AC9867E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59EEA3C-ADFD-4595-B7A3-D6412AC9867E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9DBE1FD-2601-4F67-B85B-CE26A668FA05}
+	EndGlobalSection
+EndGlobal
