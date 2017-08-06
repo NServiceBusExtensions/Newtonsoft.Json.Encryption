@@ -7,13 +7,11 @@ static class Extensions
 {
     public static Type GetUnderlyingType(this MemberInfo member)
     {
-        var info = member as FieldInfo;
-        if (info != null)
+        if (member is FieldInfo info)
         {
             return info.FieldType;
         }
-        var propertyInfo = member as PropertyInfo;
-        if (propertyInfo != null)
+        if (member is PropertyInfo propertyInfo)
         {
             return propertyInfo.PropertyType;
         }
@@ -22,33 +20,29 @@ static class Extensions
             "Input MemberInfo must be if type FieldInfo or PropertyInfo"
         );
     }
-    public static string GetValue(this MemberInfo member, object instance)
+    public static object GetValue(this MemberInfo member, object instance)
     {
-        var fieldInfo = member as FieldInfo;
-        if (fieldInfo != null)
+        if (member is FieldInfo fieldInfo)
         {
-            return (string) fieldInfo.GetValue(instance);
+            return fieldInfo.GetValue(instance);
         }
-        var propertyInfo = member as PropertyInfo;
-        if (propertyInfo != null)
+        if (member is PropertyInfo propertyInfo)
         {
-            return (string) propertyInfo.GetValue(instance, null);
+            return propertyInfo.GetValue(instance, null);
         }
         throw new ArgumentException
         (
             "Input MemberInfo must be if type FieldInfo or PropertyInfo"
         );
     }
-    public static void SetValue(this MemberInfo member, object instance, string value)
+    public static void SetValue(this MemberInfo member, object instance, object value)
     {
-        var fieldInfo = member as FieldInfo;
-        if (fieldInfo != null)
+        if (member is FieldInfo fieldInfo)
         {
             fieldInfo.SetValue(instance, value);
             return;
         }
-        var propertyInfo = member as PropertyInfo;
-        if (propertyInfo != null)
+        if (member is PropertyInfo propertyInfo)
         {
             propertyInfo.SetValue(instance, value);
             return;
@@ -60,29 +54,45 @@ static class Extensions
     }
 
     static TypeInfo stringEnumerable = typeof(IEnumerable<string>).GetTypeInfo();
+    static TypeInfo byteArrayEnumerable = typeof(IEnumerable<byte[]>).GetTypeInfo();
 
     public static bool IsStringDictionary(this Type type)
     {
-        var typeInfo = type.GetTypeInfo();
-        return typeInfo.ImplementedInterfaces
-            .Any(implementedInterface => implementedInterface.IsStringDictionaryInterface());
+        return IsDictionary(type, typeof(string));
+    }
+    public static bool IsByteArrayDictionary(this Type type)
+    {
+        return IsDictionary(type, typeof(byte[]));
     }
 
-    public static bool IsStringDictionaryInterface(this Type type)
+    private static bool IsDictionary(Type type, Type valueTypeToCheck)
     {
         var typeInfo = type.GetTypeInfo();
-        var isDict = typeInfo.IsGenericType && typeInfo.GetGenericTypeDefinition() == typeof(IDictionary<,>);
+        return typeInfo.ImplementedInterfaces
+            .Any(x => IsDictionaryInterface(x, valueTypeToCheck));
+    }
+
+
+    static bool IsDictionaryInterface(Type type, Type valueTypeToCheck)
+    {
+        var typeInfo = type.GetTypeInfo();
+        var isDict = typeInfo.IsGenericType &&
+                     typeInfo.GetGenericTypeDefinition() == typeof(IDictionary<,>);
         if (!isDict)
         {
             return false;
         }
         var valueType = typeInfo.GenericTypeArguments[1];
-        return valueType == typeof(string);
+        return valueType == valueTypeToCheck;
     }
 
     public static bool IsStringEnumerable(this Type type)
     {
         return stringEnumerable.IsAssignableFrom(type.GetTypeInfo());
+    }
+    public static bool IsByteArrayEnumerable(this Type type)
+    {
+        return byteArrayEnumerable.IsAssignableFrom(type.GetTypeInfo());
     }
 
 }

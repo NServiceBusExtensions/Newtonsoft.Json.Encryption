@@ -6,6 +6,68 @@ using NUnit.Framework;
 public class SimpleUsage
 {
     [Test]
+    public void ByteArrayProperty()
+    {
+        var target = new ClassWithByteArray
+        {
+            Property = new byte[]{2,3}
+        };
+        var result = RoundTrip.Run(target);
+        CollectionAssert.AreEqual(new byte[] { 2, 3 }, result.Property);
+    }
+
+    public class ClassWithByteArray
+    {
+        [Encrypt]
+        public byte[] Property { get; set; }
+    }
+
+    [Test]
+    public void ByteArrayDictionaryProperty()
+    {
+        var target = new ClassWithByteArrayDictionary
+        {
+            Property = new Dictionary<string, byte[]>
+            {
+                {
+                    "Key1", new byte[]{2,3}
+                },
+                {
+                    "Key2", new byte[]{5,6}
+                }
+            }
+        };
+        var result = RoundTrip.Run(target);
+        CollectionAssert.AreEqual(new byte[] { 5, 6 }, result.Property["Key2"]);
+    }
+
+    public class ClassWithByteArrayDictionary
+    {
+        [Encrypt]
+        public Dictionary<string, byte[]> Property { get; set; }
+    }
+
+    [Test]
+    public void ByteArrayListProperty()
+    {
+        var target = new ClassWithByteArrayList
+        {
+            Property = new List<byte[]>
+            {
+                new byte[]{2,3},
+                new byte[]{5,6}
+            }
+        };
+        var result = RoundTrip.Run(target);
+        CollectionAssert.AreEqual(new byte[] { 5, 6 }, result.Property[1]);
+    }
+
+    public class ClassWithByteArrayList
+    {
+        [Encrypt]
+        public List<byte[]> Property { get; set; }
+    }
+    [Test]
     public void StringProperty()
     {
         var target = new ClassWithString

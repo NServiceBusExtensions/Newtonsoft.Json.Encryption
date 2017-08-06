@@ -3,12 +3,12 @@ using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Encryption
 {
-    public class StringValueProvider : IValueProvider
+    public class ByteArrayValueProvider : IValueProvider
     {
         MemberInfo targetMember;
         StringEncrypt stringEncrypt;
 
-        public StringValueProvider(
+        public ByteArrayValueProvider(
             MemberInfo targetMember,
             StringEncrypt stringEncrypt)
         {
@@ -19,12 +19,13 @@ namespace Newtonsoft.Json.Encryption
         public object GetValue(object target)
         {
             var value = targetMember.GetValue(target);
-            return stringEncrypt.Encrypt((string)value);
+            return stringEncrypt.Encrypt((byte[])value);
         }
 
         public void SetValue(object target, object value)
         {
-             targetMember.SetValue(target, stringEncrypt.Decrypt((string)value));
+            var decrypt = stringEncrypt.Decrypt((byte[])value);
+            targetMember.SetValue(target, decrypt);
         }
 
     }
