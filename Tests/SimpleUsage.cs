@@ -26,7 +26,7 @@ public class SimpleUsage
     {
         var target = new ClassWithDictionary
         {
-            Property = new Dictionary<string, string>()
+            Property = new Dictionary<string, string>
             {
                 {
                     "Key1", "Value1"
@@ -44,6 +44,27 @@ public class SimpleUsage
     {
         [Encrypt]
         public Dictionary<string, string> Property { get; set; }
+    }
+
+    [Test]
+    public void RoundTripListProperty()
+    {
+        var target = new ClassWithList
+        {
+            Property = new List<string>
+            {
+                "Value1",
+                "Value2"
+            }
+        };
+        var result = RoundTrip(target);
+        Assert.AreEqual("Value2", result.Property[1]);
+    }
+
+    public class ClassWithList
+    {
+        [Encrypt]
+        public List<string> Property { get; set; }
     }
 
     public T RoundTrip<T>(T instance)

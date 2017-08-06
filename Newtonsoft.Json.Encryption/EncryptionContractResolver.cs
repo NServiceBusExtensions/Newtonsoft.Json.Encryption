@@ -19,23 +19,9 @@ namespace Newtonsoft.Json.Encryption
             {
                 return null;
             }
-
-            if (member.GetCustomAttribute<EncryptAttribute>() == null)
+            if (ContractBuilder.TryCreate(member, stringEncrypt,out var converter))
             {
-                return jsonProperty;
-            }
-            var underlyingType = member.GetUnderlyingType();
-
-            if (underlyingType == typeof(string))
-            {
-                jsonProperty.Converter = new EncryptionConverter(stringEncrypt);
-                return jsonProperty;
-            }
-
-            if (underlyingType.IsStringValuedDictionary())
-            {
-                jsonProperty.ItemConverter = new EncryptionConverter(stringEncrypt);
-                return jsonProperty;
+                jsonProperty.Converter = converter;
             }
 
             return jsonProperty;
@@ -43,5 +29,34 @@ namespace Newtonsoft.Json.Encryption
 
 
 
+    }
+
+    public static class ContractBuilder
+    {
+
+        public static bool TryCreate(MemberInfo member, StringEncrypt stringEncrypt, out JsonConverter converter)
+        {
+            if (member.GetCustomAttribute<EncryptAttribute>() == null)
+            {
+                converter = null;
+                return false;
+            }
+            var underlyingType = member.GetUnderlyingType();
+
+            if (underlyingType == typeof(string))
+            {
+                converter = new StringEncryptionConverter(stringEncrypt);
+                return true;
+            }
+
+            if (underlyingType.IsStringDictionary() || underlyingType.IsStringEnumerable())
+            {
+                converter = new StringEncryptionConverter(stringEncrypt);
+                return true;
+            }
+
+            converter = null;
+            return false;
+        }
     }
 }
