@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using ApprovalTests;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using NUnit.Framework;
 
@@ -8,26 +6,26 @@ using NUnit.Framework;
 public class SimpleUsage
 {
     [Test]
-    public void RoundTripStringProperty()
+    public void StringProperty()
     {
-        var target = new ClassToEncrypt
+        var target = new ClassWithString
         {
             Property = "Foo"
         };
-        var result = RoundTrip(target);
+        var result = RoundTrip.Run(target);
         Assert.AreEqual("Foo", result.Property);
     }
 
-    public class ClassToEncrypt
+    public class ClassWithString
     {
         [Encrypt]
         public string Property { get; set; }
     }
 
     [Test]
-    public void RoundTripDictionaryProperty()
+    public void StringDictionaryProperty()
     {
-        var target = new ClassWithDictionary
+        var target = new ClassWithStringDictionary
         {
             Property = new Dictionary<string, string>
             {
@@ -39,20 +37,20 @@ public class SimpleUsage
                 }
             }
         };
-        var result = RoundTrip(target);
+        var result = RoundTrip.Run(target);
         Assert.AreEqual("Value2", result.Property["Key2"]);
     }
 
-    public class ClassWithDictionary
+    public class ClassWithStringDictionary
     {
         [Encrypt]
         public Dictionary<string, string> Property { get; set; }
     }
 
     [Test]
-    public void RoundTripListProperty()
+    public void StringListProperty()
     {
-        var target = new ClassWithList
+        var target = new ClassWithStringList
         {
             Property = new List<string>
             {
@@ -60,34 +58,13 @@ public class SimpleUsage
                 "Value2"
             }
         };
-        var result = RoundTrip(target);
+        var result = RoundTrip.Run(target);
         Assert.AreEqual("Value2", result.Property[1]);
     }
 
-    public class ClassWithList
+    public class ClassWithStringList
     {
         [Encrypt]
         public List<string> Property { get; set; }
-    }
-
-    public T RoundTrip<T>(T instance)
-    {
-        using (var crypto = CryptoBuilder.Build())
-        {
-            var serializer = new JsonSerializer
-            {
-                ContractResolver = new ContractResolver(
-                    stringEncrypt: new StringEncrypt(
-                        encryptProvider: () => crypto.CreateEncryptor(),
-                        decryptProvider: () => crypto.CreateDecryptor(),
-                        cryptoCleanup: transform => { })
-                )
-            };
-
-            var result = serializer.Serialize(instance);
-
-            Approvals.Verify(result);
-            return serializer.Deserialize<T>(result);
-        }
     }
 }
