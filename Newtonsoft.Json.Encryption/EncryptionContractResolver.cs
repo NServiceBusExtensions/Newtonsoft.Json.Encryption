@@ -1,21 +1,15 @@
-﻿using System;
-using System.Reflection;
-using System.Security.Cryptography;
+﻿using System.Reflection;
 using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Encryption
 {
     public class EncryptionContractResolver : DefaultContractResolver
     {
-        Func<ICryptoTransform> encryptProvider;
-        Func<ICryptoTransform> decryptProvider;
-        Action<ICryptoTransform> cryptoCleanup;
+        StringEncrypt stringEncrypt;
 
-        public EncryptionContractResolver(Func<ICryptoTransform> encryptProvider, Func<ICryptoTransform> decryptProvider, Action<ICryptoTransform> cryptoCleanup)
+        public EncryptionContractResolver(StringEncrypt stringEncrypt)
         {
-            this.encryptProvider = encryptProvider;
-            this.decryptProvider = decryptProvider;
-            this.cryptoCleanup = cryptoCleanup;
+            this.stringEncrypt = stringEncrypt;
         }
 
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
@@ -25,15 +19,18 @@ namespace Newtonsoft.Json.Encryption
             {
                 return null;
             }
-            if (EncryptionStringValueProvider.TryCreate(
+            if (ValueProviderCreater.TryCreate(
                 member: member,
-                encryptProvider: encryptProvider,
-                decryptProvider: decryptProvider,
-                cryptoCleanup: cryptoCleanup, provider: out var provider))
+                stringEncrypt: stringEncrypt,
+                provider: out var provider))
             {
                 jsonProperty.ValueProvider = provider;
             }
+            //jsonProperty.ItemConverter = new DictionaryItemConverter();
             return jsonProperty;
         }
+
+
+
     }
 }
