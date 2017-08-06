@@ -5,15 +5,15 @@ using System.Reflection;
 
 static class Extensions
 {
-    static TypeInfo stringEnumerable = typeof(IEnumerable<string>).GetTypeInfo();
-
     public static Type GetUnderlyingType(this MemberInfo member)
     {
-        if (member is FieldInfo info)
+        var info = member as FieldInfo;
+        if (info != null)
         {
             return info.FieldType;
         }
-        if (member is PropertyInfo propertyInfo)
+        var propertyInfo = member as PropertyInfo;
+        if (propertyInfo != null)
         {
             return propertyInfo.PropertyType;
         }
@@ -23,14 +23,14 @@ static class Extensions
         );
     }
 
-    public static bool IsStringDictionary(this Type type)
+    public static bool IsStringValuedDictionary(this Type type)
     {
         var typeInfo = type.GetTypeInfo();
         return typeInfo.ImplementedInterfaces
-            .Any(implementedInterface => implementedInterface.IsStringDictionaryInterface());
+            .Any(implementedInterface => implementedInterface.IsStringValuedDictionaryInterface());
     }
 
-    public static bool IsStringDictionaryInterface(this Type type)
+    public static bool IsStringValuedDictionaryInterface(this Type type)
     {
         var typeInfo = type.GetTypeInfo();
         var isDict = typeInfo.IsGenericType && typeInfo.GetGenericTypeDefinition() == typeof(IDictionary<,>);
@@ -42,9 +42,40 @@ static class Extensions
         return valueType == typeof(string);
     }
 
-    public static bool IsStringEnumerable(this Type type)
+    public static string GetValue(this MemberInfo member, object instance)
     {
-        return stringEnumerable.IsAssignableFrom(type.GetTypeInfo());
+        var fieldInfo = member as FieldInfo;
+        if (fieldInfo != null)
+        {
+            return (string) fieldInfo.GetValue(instance);
+        }
+        var propertyInfo = member as PropertyInfo;
+        if (propertyInfo != null)
+        {
+            return (string) propertyInfo.GetValue(instance, null);
+        }
+        throw new ArgumentException
+        (
+            "Input MemberInfo must be if type FieldInfo or PropertyInfo"
+        );
     }
-
+    public static void SetValue(this MemberInfo member, object instance, string value)
+    {
+        var fieldInfo = member as FieldInfo;
+        if (fieldInfo != null)
+        {
+            fieldInfo.SetValue(instance, value);
+            return;
+        }
+        var propertyInfo = member as PropertyInfo;
+        if (propertyInfo != null)
+        {
+            propertyInfo.SetValue(instance, value);
+            return;
+        }
+        throw new ArgumentException
+        (
+            "Input MemberInfo must be if type FieldInfo or PropertyInfo"
+        );
+    }
 }
