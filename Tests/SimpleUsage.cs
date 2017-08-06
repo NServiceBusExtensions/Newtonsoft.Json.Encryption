@@ -26,7 +26,7 @@ public class SimpleUsage
     {
         var target = new ClassWithDictionary
         {
-            Property = new Dictionary<string, string>()
+            Property = new Dictionary<string, string>
             {
                 {
                     "Key1", "Value1"
