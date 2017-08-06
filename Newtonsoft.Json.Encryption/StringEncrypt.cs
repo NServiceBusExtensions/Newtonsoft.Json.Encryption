@@ -59,41 +59,36 @@ namespace Newtonsoft.Json.Encryption
                 cryptoCleanup(decryptor);
             }
         }
+
         public byte[] EncryptBytes(byte[] target)
         {
             var encryptor = encryptProvider();
-            try
-            {
-                return PerformCryptography(encryptor, target);
-            }
-            finally
-            {
-                cryptoCleanup(encryptor);
-            }
+            return PerformCryptography(encryptor, target);
         }
 
         public byte[] DecryptBytes(byte[] value)
         {
             var decryptor = decryptProvider();
+            return PerformCryptography(decryptor, value);
+        }
+
+        byte[] PerformCryptography(ICryptoTransform cryptoTransform, byte[] data)
+        {
             try
             {
-                return PerformCryptography(decryptor, value);
+                using (var memoryStream = new MemoryStream())
+                {
+                    using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
+                    {
+                        cryptoStream.Write(data, 0, data.Length);
+                        cryptoStream.FlushFinalBlock();
+                        return memoryStream.ToArray();
+                    }
+                }
             }
             finally
             {
-                cryptoCleanup(decryptor);
-            }
-        }
-        byte[] PerformCryptography(ICryptoTransform cryptoTransform, byte[] data)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
-                {
-                    cryptoStream.Write(data, 0, data.Length);
-                    cryptoStream.FlushFinalBlock();
-                    return memoryStream.ToArray();
-                }
+                cryptoCleanup(cryptoTransform);
             }
         }
 
