@@ -1,15 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFrameworks>net47</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="*" />
     <PackageReference Include="ApprovalTests" Version="*" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="ApprovalUtilities" Version="*" />
+    <PackageReference Include="ObjectApproval" Version="*" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
   </ItemGroup>
 

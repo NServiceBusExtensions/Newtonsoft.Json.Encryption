@@ -8,16 +8,19 @@ namespace Newtonsoft.Json.Encryption
     {
         Func<ICryptoTransform> encryptProvider;
         Func<ICryptoTransform> decryptProvider;
-        Action<ICryptoTransform> cryptoCleanup;
+        Action<ICryptoTransform> encryptCleanup;
+        Action<ICryptoTransform> decryptCleanup;
 
         public StringEncrypt(
             Func<ICryptoTransform> encryptProvider,
             Func<ICryptoTransform> decryptProvider,
-            Action<ICryptoTransform> cryptoCleanup)
+            Action<ICryptoTransform> encryptCleanup,
+            Action<ICryptoTransform> decryptCleanup)
         {
             this.encryptProvider = encryptProvider;
             this.decryptProvider = decryptProvider;
-            this.cryptoCleanup = cryptoCleanup;
+            this.encryptCleanup = encryptCleanup;
+            this.decryptCleanup = decryptCleanup;
         }
 
         public string Encrypt(string target)
@@ -37,7 +40,7 @@ namespace Newtonsoft.Json.Encryption
             }
             finally
             {
-                cryptoCleanup(encryptor);
+                encryptCleanup(encryptor);
             }
         }
 
@@ -56,38 +59,46 @@ namespace Newtonsoft.Json.Encryption
             }
             finally
             {
-                cryptoCleanup(decryptor);
+                decryptCleanup(decryptor);
             }
         }
 
         public byte[] EncryptBytes(byte[] target)
         {
             var encryptor = encryptProvider();
-            return PerformCryptography(encryptor, target);
+            try
+            {
+                return PerformCryptography(encryptor, target);
+            }
+            finally
+            {
+                encryptCleanup(encryptor);
+            }
         }
 
         public byte[] DecryptBytes(byte[] value)
         {
             var decryptor = decryptProvider();
-            return PerformCryptography(decryptor, value);
+
+            try
+            {
+                return PerformCryptography(decryptor, value);
+            }
+            finally
+            {
+                decryptCleanup(decryptor);
+            }
         }
 
         byte[] PerformCryptography(ICryptoTransform cryptoTransform, byte[] data)
         {
-            try
+            using (var memoryStream = new MemoryStream())
             {
-                using (var memoryStream = new MemoryStream())
+                using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
                 {
-                    using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
-                    {
-                        cryptoStream.Write(data, 0, data.Length);
-                    }
-                    return memoryStream.ToArray();
+                    cryptoStream.Write(data, 0, data.Length);
                 }
-            }
-            finally
-            {
-                cryptoCleanup(cryptoTransform);
+                return memoryStream.ToArray();
             }
         }
 

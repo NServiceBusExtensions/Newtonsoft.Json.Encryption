@@ -15,7 +15,8 @@ public static class RoundTrip
                     stringEncrypt: new StringEncrypt(
                         encryptProvider: () => crypto.CreateEncryptor(),
                         decryptProvider: () => crypto.CreateDecryptor(),
-                        cryptoCleanup: transform => { })
+                        encryptCleanup: transform => { },
+                        decryptCleanup: transform => { })
                 )
             };
 
