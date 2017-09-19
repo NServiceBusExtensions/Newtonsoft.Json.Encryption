@@ -20,38 +20,38 @@ namespace Newtonsoft.Json.Encryption
         {
             public State(SymmetricAlgorithm algorithm)
             {
-                EncryptProvider = () => Encrypt ?? algorithm.CreateEncryptor();
-                DecryptProvider = () => Decrypt ?? algorithm.CreateDecryptor();
+                EncryptProvider = () => encrypt ?? algorithm.CreateEncryptor();
+                DecryptProvider = () => decrypt ?? algorithm.CreateDecryptor();
                 EncryptCleanup = transform =>
                 {
                     if (!transform.CanReuseTransform)
                     {
-                        Encrypt.Dispose();
-                        Encrypt = null;
+                        encrypt.Dispose();
+                        encrypt = null;
                     }
                 };
                 DecryptCleanup = transform =>
                 {
                     if (!transform.CanReuseTransform)
                     {
-                        Decrypt.Dispose();
-                        Decrypt = null;
+                        decrypt.Dispose();
+                        decrypt = null;
                     }
                 };
             }
 
+            ICryptoTransform encrypt;
             public readonly Func<ICryptoTransform> EncryptProvider;
-            ICryptoTransform Encrypt;
             public readonly Action<ICryptoTransform> EncryptCleanup;
 
+            ICryptoTransform decrypt;
             public readonly Func<ICryptoTransform> DecryptProvider;
-            ICryptoTransform Decrypt;
             public readonly Action<ICryptoTransform> DecryptCleanup;
 
             public void Dispose()
             {
-                Encrypt?.Dispose();
-                Decrypt?.Dispose();
+                encrypt?.Dispose();
+                decrypt?.Dispose();
             }
         }
 
