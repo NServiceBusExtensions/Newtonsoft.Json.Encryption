@@ -4,22 +4,22 @@ namespace Newtonsoft.Json.Encryption
 {
     public class ByteArrayItemConverter : JsonConverter
     {
-        StringEncrypt stringEncrypt;
+        Encrypter encrypter;
 
-        public ByteArrayItemConverter(StringEncrypt stringEncrypt)
+        public ByteArrayItemConverter(Encrypter encrypter)
         {
-            this.stringEncrypt = stringEncrypt;
+            this.encrypter = encrypter;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue(Convert.ToBase64String(stringEncrypt.EncryptBytes((byte[]) value)));
+            writer.WriteValue(Convert.ToBase64String(encrypter.EncryptBytes((byte[]) value)));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var fromBase64String = Convert.FromBase64String((string) reader.Value);
-            return stringEncrypt.DecryptBytes(fromBase64String);
+            return encrypter.DecryptBytes(fromBase64String);
         }
 
         public override bool CanConvert(Type objectType)

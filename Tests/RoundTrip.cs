@@ -12,7 +12,7 @@ public static class RoundTrip
             var serializer = new JsonSerializer
             {
                 ContractResolver = new ContractResolver(
-                    stringEncrypt: new StringEncrypt(
+                    encrypter: new Encrypter(
                         encryptProvider: () => algorithm.CreateEncryptor(),
                         decryptProvider: () => algorithm.CreateDecryptor(),
                         encryptCleanup: transform => { transform.Dispose(); },

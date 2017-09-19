@@ -6,25 +6,25 @@ namespace Newtonsoft.Json.Encryption
     public class ByteArrayValueProvider : IValueProvider
     {
         MemberInfo targetMember;
-        StringEncrypt stringEncrypt;
+        Encrypter encrypter;
 
         public ByteArrayValueProvider(
             MemberInfo targetMember,
-            StringEncrypt stringEncrypt)
+            Encrypter encrypter)
         {
             this.targetMember = targetMember;
-            this.stringEncrypt = stringEncrypt;
+            this.encrypter = encrypter;
         }
 
         public object GetValue(object target)
         {
             var value = targetMember.GetValue(target);
-            return stringEncrypt.EncryptBytes((byte[])value);
+            return encrypter.EncryptBytes((byte[])value);
         }
 
         public void SetValue(object target, object value)
         {
-            var decrypt = stringEncrypt.DecryptBytes((byte[])value);
+            var decrypt = encrypter.DecryptBytes((byte[])value);
             targetMember.SetValue(target, decrypt);
         }
 

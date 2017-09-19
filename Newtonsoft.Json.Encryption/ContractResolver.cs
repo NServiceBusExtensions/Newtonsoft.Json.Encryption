@@ -5,11 +5,11 @@ namespace Newtonsoft.Json.Encryption
 {
     public class ContractResolver : DefaultContractResolver
     {
-        StringEncrypt stringEncrypt;
+        Encrypter encrypter;
 
-        public ContractResolver(StringEncrypt stringEncrypt)
+        public ContractResolver(Encrypter encrypter)
         {
-            this.stringEncrypt = stringEncrypt;
+            this.encrypter = encrypter;
         }
 
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
@@ -21,7 +21,7 @@ namespace Newtonsoft.Json.Encryption
             }
             JsonPropertyHelper.Manipulate(
                 member: member,
-                stringEncrypt: stringEncrypt,
+                encrypter: encrypter,
                 jsonProperty: jsonProperty);
             return jsonProperty;
         }

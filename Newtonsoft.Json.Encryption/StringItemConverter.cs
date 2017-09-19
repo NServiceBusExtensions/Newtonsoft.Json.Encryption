@@ -4,21 +4,21 @@ namespace Newtonsoft.Json.Encryption
 {
     public class StringItemConverter : JsonConverter
     {
-        StringEncrypt stringEncrypt;
+        Encrypter encrypter;
 
-        public StringItemConverter(StringEncrypt stringEncrypt)
+        public StringItemConverter(Encrypter encrypter)
         {
-            this.stringEncrypt = stringEncrypt;
+            this.encrypter = encrypter;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue(stringEncrypt.Encrypt((string) value));
+            writer.WriteValue(encrypter.Encrypt((string) value));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return stringEncrypt.Decrypt((string) reader.Value);
+            return encrypter.Decrypt((string) reader.Value);
         }
 
         public override bool CanConvert(Type objectType)

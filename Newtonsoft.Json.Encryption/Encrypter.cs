@@ -4,14 +4,14 @@ using System.Security.Cryptography;
 
 namespace Newtonsoft.Json.Encryption
 {
-    public class StringEncrypt
+    public class Encrypter
     {
         Func<ICryptoTransform> encryptProvider;
         Func<ICryptoTransform> decryptProvider;
         Action<ICryptoTransform> encryptCleanup;
         Action<ICryptoTransform> decryptCleanup;
 
-        public StringEncrypt(
+        public Encrypter(
             Func<ICryptoTransform> encryptProvider,
             Func<ICryptoTransform> decryptProvider,
             Action<ICryptoTransform> encryptCleanup,

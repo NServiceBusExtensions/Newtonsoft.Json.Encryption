@@ -45,7 +45,7 @@ public class ThreadLocalSessionTest
         return new JsonSerializer
         {
             ContractResolver = new ContractResolver(
-                stringEncrypt: new StringEncrypt(
+                encrypter: new Encrypter(
                     encryptProvider: ThreadLocalSession.GetEncryptProvider(),
                     decryptProvider: ThreadLocalSession.GetDecryptProvider(),
                     encryptCleanup: ThreadLocalSession.GetEncryptCleanup(),
