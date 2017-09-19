@@ -25,8 +25,5 @@ namespace Newtonsoft.Json.Encryption
                 jsonProperty: jsonProperty);
             return jsonProperty;
         }
-
-
-
     }
 }

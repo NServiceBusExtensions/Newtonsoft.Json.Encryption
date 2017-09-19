@@ -4,8 +4,8 @@ using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Encryption
 {
-    public static class JsonPropertyHelper {
-
+    public static class JsonPropertyHelper
+    {
         public static void Manipulate(
             MemberInfo member,
             StringEncrypt stringEncrypt,

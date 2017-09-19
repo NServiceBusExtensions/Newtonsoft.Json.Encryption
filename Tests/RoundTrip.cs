@@ -7,16 +7,16 @@ public static class RoundTrip
 
     public static T Run<T>(T instance)
     {
-        using (var crypto = CryptoBuilder.Build())
+        using (var algorithm = CryptoBuilder.Build())
         {
             var serializer = new JsonSerializer
             {
                 ContractResolver = new ContractResolver(
                     stringEncrypt: new StringEncrypt(
-                        encryptProvider: () => crypto.CreateEncryptor(),
-                        decryptProvider: () => crypto.CreateDecryptor(),
-                        encryptCleanup: transform => { },
-                        decryptCleanup: transform => { })
+                        encryptProvider: () => algorithm.CreateEncryptor(),
+                        decryptProvider: () => algorithm.CreateDecryptor(),
+                        encryptCleanup: transform => { transform.Dispose(); },
+                        decryptCleanup: transform => { transform.Dispose(); })
                 )
             };
 

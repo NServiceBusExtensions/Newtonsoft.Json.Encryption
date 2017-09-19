@@ -16,7 +16,7 @@ namespace Newtonsoft.Json.Encryption
             local.Value = new State(algorithm);
         }
 
-        class State:IDisposable
+        class State : IDisposable
         {
             public State(SymmetricAlgorithm algorithm)
             {
@@ -55,8 +55,37 @@ namespace Newtonsoft.Json.Encryption
             }
         }
 
+        private static State Current => local.Value;
+
+        public static Func<ICryptoTransform> GetEncryptProvider()
+        {
+            return () => Current.EncryptProvider();
+        }
+
+        public static Action<ICryptoTransform> GetEncryptCleanup()
+        {
+            return transform =>
+            {
+                Current.EncryptCleanup(transform);
+            };
+        }
+
+        public static Func<ICryptoTransform> GetDecryptProvider()
+        {
+            return () => Current.DecryptProvider();
+        }
+
+        public static Action<ICryptoTransform> GetDecryptCleanup()
+        {
+            return transform =>
+            {
+                Current.DecryptCleanup(transform);
+            };
+        }
+
         public void Dispose()
         {
+            algorithm.Dispose();
             local.Value?.Dispose();
         }
     }
