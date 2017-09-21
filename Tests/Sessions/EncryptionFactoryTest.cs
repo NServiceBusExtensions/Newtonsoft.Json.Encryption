@@ -35,7 +35,7 @@ public class EncryptionFactoryTest
             })
             {
                 initVector = algorithm.IV;
-                using (threadLocalFactory.GetSession(algorithm))
+                using (threadLocalFactory.GetEncryptSession(algorithm))
                 {
                     var instance = new ClassToSerialize
                     {
@@ -53,7 +53,7 @@ public class EncryptionFactoryTest
                 Key = key
             })
             {
-                using (threadLocalFactory.GetSession(algorithm))
+                using (threadLocalFactory.GetDecryptSession(algorithm))
                 {
                     var deserialized = serializer.Deserialize<ClassToSerialize>(serialized);
                     ObjectApprover.VerifyWithJson(deserialized);
@@ -71,7 +71,7 @@ public class EncryptionFactoryTest
             ContractResolver = factory.GetContractResolver()
         };
         using (var algorithm = CryptoBuilder.Build())
-        using (factory.GetSession(algorithm))
+        using (factory.GetEncryptSession(algorithm))
         {
             var instance = new ClassToSerialize
             {
@@ -92,16 +92,23 @@ public class EncryptionFactoryTest
             ContractResolver = factory.GetContractResolver()
         };
         using (var algorithm = CryptoBuilder.Build())
-        using (factory.GetSession(algorithm))
         {
-            var instance = new ClassToSerialize
+            string serialized;
+            using (factory.GetEncryptSession(algorithm))
             {
-                Property1 = "Property1Value",
-                Property2 = "Property2Value"
-            };
-            var serialized = serializer.Serialize(instance);
-            var result = serializer.Deserialize<ClassToSerialize>(serialized);
-            ObjectApprover.VerifyWithJson(result);
+                var instance = new ClassToSerialize
+                {
+                    Property1 = "Property1Value",
+                    Property2 = "Property2Value"
+                };
+                serialized = serializer.Serialize(instance);
+            }
+            using (factory.GetDecryptSession(algorithm))
+            {
+                var result = serializer.Deserialize<ClassToSerialize>(serialized);
+                ObjectApprover.VerifyWithJson(result);
+            }
+
         }
     }
 

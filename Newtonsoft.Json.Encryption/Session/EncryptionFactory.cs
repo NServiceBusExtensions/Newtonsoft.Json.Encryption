@@ -7,12 +7,20 @@ namespace Newtonsoft.Json.Encryption
     public class EncryptionFactory :
         IDisposable
     {
-        ThreadLocal<SessionState> local = new ThreadLocal<SessionState>();
+        ThreadLocal<CryptoState> encryptLocal = new ThreadLocal<CryptoState>();
+        ThreadLocal<CryptoState> decryptLocal = new ThreadLocal<CryptoState>();
 
-        public IDisposable GetSession(SymmetricAlgorithm algorithm)
+        public IDisposable GetEncryptSession(SymmetricAlgorithm algorithm)
         {
-            var sessionState = new SessionState(algorithm);
-            local.Value = sessionState;
+            var sessionState = new CryptoState(algorithm.CreateEncryptor);
+            encryptLocal.Value = sessionState;
+            return sessionState;
+        }
+
+        public IDisposable GetDecryptSession(SymmetricAlgorithm algorithm)
+        {
+            var sessionState = new CryptoState(algorithm.CreateDecryptor);
+            decryptLocal.Value = sessionState;
             return sessionState;
         }
 
@@ -20,22 +28,23 @@ namespace Newtonsoft.Json.Encryption
         {
             return new ContractResolver(
                 encrypter: new Encrypter(
-                    encryptProvider: () => local.Value.EncryptProvider(),
-                    decryptProvider: () => local.Value.DecryptProvider(),
+                    encryptProvider: () => encryptLocal.Value.Provider(),
+                    decryptProvider: () => decryptLocal.Value.Provider(),
                     encryptCleanup: transform =>
                     {
-                        local.Value.EncryptCleanup(transform);
+                        encryptLocal.Value.Cleanup(transform);
                     },
                     decryptCleanup: transform =>
                     {
-                        local.Value.DecryptCleanup(transform);
+                        decryptLocal.Value.Cleanup(transform);
                     })
             );
         }
 
         public void Dispose()
         {
-            local?.Dispose();
+            encryptLocal?.Dispose();
+            decryptLocal?.Dispose();
         }
     }
 }
