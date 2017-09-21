@@ -6,11 +6,11 @@
 var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 
 // per app domain
-using (var threadLocalFactory = new EncryptionFactory())
+using (var factory = new EncryptionFactory())
 {
     var serializer = new JsonSerializer
     {
-        ContractResolver = threadLocalFactory.GetContractResolver()
+        ContractResolver = factory.GetContractResolver()
     };
 
     // transferred as meta data with the serialized payload
@@ -25,7 +25,7 @@ using (var threadLocalFactory = new EncryptionFactory())
     })
     {
         initVector = algorithm.IV;
-        using (threadLocalFactory.GetEncryptSession(algorithm))
+        using (factory.GetEncryptSession(algorithm))
         {
             var instance = new ClassToSerialize
             {
@@ -48,7 +48,7 @@ using (var threadLocalFactory = new EncryptionFactory())
         Key = key
     })
     {
-        using (threadLocalFactory.GetDecryptSession(algorithm))
+        using (factory.GetDecryptSession(algorithm))
         using (var stringReader = new StringReader(serialized))
         using (var jsonReader = new JsonTextReader(stringReader))
         {
