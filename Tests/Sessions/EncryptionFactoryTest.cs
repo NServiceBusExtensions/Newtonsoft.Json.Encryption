@@ -7,7 +7,7 @@ using NUnit.Framework;
 using ObjectApproval;
 
 [TestFixture]
-public class ThreadLocalSessionTest
+public class EncryptionFactoryTest
 {
     [Test]
     public void ExampleUsage()
@@ -16,7 +16,7 @@ public class ThreadLocalSessionTest
         var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 
         // per app domain
-        using (var threadLocalFactory = new ThreadLocalFactory())
+        using (var threadLocalFactory = new EncryptionFactory())
         {
             var serializer = new JsonSerializer
             {
@@ -65,7 +65,7 @@ public class ThreadLocalSessionTest
     [Test]
     public void Simple()
     {
-        var factory = new ThreadLocalFactory();
+        var factory = new EncryptionFactory();
         var serializer = new JsonSerializer
         {
             ContractResolver = factory.GetContractResolver()
@@ -86,7 +86,7 @@ public class ThreadLocalSessionTest
     [Test]
     public void RoundTrip()
     {
-        var factory = new ThreadLocalFactory();
+        var factory = new EncryptionFactory();
         var serializer = new JsonSerializer
         {
             ContractResolver = factory.GetContractResolver()

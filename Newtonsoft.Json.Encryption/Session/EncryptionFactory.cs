@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace Newtonsoft.Json.Encryption
 {
-    public class ThreadLocalFactory :
+    public class EncryptionFactory :
         IDisposable
     {
         ThreadLocal<SessionState> local = new ThreadLocal<SessionState>();
