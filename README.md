@@ -2,6 +2,14 @@
 
 
 ```
+public class ClassToSerialize
+{
+    [Encrypt]
+    public string Property { get; set; }
+}
+```
+
+```
 // per system (periodically rotated)
 var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 
@@ -29,8 +37,7 @@ using (var factory = new EncryptionFactory())
         {
             var instance = new ClassToSerialize
             {
-                Property1 = "Property1Value",
-                Property2 = "Property2Value"
+                Property = "PropertyValue",
             };
             var builder = new StringBuilder();
             using (var writer = new StringWriter(builder))
@@ -53,7 +60,7 @@ using (var factory = new EncryptionFactory())
         using (var jsonReader = new JsonTextReader(stringReader))
         {
             var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
-            Console.WriteLine(deserialized.Property1);
+            Console.WriteLine(deserialized.Property);
         }
     }
 }

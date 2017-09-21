@@ -32,12 +32,11 @@ class Program
             })
             {
                 initVector = algorithm.IV;
-                using (threadLocalFactory.GetEncryptSession(algorithm))
+                using (factory.GetEncryptSession(algorithm))
                 {
                     var instance = new ClassToSerialize
                     {
-                        Property1 = "Property1Value",
-                        Property2 = "Property2Value"
+                        Property = "PropertyValue",
                     };
                     var builder = new StringBuilder();
                     using (var writer = new StringWriter(builder))
@@ -60,7 +59,7 @@ class Program
                 using (var jsonReader = new JsonTextReader(stringReader))
                 {
                     var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
-                    Console.WriteLine(deserialized.Property1);
+                    Console.WriteLine(deserialized.Property);
                 }
             }
         }
