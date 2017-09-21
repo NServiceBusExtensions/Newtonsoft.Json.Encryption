@@ -28,21 +28,23 @@ public class ThreadLocalSessionTest
         };
 
         // transferred as meta data with the serialized payload
-        byte[] iv;
+        byte[] initVector;
 
         string serialized;
+
         // per serialize session
         using (var algorithm = new RijndaelManaged
         {
             Key = key
         })
         {
-            iv = algorithm.IV;
+            initVector = algorithm.IV;
             using (new ThreadLocalSession(algorithm))
             {
                 var instance = new ClassToSerialize
                 {
-                    Property = "A"
+                    Property1 = "Property1Value",
+                    Property2 = "Property2Value"
                 };
                 serialized = serializer.Serialize(instance);
             }
@@ -51,7 +53,7 @@ public class ThreadLocalSessionTest
         // per deserialize session
         using (var algorithm = new RijndaelManaged
         {
-            IV = iv,
+            IV = initVector,
             Key = key
         })
         {
@@ -72,7 +74,8 @@ public class ThreadLocalSessionTest
         {
             var instance = new ClassToSerialize
             {
-                Property = "A"
+                Property1 = "Property1Value",
+                Property2 = "Property2Value"
             };
             var result = serializer.Serialize(instance);
             Approvals.Verify(result);
@@ -88,7 +91,8 @@ public class ThreadLocalSessionTest
         {
             var instance = new ClassToSerialize
             {
-                Property = "A"
+                Property1 = "Property1Value",
+                Property2 = "Property2Value"
             };
             var serialized = serializer.Serialize(instance);
             var result = serializer.Deserialize<ClassToSerialize>(serialized);
@@ -113,7 +117,9 @@ public class ThreadLocalSessionTest
     public class ClassToSerialize
     {
         [Encrypt]
-        public string Property { get; set; }
+        public string Property1 { get; set; }
+        [Encrypt]
+        public string Property2 { get; set; }
     }
 
 }
