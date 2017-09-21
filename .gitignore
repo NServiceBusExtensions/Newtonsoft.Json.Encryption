@@ -39,12 +39,7 @@
 
 .vs/
 
-##  If you have NuGet Package Restore enabled, uncomment this
-packages/
-ForIntegration/
-NuGetCecilBuild/
-NugetBuild/
-ChocolateyNuGetBuild/
+nugets/
 
 # Visual Studio profiler
 *.psess
