@@ -1,6 +1,8 @@
 # Newtonsoft.Json.Encryption
 
 
+### Decorating properties
+
 ```
 public class ClassToSerialize
 {
@@ -8,6 +10,19 @@ public class ClassToSerialize
     public string Property { get; set; }
 }
 ```
+
+
+### Supported property types
+
+ * `string`
+ * `byte[]`
+ * `IDictionary<string, string>`
+ * `IDictionary<string, byte[]>`
+ * `IEnumerable<string>`
+ * `IEnumerable<byte[]>`
+
+
+### Usage
 
 ```
 // per system (periodically rotated)

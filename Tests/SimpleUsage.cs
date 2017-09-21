@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Encryption;
 using NUnit.Framework;
 
@@ -129,5 +130,47 @@ public class SimpleUsage
     {
         [Encrypt]
         public List<string> Property { get; set; }
+    }
+
+    [Test]
+    public void StringCollectionProperty()
+    {
+        var target = new ClassWithStringCollection
+        {
+            Property = new List<string>
+            {
+                "Value1",
+                "Value2"
+            }
+        };
+        var result = RoundTrip.Run(target);
+        Assert.AreEqual("Value2", result.Property.Last());
+    }
+
+    public class ClassWithStringCollection
+    {
+        [Encrypt]
+        public ICollection<string> Property { get; set; }
+    }
+
+    [Test]
+    public void StringEnumerableProperty()
+    {
+        var target = new ClassWithStringEnumerable
+        {
+            Property = new List<string>
+            {
+                "Value1",
+                "Value2"
+            }
+        };
+        var result = RoundTrip.Run(target);
+        Assert.AreEqual("Value2", result.Property.Last());
+    }
+
+    public class ClassWithStringEnumerable
+    {
+        [Encrypt]
+        public IEnumerable<string> Property { get; set; }
     }
 }
