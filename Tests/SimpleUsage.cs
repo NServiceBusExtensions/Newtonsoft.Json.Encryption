@@ -67,6 +67,7 @@ public class SimpleUsage
         [Encrypt]
         public List<byte[]> Property { get; set; }
     }
+
     [Test]
     public void StringProperty()
     {

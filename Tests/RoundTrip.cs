@@ -4,7 +4,6 @@ using Newtonsoft.Json.Encryption;
 
 public static class RoundTrip
 {
-
     public static T Run<T>(T instance)
     {
         using (var algorithm = CryptoBuilder.Build())

@@ -5,27 +5,25 @@ namespace Newtonsoft.Json.Encryption
 {
     public class StringValueProvider : IValueProvider
     {
-        MemberInfo targetMember;
+        MemberInfo member;
         Encrypter encrypter;
 
-        public StringValueProvider(
-            MemberInfo targetMember,
-            Encrypter encrypter)
+        public StringValueProvider(MemberInfo member, Encrypter encrypter)
         {
-            this.targetMember = targetMember;
+            this.member = member;
             this.encrypter = encrypter;
         }
 
         public object GetValue(object target)
         {
-            var value = targetMember.GetValue(target);
+            var value = member.GetValue(target);
             return encrypter.Encrypt((string)value);
         }
 
         public void SetValue(object target, object value)
         {
-             targetMember.SetValue(target, encrypter.Decrypt((string)value));
+            var decrypt = encrypter.Decrypt((string)value);
+            member.SetValue(target, decrypt);
         }
-
     }
 }

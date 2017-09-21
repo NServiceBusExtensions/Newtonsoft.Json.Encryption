@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 
 public static class Extensions
 {
-
     public static T RoundTrip<T>(this JsonSerializer serializer, T target)
     {
         var value = Serialize(serializer, target);
@@ -28,7 +27,6 @@ public static class Extensions
             serializer.Serialize(writer, target);
         }
 
-        var value = builder.ToString();
-        return value;
+        return builder.ToString();
     }
 }

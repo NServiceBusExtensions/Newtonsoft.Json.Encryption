@@ -9,7 +9,7 @@ namespace Newtonsoft.Json.Encryption
         public static void Manipulate(
             MemberInfo member,
             Encrypter encrypter,
-            JsonProperty jsonProperty)
+            JsonProperty property)
         {
             if (member.GetCustomAttribute<EncryptAttribute>() == null)
             {
@@ -18,36 +18,32 @@ namespace Newtonsoft.Json.Encryption
             var propertyType = member.GetUnderlyingType();
             if (propertyType == typeof(string))
             {
-                jsonProperty.ValueProvider = new StringValueProvider(
-                    targetMember: member,
-                    encrypter: encrypter);
+                property.ValueProvider = new StringValueProvider(member, encrypter);
                 return;
             }
             if (propertyType.IsStringDictionary())
             {
-                jsonProperty.ItemConverter = new StringItemConverter(encrypter);
+                property.ItemConverter = new StringItemConverter(encrypter);
                 return;
             }
             if (propertyType.IsStringEnumerable())
             {
-                jsonProperty.ItemConverter = new StringItemConverter(encrypter);
+                property.ItemConverter = new StringItemConverter(encrypter);
                 return;
             }
             if (propertyType == typeof(byte[]))
             {
-                jsonProperty.ValueProvider = new ByteArrayValueProvider(
-                    targetMember: member,
-                    encrypter: encrypter);
+                property.ValueProvider = new ByteArrayValueProvider(member, encrypter);
                 return;
             }
             if (propertyType.IsByteArrayDictionary())
             {
-                jsonProperty.ItemConverter = new ByteArrayItemConverter(encrypter);
+                property.ItemConverter = new ByteArrayItemConverter(encrypter);
                 return;
             }
             if (propertyType.IsByteArrayEnumerable())
             {
-                jsonProperty.ItemConverter = new ByteArrayItemConverter(encrypter);
+                property.ItemConverter = new ByteArrayItemConverter(encrypter);
                 return;
             }
             throw new Exception("Expected a string, a IDictionary<T,string>, a IEnumerable<string>, a byte[], a IDictionary<T,byte[]>, or a IEnumerable<byte[]>.");

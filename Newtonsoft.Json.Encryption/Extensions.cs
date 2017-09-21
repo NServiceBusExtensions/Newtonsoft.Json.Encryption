@@ -7,19 +7,20 @@ static class Extensions
 {
     public static Type GetUnderlyingType(this MemberInfo member)
     {
-        if (member is FieldInfo info)
+        if (member is FieldInfo field)
         {
-            return info.FieldType;
+            return field.FieldType;
         }
-        if (member is PropertyInfo propertyInfo)
+        if (member is PropertyInfo property)
         {
-            return propertyInfo.PropertyType;
+            return property.PropertyType;
         }
         throw new ArgumentException
         (
             "Input MemberInfo must be if type FieldInfo or PropertyInfo"
         );
     }
+
     public static object GetValue(this MemberInfo member, object instance)
     {
         if (member is FieldInfo fieldInfo)
@@ -35,6 +36,7 @@ static class Extensions
             "Input MemberInfo must be if type FieldInfo or PropertyInfo"
         );
     }
+
     public static void SetValue(this MemberInfo member, object instance, object value)
     {
         if (member is FieldInfo fieldInfo)
@@ -90,9 +92,9 @@ static class Extensions
     {
         return stringEnumerable.IsAssignableFrom(type.GetTypeInfo());
     }
+
     public static bool IsByteArrayEnumerable(this Type type)
     {
         return byteArrayEnumerable.IsAssignableFrom(type.GetTypeInfo());
     }
-
 }

@@ -14,16 +14,13 @@ namespace Newtonsoft.Json.Encryption
 
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
-            var jsonProperty = base.CreateProperty(member, memberSerialization);
-            if (jsonProperty == null)
+            var property = base.CreateProperty(member, memberSerialization);
+            if (property == null)
             {
                 return null;
             }
-            JsonPropertyHelper.Manipulate(
-                member: member,
-                encrypter: encrypter,
-                jsonProperty: jsonProperty);
-            return jsonProperty;
+            JsonPropertyHelper.Manipulate(member, encrypter, property);
+            return property;
         }
     }
 }
