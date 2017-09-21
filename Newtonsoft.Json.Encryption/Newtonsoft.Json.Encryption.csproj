@@ -12,7 +12,7 @@
     <PackageProjectUrl>http://github.com/SimonCropp/Newtonsoft.Json.Encryption</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageOutputPath>..\NugetBuild</PackageOutputPath>
+    <PackageOutputPath>..\nugets</PackageOutputPath>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludePDBsInPackage</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 

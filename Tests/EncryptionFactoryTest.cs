@@ -12,7 +12,7 @@ public class EncryptionFactoryTest
     [Test]
     public void ExampleUsage()
     {
-        // per system (rotated)
+        // per system (periodically rotated)
         var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 
         // per app domain
