@@ -16,10 +16,12 @@ public class ClassToSerialize
 
  * `string`
  * `byte[]`
- * `IDictionary<string, string>`
- * `IDictionary<string, byte[]>`
+ * `IDictionary<T, string>`
+ * `IDictionary<T, byte[]>`
  * `IEnumerable<string>`
  * `IEnumerable<byte[]>`
+
+Note that only the values in a `IDictionary` are encrypted.
 
 
 ### Usage

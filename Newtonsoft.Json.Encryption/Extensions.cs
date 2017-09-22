@@ -62,18 +62,18 @@ static class Extensions
     {
         return IsDictionary(type, typeof(string));
     }
+
     public static bool IsByteArrayDictionary(this Type type)
     {
         return IsDictionary(type, typeof(byte[]));
     }
 
-    private static bool IsDictionary(Type type, Type valueTypeToCheck)
+    static bool IsDictionary(Type type, Type valueTypeToCheck)
     {
         var typeInfo = type.GetTypeInfo();
         return typeInfo.ImplementedInterfaces
             .Any(x => IsDictionaryInterface(x, valueTypeToCheck));
     }
-
 
     static bool IsDictionaryInterface(Type type, Type valueTypeToCheck)
     {

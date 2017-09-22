@@ -13,7 +13,8 @@ namespace Newtonsoft.Json.Encryption
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue(Convert.ToBase64String(encrypter.EncryptBytes((byte[]) value)));
+            var base64String = Convert.ToBase64String(encrypter.EncryptBytes((byte[]) value));
+            writer.WriteValue(base64String);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
