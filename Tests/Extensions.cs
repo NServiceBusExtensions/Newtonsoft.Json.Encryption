@@ -4,12 +4,6 @@ using Newtonsoft.Json;
 
 public static class Extensions
 {
-    public static T RoundTrip<T>(this JsonSerializer serializer, T target)
-    {
-        var value = Serialize(serializer, target);
-        return Deserialize<T>(serializer, value);
-    }
-
     public static T Deserialize<T>(this JsonSerializer serializer, string value)
     {
         using (var reader = new StringReader(value))
