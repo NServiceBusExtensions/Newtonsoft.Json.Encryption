@@ -7,8 +7,8 @@ namespace Newtonsoft.Json.Encryption
     public class EncryptionFactory :
         IDisposable
     {
-        ThreadLocal<CryptoState> encryptLocal = new ThreadLocal<CryptoState>();
-        ThreadLocal<CryptoState> decryptLocal = new ThreadLocal<CryptoState>();
+        AsyncLocal<CryptoState> encryptLocal = new AsyncLocal<CryptoState>();
+        AsyncLocal<CryptoState> decryptLocal = new AsyncLocal<CryptoState>();
 
         public IDisposable GetEncryptSession(SymmetricAlgorithm algorithm)
         {
@@ -43,8 +43,8 @@ namespace Newtonsoft.Json.Encryption
 
         public void Dispose()
         {
-            encryptLocal?.Dispose();
-            decryptLocal?.Dispose();
+            encryptLocal?.Value?.Dispose();
+            decryptLocal?.Value?.Dispose();
         }
     }
 }
