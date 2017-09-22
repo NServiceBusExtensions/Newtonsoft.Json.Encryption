@@ -25,18 +25,16 @@ public class AsyncUsage
             string serialized;
             using (factory.GetEncryptSession(algorithm))
             {
-                await Task.Delay(1).ConfigureAwait(false);
+                await Task.Delay(1);
                 serialized = serializer.Serialize(target);
             }
             using (factory.GetDecryptSession(algorithm))
             {
-                await Task.Delay(1).ConfigureAwait(false);
+                await Task.Delay(1);
                 var result = serializer.Deserialize<ClassWithString>(serialized);
                 Assert.AreEqual("Foo", result.Property);
             }
         }
-
-
     }
 
     public class ClassWithString
