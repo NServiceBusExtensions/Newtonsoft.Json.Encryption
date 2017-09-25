@@ -14,33 +14,33 @@ static class JsonPropertyHelper
         {
             return;
         }
-        var propertyType = member.GetUnderlyingType();
-        if (propertyType == typeof(string))
+        var memberType = member.GetUnderlyingType();
+        if (memberType == typeof(string))
         {
             property.ValueProvider = new StringValueProvider(member, encrypter);
             return;
         }
-        if (propertyType.IsStringDictionary())
+        if (memberType.IsStringDictionary())
         {
             property.ItemConverter = new StringItemConverter(encrypter);
             return;
         }
-        if (propertyType.IsStringEnumerable())
+        if (memberType.IsStringEnumerable())
         {
             property.ItemConverter = new StringItemConverter(encrypter);
             return;
         }
-        if (propertyType == typeof(byte[]))
+        if (memberType == typeof(byte[]))
         {
             property.ValueProvider = new ByteArrayValueProvider(member, encrypter);
             return;
         }
-        if (propertyType.IsByteArrayDictionary())
+        if (memberType.IsByteArrayDictionary())
         {
             property.ItemConverter = new ByteArrayItemConverter(encrypter);
             return;
         }
-        if (propertyType.IsByteArrayEnumerable())
+        if (memberType.IsByteArrayEnumerable())
         {
             property.ItemConverter = new ByteArrayItemConverter(encrypter);
             return;

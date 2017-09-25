@@ -13,6 +13,7 @@
 *.ncrunchsolution
 *.ncrunchproject
 
+.learningtransport
 .idea/
 
 # Build results
