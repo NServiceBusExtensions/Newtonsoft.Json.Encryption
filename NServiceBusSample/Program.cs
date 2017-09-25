@@ -13,7 +13,6 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.Encryption.Endpoint2";
-        var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
         var configuration = new EndpointConfiguration("NServiceBusSample");
         var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
         IEndpointInstance endpointInstance = null;
@@ -27,6 +26,7 @@ class Program
                     ContractResolver = encryptionFactory.GetContractResolver()
                 });
 
+            var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
             configuration.EnableJsonEncryption(
                 encryptionFactory: encryptionFactory,
                 encryptStateBuilder: () =>
