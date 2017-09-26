@@ -8,9 +8,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample", "Sample\Sample.csproj", "{C87059BB-F570-4E83-ACAD-6B8094CAEDE9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Json.Encryption", "NServiceBus.Json.Encryption\NServiceBus.Json.Encryption.csproj", "{43478CA6-9B03-41B6-8A05-783C65634909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Newtonsoft.Encryption", "NServiceBus.Newtonsoft.Encryption\NServiceBus.Newtonsoft.Encryption.csproj", "{43478CA6-9B03-41B6-8A05-783C65634909}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rebus.Json.Encryption", "Rebus.Json.Encryption\Rebus.Json.Encryption.csproj", "{F06AF050-ED5D-4665-B7C8-984FBEAE28A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rebus.Newtonsoft.Encryption", "Rebus.Newtonsoft.Encryption\Rebus.Newtonsoft.Encryption.csproj", "{F06AF050-ED5D-4665-B7C8-984FBEAE28A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceBus", "ServiceBus", "{B88446CC-4D5A-43A1-AC2B-76B876B816D0}"
 EndProject

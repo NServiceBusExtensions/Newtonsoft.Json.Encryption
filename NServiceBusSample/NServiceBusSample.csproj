@@ -6,6 +6,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-*" />
-    <ProjectReference Include="..\NServiceBus.Json.Encryption\NServiceBus.Json.Encryption.csproj" />
+    <ProjectReference Include="..\NServiceBus.Newtonsoft.Encryption\NServiceBus.Newtonsoft.Encryption.csproj" />
   </ItemGroup>
 </Project>
