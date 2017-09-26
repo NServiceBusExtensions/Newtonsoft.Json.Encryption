@@ -1,5 +1,5 @@
 using NServiceBus.Features;
-using NServiceBus.Json.Encryption;
+using NServiceBus.Newtonsoft.Encryption;
 
 class EncryptionFeature : Feature
 {

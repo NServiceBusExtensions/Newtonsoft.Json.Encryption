@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using NServiceBus;
-using NServiceBus.Json.Encryption;
+using NServiceBus.Newtonsoft.Encryption;
 
 class Program
 {

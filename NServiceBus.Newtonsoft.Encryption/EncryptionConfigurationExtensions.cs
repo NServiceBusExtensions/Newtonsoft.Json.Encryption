@@ -2,7 +2,7 @@ using Newtonsoft.Json.Encryption;
 using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Settings;
 
-namespace NServiceBus.Json.Encryption
+namespace NServiceBus.Newtonsoft.Encryption
 {
     /// <summary>
     /// Provides configuration extensions to configure message property encryption.

@@ -10,7 +10,7 @@ using Newtonsoft.Json.Encryption;
 using Rebus.Activation;
 using Rebus.Bus;
 using Rebus.Config;
-using Rebus.Json.Encryption;
+using Rebus.Newtonsoft.Encryption;
 using Rebus.Serialization.Json;
 using Rebus.Transport.FileSystem;
 
@@ -40,27 +40,24 @@ class Program
                     TypeNameHandling = TypeNameHandling.All,
                     ContractResolver = encryptionFactory.GetContractResolver()
                 };
-                configurer.Serialization(s => {s.UseNewtonsoftJson(settings);});
-                configurer.Options(options =>
-                {
-                    var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
-                    options.EnableJsonEncryption(
-                        encryptionFactory: encryptionFactory,
-                        encryptStateBuilder: () =>
-                            (
-                            algorithm: new RijndaelManaged
-                            {
-                                Key = key
-                            },
-                            keyId: "1"
-                            ),
-                        decryptStateBuilder: (keyId, initVector) =>
-                            new RijndaelManaged
-                            {
-                                Key = key,
-                                IV = initVector
-                            });
-                });
+                configurer.Serialization(s => { s.UseNewtonsoftJson(settings); });
+                var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+                configurer.EnableJsonEncryption(
+                    encryptionFactory: encryptionFactory,
+                    encryptStateBuilder: () =>
+                        (
+                        algorithm: new RijndaelManaged
+                        {
+                            Key = key
+                        },
+                        keyId: "1"
+                        ),
+                    decryptStateBuilder: (keyId, initVector) =>
+                        new RijndaelManaged
+                        {
+                            Key = key,
+                            IV = initVector
+                        });
 
                 bus = configurer.Start();
                 Console.WriteLine("Press any key to exit");

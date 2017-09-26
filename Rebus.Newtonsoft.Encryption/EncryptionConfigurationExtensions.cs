@@ -4,7 +4,7 @@ using Rebus.Pipeline;
 using Rebus.Pipeline.Receive;
 using Rebus.Pipeline.Send;
 
-namespace Rebus.Json.Encryption
+namespace Rebus.Newtonsoft.Encryption
 {
     /// <summary>
     /// Configuration extensions for enabling encrypted message bodies
@@ -14,23 +14,29 @@ namespace Rebus.Json.Encryption
         /// <summary>
         /// Configures Rebus to encrypt messages.
         /// </summary>
-        public static void EnableJsonEncryption(this OptionsConfigurer configurer, EncryptionFactory encryptionFactory, EncryptStateBuilder encryptStateBuilder, DecryptStateBuilder decryptStateBuilder)
+        public static void EnableJsonEncryption(this RebusConfigurer configurer, EncryptionFactory encryptionFactory, EncryptStateBuilder encryptStateBuilder, DecryptStateBuilder decryptStateBuilder)
         {
             Guard.AgainstNull(nameof(configurer), configurer);
             Guard.AgainstNull(nameof(encryptionFactory), encryptionFactory);
             Guard.AgainstNull(nameof(encryptStateBuilder), encryptStateBuilder);
             Guard.AgainstNull(nameof(decryptStateBuilder), decryptStateBuilder);
-            configurer.Decorate<IPipeline>(c =>
+
+            configurer.Options(options =>
             {
-                var injector = new PipelineStepInjector(c.Get<IPipeline>());
+                options.Decorate<IPipeline>(
+                    resolutionContext =>
+                    {
+                        var pipeline = resolutionContext.Get<IPipeline>();
+                        var injector = new PipelineStepInjector(pipeline);
 
-                var decryptStep = new DecryptStep(encryptionFactory, decryptStateBuilder);
-                injector.OnReceive(decryptStep, PipelineRelativePosition.Before, typeof(DeserializeIncomingMessageStep));
+                        var decryptStep = new DecryptStep(encryptionFactory, decryptStateBuilder);
+                        injector.OnReceive(decryptStep, PipelineRelativePosition.Before, typeof(DeserializeIncomingMessageStep));
 
-                var encryptStep = new EncryptStep(encryptionFactory, encryptStateBuilder);
-                injector.OnSend(encryptStep, PipelineRelativePosition.Before, typeof(SerializeOutgoingMessageStep));
+                        var encryptStep = new EncryptStep(encryptionFactory, encryptStateBuilder);
+                        injector.OnSend(encryptStep, PipelineRelativePosition.Before, typeof(SerializeOutgoingMessageStep));
 
-                return injector;
+                        return injector;
+                    });
             });
         }
     }
