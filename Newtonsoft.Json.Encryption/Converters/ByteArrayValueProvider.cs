@@ -1,29 +1,26 @@
-﻿using System.Reflection;
-using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Encryption;
 
 class ByteArrayValueProvider : IValueProvider
 {
-    MemberInfo targetMember;
     Encrypter encrypter;
+    IValueProvider wrappedProvider;
 
-    public ByteArrayValueProvider(
-        MemberInfo targetMember,
-        Encrypter encrypter)
+    public ByteArrayValueProvider(Encrypter encrypter, IValueProvider wrappedProvider)
     {
-        this.targetMember = targetMember;
         this.encrypter = encrypter;
+        this.wrappedProvider = wrappedProvider;
     }
 
     public object GetValue(object target)
     {
-        var value = targetMember.GetValue(target);
+        var value = wrappedProvider.GetValue(target);
         return encrypter.EncryptBytes((byte[])value);
     }
 
     public void SetValue(object target, object value)
     {
         var decrypt = encrypter.DecryptBytes((byte[])value);
-        targetMember.SetValue(target, decrypt);
+        wrappedProvider.SetValue(target, decrypt);
     }
 }

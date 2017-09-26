@@ -10,14 +10,14 @@
     <PackageTags>Newtonsoft, Encryption</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/SimonCropp/Newtonsoft.Json.Encryption/master/Icon/package_icon.png</PackageIconUrl>
     <PackageProjectUrl>http://github.com/SimonCropp/Newtonsoft.Json.Encryption</PackageProjectUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile Condition="'$(Configuration)'=='Release'">true</GenerateDocumentationFile>
     <PackageOutputPath>..\nugets</PackageOutputPath>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludePDBsInPackage</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="[10.0.3, 11.0.0)" />
+    <PackageReference Include="Newtonsoft.Json" Version="[10.*, 11.0.0)" />
     <PackageReference Include="GitVersionTask" Version="4.0.0-*" PrivateAssets="All" />
   </ItemGroup>
 

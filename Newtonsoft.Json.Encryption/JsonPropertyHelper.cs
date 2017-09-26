@@ -10,14 +10,14 @@ static class JsonPropertyHelper
         Encrypter encrypter,
         JsonProperty property)
     {
-        if (member.GetCustomAttribute<EncryptAttribute>() == null)
+        if (ContainsEncryptAttribute(member))
         {
             return;
         }
         var memberType = member.GetUnderlyingType();
         if (memberType == typeof(string))
         {
-            property.ValueProvider = new StringValueProvider(member, encrypter);
+            property.ValueProvider = new StringValueProvider(encrypter, property.ValueProvider);
             return;
         }
         if (memberType.IsStringDictionary())
@@ -32,7 +32,7 @@ static class JsonPropertyHelper
         }
         if (memberType == typeof(byte[]))
         {
-            property.ValueProvider = new ByteArrayValueProvider(member, encrypter);
+            property.ValueProvider = new ByteArrayValueProvider(encrypter, property.ValueProvider);
             return;
         }
         if (memberType.IsByteArrayDictionary())
@@ -46,5 +46,10 @@ static class JsonPropertyHelper
             return;
         }
         throw new Exception("Expected a string, a IDictionary<T,string>, a IEnumerable<string>, a byte[], a IDictionary<T,byte[]>, or a IEnumerable<byte[]>.");
+    }
+
+    static bool ContainsEncryptAttribute(this MemberInfo member)
+    {
+        return member.GetCustomAttribute<EncryptAttribute>() == null;
     }
 }
