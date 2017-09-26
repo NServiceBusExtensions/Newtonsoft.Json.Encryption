@@ -10,7 +10,7 @@ static class JsonPropertyHelper
         Encrypter encrypter,
         JsonProperty property)
     {
-        if (ContainsEncryptAttribute(member))
+        if (member.ContainsEncryptAttribute())
         {
             return;
         }

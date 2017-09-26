@@ -12,58 +12,48 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Encryption.Endpoint2";
+        var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+        Console.Title = "NServiceBusSample";
+
         var configuration = new EndpointConfiguration("NServiceBusSample");
         var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
-        IEndpointInstance endpointInstance = null;
-        EncryptionFactory encryptionFactory = null;
-        try
-        {
-            encryptionFactory = new EncryptionFactory();
-            serialization.Settings(
-                new JsonSerializerSettings
+        var encryptionFactory = new EncryptionFactory();
+        serialization.Settings(
+            new JsonSerializerSettings
+            {
+                ContractResolver = encryptionFactory.GetContractResolver()
+            });
+
+        configuration.EnableJsonEncryption(
+            encryptionFactory: encryptionFactory,
+            encryptStateBuilder: () =>
+                (
+                algorithm: new RijndaelManaged
                 {
-                    ContractResolver = encryptionFactory.GetContractResolver()
+                    Key = key
+                },
+                keyId: "1"
+                ),
+            decryptStateBuilder: (keyId, initVector) =>
+                new RijndaelManaged
+                {
+                    Key = key,
+                    IV = initVector
                 });
 
-            var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
-            configuration.EnableJsonEncryption(
-                encryptionFactory: encryptionFactory,
-                encryptStateBuilder: () =>
-                    (
-                    algorithm: new RijndaelManaged
-                    {
-                        Key = key
-                    },
-                    keyId: "1"
-                    ),
-                decryptStateBuilder: (keyId, initVector) =>
-                    new RijndaelManaged
-                    {
-                        Key = key,
-                        IV = initVector
-                    });
+        configuration.UsePersistence<LearningPersistence>();
+        configuration.UseTransport<LearningTransport>();
+        var endpointInstance = await Endpoint.Start(configuration)
+            .ConfigureAwait(false);
+        Console.WriteLine("Press any key to exit");
 
-            configuration.UsePersistence<LearningPersistence>();
-            configuration.UseTransport<LearningTransport>();
-            endpointInstance = await Endpoint.Start(configuration)
-                .ConfigureAwait(false);
-            Console.WriteLine("Press any key to exit");
+        await SendMessage(endpointInstance)
+            .ConfigureAwait(false);
 
-            await SendMessage(endpointInstance)
-                .ConfigureAwait(false);
-
-            Console.ReadKey();
-        }
-        finally
-        {
-            if (endpointInstance != null)
-            {
-                await endpointInstance.Stop()
-                    .ConfigureAwait(false);
-            }
-            encryptionFactory?.Dispose();
-        }
+        Console.ReadKey();
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
+        encryptionFactory.Dispose();
     }
 
     static Task SendMessage(IEndpointInstance endpointInstance)

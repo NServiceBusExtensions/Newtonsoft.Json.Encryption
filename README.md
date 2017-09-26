@@ -1,5 +1,11 @@
 # Newtonsoft.Json.Encryption
 
+## The nuget package [![NuGet Status](http://img.shields.io/nuget/v/Newtonsoft.Json.Encryption.svg?style=flat)](https://www.nuget.org/packages/Newtonsoft.Json.Encryption/)
+
+https://nuget.org/packages/Newtonsoft.Json.Encryption/
+
+    PM> Install-Package Newtonsoft.Json.Encryption
+
 
 ### Decorating properties
 
@@ -81,4 +87,89 @@ using (var factory = new EncryptionFactory())
         }
     }
 }
+```
+
+## Rebus
+
+
+### The nuget package [![NuGet Status](http://img.shields.io/nuget/v/Rebus.Newtonsoft.Encryption.svg?style=flat)](https://www.nuget.org/packages/Rebus.Newtonsoft.Encryption/)
+
+https://nuget.org/packages/Rebus.Newtonsoft.Encryption/
+
+    PM> Install-Package Rebus.Newtonsoft.Encryption
+
+
+### Usage
+
+```
+var activator = new BuiltinHandlerActivator();
+
+activator.Register(() => new Handler());
+var configurer = Configure.With(activator);
+
+var encryptionFactory = new EncryptionFactory();
+var settings = new JsonSerializerSettings
+{
+    TypeNameHandling = TypeNameHandling.All,
+    ContractResolver = encryptionFactory.GetContractResolver()
+};
+configurer.Serialization(s => { s.UseNewtonsoftJson(settings); });
+configurer.EnableJsonEncryption(
+    encryptionFactory: encryptionFactory,
+    encryptStateBuilder: () =>
+        (
+        algorithm: new RijndaelManaged
+        {
+            Key = key
+        },
+        keyId: "1"
+        ),
+    decryptStateBuilder: (keyId, initVector) =>
+        new RijndaelManaged
+        {
+            Key = key,
+            IV = initVector
+        });
+```
+
+
+## NServiceBus
+
+
+### The nuget package [![NuGet Status](http://img.shields.io/nuget/v/NServiceBus.Newtonsoft.Encryption.svg?style=flat)](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Encryption/)
+
+https://nuget.org/packages/NServiceBus.Newtonsoft.Encryption/
+
+    PM> Install-Package NServiceBus.Newtonsoft.Encryption
+
+
+### Usage
+
+```
+
+var configuration = new EndpointConfiguration("NServiceBusSample");
+var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
+var encryptionFactory = new EncryptionFactory();
+serialization.Settings(
+    new JsonSerializerSettings
+    {
+        ContractResolver = encryptionFactory.GetContractResolver()
+    });
+
+configuration.EnableJsonEncryption(
+    encryptionFactory: encryptionFactory,
+    encryptStateBuilder: () =>
+        (
+        algorithm: new RijndaelManaged
+        {
+            Key = key
+        },
+        keyId: "1"
+        ),
+    decryptStateBuilder: (keyId, initVector) =>
+        new RijndaelManaged
+        {
+            Key = key,
+            IV = initVector
+        });
 ```

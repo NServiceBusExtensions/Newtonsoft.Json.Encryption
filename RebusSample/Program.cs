@@ -18,61 +18,55 @@ class Program
 {
     static async Task Main()
     {
+        var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+        Console.Title = "RebusSample";
         var directory = Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName;
 
-        using (var activator = new BuiltinHandlerActivator())
+        var activator = new BuiltinHandlerActivator();
+
+        activator.Register(() => new Handler());
+        var configurer = Configure.With(activator);
+
+        var encryptionFactory = new EncryptionFactory();
+        var settings = new JsonSerializerSettings
         {
-            activator.Register(() => new Handler());
-            var configurer = Configure.With(activator);
-
-            configurer.Transport(t =>
-            {
-                t.UseFileSystem(directory, "RebusSample");
-            });
-
-            IBus bus = null;
-            EncryptionFactory encryptionFactory = null;
-            try
-            {
-                encryptionFactory = new EncryptionFactory();
-                var settings = new JsonSerializerSettings
+            TypeNameHandling = TypeNameHandling.All,
+            ContractResolver = encryptionFactory.GetContractResolver()
+        };
+        configurer.Serialization(s => { s.UseNewtonsoftJson(settings); });
+        configurer.EnableJsonEncryption(
+            encryptionFactory: encryptionFactory,
+            encryptStateBuilder: () =>
+                (
+                algorithm: new RijndaelManaged
                 {
-                    TypeNameHandling = TypeNameHandling.All,
-                    ContractResolver = encryptionFactory.GetContractResolver()
-                };
-                configurer.Serialization(s => { s.UseNewtonsoftJson(settings); });
-                var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
-                configurer.EnableJsonEncryption(
-                    encryptionFactory: encryptionFactory,
-                    encryptStateBuilder: () =>
-                        (
-                        algorithm: new RijndaelManaged
-                        {
-                            Key = key
-                        },
-                        keyId: "1"
-                        ),
-                    decryptStateBuilder: (keyId, initVector) =>
-                        new RijndaelManaged
-                        {
-                            Key = key,
-                            IV = initVector
-                        });
+                    Key = key
+                },
+                keyId: "1"
+                ),
+            decryptStateBuilder: (keyId, initVector) =>
+                new RijndaelManaged
+                {
+                    Key = key,
+                    IV = initVector
+                });
 
-                bus = configurer.Start();
-                Console.WriteLine("Press any key to exit");
+        configurer.Transport(t =>
+        {
+            t.UseFileSystem(directory, "RebusSample");
+        });
 
-                await SendMessage(bus)
-                    .ConfigureAwait(false);
-                Console.ReadKey();
-            }
-            finally
-            {
-                bus?.Dispose();
-                encryptionFactory?.Dispose();
-            }
-        }
+        var bus = configurer.Start();
+        Console.WriteLine("Press any key to exit");
+
+        await SendMessage(bus)
+            .ConfigureAwait(false);
+        Console.ReadKey();
+        bus?.Dispose();
+        encryptionFactory.Dispose();
+        activator.Dispose();
     }
+
 
     static Task SendMessage(IBus bus)
     {
