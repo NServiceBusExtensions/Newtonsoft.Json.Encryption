@@ -3,7 +3,7 @@
 
 ### Decorating properties
 
-```
+```C#
 public class ClassToSerialize
 {
     [Encrypt]
@@ -26,7 +26,7 @@ Note that only the values in a `IDictionary` are encrypted.
 
 ### Usage
 
-```
+```C#
 // per system (periodically rotated)
 var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 
