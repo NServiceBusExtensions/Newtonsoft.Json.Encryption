@@ -146,7 +146,6 @@ https://nuget.org/packages/NServiceBus.Newtonsoft.Encryption/
 ### Usage
 
 ```
-
 var configuration = new EndpointConfiguration("NServiceBusSample");
 var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
 var encryptionFactory = new EncryptionFactory();
