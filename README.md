@@ -280,3 +280,13 @@ configuration.EnableJsonEncryption(
             IV = initVector
         });
 ```
+
+
+
+## Icon
+
+
+<a href="https://thenounproject.com/term/lock/59296/" target="_blank">Lock</a> designed by <a href="https://thenounproject.com/molumen/" target="_blank">Mourad Mokrane</a> from The Noun Project
+
+Lock by from the Noun Project
+
