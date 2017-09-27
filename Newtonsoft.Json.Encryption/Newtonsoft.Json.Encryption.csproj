@@ -3,17 +3,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net47;netstandard1.3</TargetFrameworks>
-    <Authors>Simon Cropp</Authors>
-    <PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)) Simon Cropp. All rights reserved</Copyright>
-    <PackageTags>Newtonsoft, Encryption</PackageTags>
-    <PackageIconUrl>https://raw.githubusercontent.com/SimonCropp/Newtonsoft.Json.Encryption/master/Icon/package_icon.png</PackageIconUrl>
-    <PackageProjectUrl>http://github.com/SimonCropp/Newtonsoft.Json.Encryption</PackageProjectUrl>
     <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
     <GenerateDocumentationFile Condition="'$(Configuration)'=='Release'">true</GenerateDocumentationFile>
-    <PackageOutputPath>..\nugets</PackageOutputPath>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludePDBsInPackage</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,9 +12,4 @@
     <PackageReference Include="GitVersionTask" Version="4.0.0-*" PrivateAssets="All" />
   </ItemGroup>
 
-  <Target Name="IncludePDBsInPackage">
-    <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\$(AssemblyName).pdb" PackagePath="lib/$(TargetFramework)" />
-    </ItemGroup>
-  </Target>
 </Project>
