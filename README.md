@@ -128,7 +128,6 @@ Generally a single instance of `EncryptionFactory` will exist per AppDomain.
 
 A single instance of `EncryptionFactory` is safe to be used for multiple instances of `JsonSerializer`. 
 
-
 ```
 var factory = new EncryptionFactory();
 
@@ -136,7 +135,6 @@ var serializer = new JsonSerializer
 {
     ContractResolver = factory.GetContractResolver()
 };
-
 ```
 
 
@@ -181,7 +179,6 @@ A single decrypt session is used per serialization instance.
  * `key` must be the same as the one use for serialization.
  * `initVector` must be the same as the one use for serialization. It is safe to be transferred with the serialized text. 
 
-
 ```
 using (var algorithm = new RijndaelManaged
 {
@@ -198,6 +195,7 @@ using (var algorithm = new RijndaelManaged
     }
 }
 ```
+
 
 ## Rebus
 
