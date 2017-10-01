@@ -65,7 +65,7 @@ static class JsonPropertyHelper
             property.ItemConverter = new ByteArrayConverter(encrypter);
             return;
         }
-        throw new Exception("Expected a string, a IDictionary<T,string>, a IEnumerable<string>, a byte[], a IDictionary<T,byte[]>, or a IEnumerable<byte[]>.");
+        throw new Exception("Expected a string, a IDictionary<T,string>, a IEnumerable<string>, a Guid, a IDictionary<T,Guid>, a IEnumerable<Guid>, a byte[], a IDictionary<T,byte[]>, or a IEnumerable<byte[]>.");
     }
 
     static bool ContainsEncryptAttribute(this MemberInfo member)

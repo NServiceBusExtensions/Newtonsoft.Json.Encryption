@@ -36,10 +36,13 @@ public class ClassToSerialize
 
  * `string`
  * `byte[]`
+ * `Guid`
  * `IDictionary<T, string>`
  * `IDictionary<T, byte[]>`
+ * `IDictionary<T, Guid>`
  * `IEnumerable<string>`
  * `IEnumerable<byte[]>`
+ * `IEnumerable<Guid>`
 
 Note that only the values in a `IDictionary` are encrypted.
 
