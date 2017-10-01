@@ -2,24 +2,26 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 
-class ByteArrayItemConverter : JsonConverter
+class ByteArrayConverter : JsonConverter
 {
     Encrypter encrypter;
 
-    public ByteArrayItemConverter(Encrypter encrypter)
+    public ByteArrayConverter(Encrypter encrypter)
     {
         this.encrypter = encrypter;
     }
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        var base64String = Convert.ToBase64String(encrypter.EncryptBytes((byte[]) value));
+        var encryptBytes = encrypter.EncryptBytes((byte[]) value);
+        var base64String = Convert.ToBase64String(encryptBytes);
         writer.WriteValue(base64String);
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
-        var fromBase64String = Convert.FromBase64String((string) reader.Value);
+        var value = (string) reader.Value;
+        var fromBase64String = Convert.FromBase64String(value);
         return encrypter.DecryptBytes(fromBase64String);
     }
 

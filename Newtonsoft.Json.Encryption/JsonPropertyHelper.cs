@@ -17,34 +17,52 @@ static class JsonPropertyHelper
         var memberType = member.GetUnderlyingType();
         if (memberType == typeof(string))
         {
-            property.Converter = new StringItemConverter(encrypter);
-            property.MemberConverter = new StringItemConverter(encrypter);
+            property.Converter = new StringConverter(encrypter);
+            property.MemberConverter = new StringConverter(encrypter);
             return;
         }
         if (memberType.IsStringDictionary())
         {
-            property.ItemConverter = new StringItemConverter(encrypter);
+            property.ItemConverter = new StringConverter(encrypter);
             return;
         }
         if (memberType.IsStringEnumerable())
         {
-            property.ItemConverter = new StringItemConverter(encrypter);
+            property.ItemConverter = new StringConverter(encrypter);
             return;
         }
+
+        if (memberType == typeof(Guid))
+        {
+            property.Converter = new GuidConverter(encrypter);
+            property.MemberConverter = new GuidConverter(encrypter);
+            return;
+        }
+        if (memberType.IsGuidDictionary())
+        {
+            property.ItemConverter = new GuidConverter(encrypter);
+            return;
+        }
+        if (memberType.IsGuidEnumerable())
+        {
+            property.ItemConverter = new GuidConverter(encrypter);
+            return;
+        }
+
         if (memberType == typeof(byte[]))
         {
-            property.Converter = new ByteArrayItemConverter(encrypter);
-            property.MemberConverter = new ByteArrayItemConverter(encrypter);
+            property.Converter = new ByteArrayConverter(encrypter);
+            property.MemberConverter = new ByteArrayConverter(encrypter);
             return;
         }
         if (memberType.IsByteArrayDictionary())
         {
-            property.ItemConverter = new ByteArrayItemConverter(encrypter);
+            property.ItemConverter = new ByteArrayConverter(encrypter);
             return;
         }
         if (memberType.IsByteArrayEnumerable())
         {
-            property.ItemConverter = new ByteArrayItemConverter(encrypter);
+            property.ItemConverter = new ByteArrayConverter(encrypter);
             return;
         }
         throw new Exception("Expected a string, a IDictionary<T,string>, a IEnumerable<string>, a byte[], a IDictionary<T,byte[]>, or a IEnumerable<byte[]>.");

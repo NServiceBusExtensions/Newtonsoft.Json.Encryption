@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Encryption;
 using NUnit.Framework;
 
@@ -78,5 +79,30 @@ public class DictionaryUsageUsage
     {
         [Encrypt]
         public Dictionary<int, string> Property { get; set; }
+    }
+
+    [Test]
+    public void IntGuidDictionary()
+    {
+        var target = new ClassWithIntGuidDictionary
+        {
+            Property = new Dictionary<int, Guid>
+            {
+                {
+                    1, new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6")
+                },
+                {
+                    2, new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
+                }
+            }
+        };
+        var result = RoundTrip.Run(target);
+        Assert.AreEqual("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property[2].ToString());
+    }
+
+    public class ClassWithIntGuidDictionary
+    {
+        [Encrypt]
+        public Dictionary<int, Guid> Property { get; set; }
     }
 }

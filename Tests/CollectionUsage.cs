@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Encryption;
 using NUnit.Framework;
@@ -69,7 +70,6 @@ public class CollectionUsage
         public ICollection<string> Property { get; set; }
     }
 
-
     [Test]
     public void StringEnumerable()
     {
@@ -91,4 +91,24 @@ public class CollectionUsage
         public IEnumerable<string> Property { get; set; }
     }
 
+    [Test]
+    public void GuidEnumerable()
+    {
+        var target = new ClassWithGuidEnumerable
+        {
+            Property = new List<Guid>
+            {
+                new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6"),
+                new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
+            }
+        };
+        var result = RoundTrip.Run(target);
+        Assert.AreEqual("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property.Last().ToString());
+    }
+
+    public class ClassWithGuidEnumerable
+    {
+        [Encrypt]
+        public IEnumerable<Guid> Property { get; set; }
+    }
 }
