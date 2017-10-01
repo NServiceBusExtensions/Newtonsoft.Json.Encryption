@@ -17,7 +17,8 @@ static class JsonPropertyHelper
         var memberType = member.GetUnderlyingType();
         if (memberType == typeof(string))
         {
-            property.ValueProvider = new StringValueProvider(encrypter, property.ValueProvider);
+            property.Converter = new StringItemConverter(encrypter);
+            property.MemberConverter = new StringItemConverter(encrypter);
             return;
         }
         if (memberType.IsStringDictionary())
@@ -32,7 +33,8 @@ static class JsonPropertyHelper
         }
         if (memberType == typeof(byte[]))
         {
-            property.ValueProvider = new ByteArrayValueProvider(encrypter, property.ValueProvider);
+            property.Converter = new ByteArrayItemConverter(encrypter);
+            property.MemberConverter = new ByteArrayItemConverter(encrypter);
             return;
         }
         if (memberType.IsByteArrayDictionary())
