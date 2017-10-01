@@ -15,6 +15,7 @@ static class JsonPropertyHelper
             return;
         }
         var memberType = member.GetUnderlyingType();
+
         if (memberType == typeof(string))
         {
             property.Converter = new StringConverter(encrypter);

@@ -108,7 +108,6 @@ public class EncryptionFactoryTest
                 var result = serializer.Deserialize<ClassToSerialize>(serialized);
                 ObjectApprover.VerifyWithJson(result);
             }
-
         }
     }
 
