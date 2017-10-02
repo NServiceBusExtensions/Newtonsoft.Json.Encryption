@@ -10,7 +10,7 @@ static class JsonPropertyHelper
         Encrypter encrypter,
         JsonProperty property)
     {
-        if (member.ContainsEncryptAttribute())
+        if (!member.ContainsEncryptAttribute())
         {
             return;
         }
@@ -100,7 +100,7 @@ static class JsonPropertyHelper
 
     static bool ContainsEncryptAttribute(this MemberInfo member)
     {
-        return member.GetCustomAttribute<EncryptAttribute>() == null;
+        return member.GetCustomAttribute<EncryptAttribute>() != null;
     }
     static string FriendlyName(this MemberInfo member)
     {
