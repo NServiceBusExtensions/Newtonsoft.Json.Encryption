@@ -22,6 +22,7 @@ static class HeaderExtractor
         }
         throw new KeyIdAndIvHeaderMismatchException();
     }
+
     public static void WriteKeyAndIv(this IDictionary<string, string> headers, string keyId, byte[] iv)
     {
         headers[KeyId] = keyId;
@@ -31,4 +32,3 @@ static class HeaderExtractor
     internal const string KeyId = "NewtonsoftEncryptionKeyId";
     internal const string Iv = "NewtonsoftEncryptionIv";
 }
-
