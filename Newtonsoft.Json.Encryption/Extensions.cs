@@ -5,9 +5,37 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Encryption;
 
 static class Extensions
 {
+
+    public static Guid DecryptGuidFromString(this Encrypter encrypter, string value)
+    {
+        var fromBase64String = Convert.FromBase64String(value);
+        var decryptBytes = encrypter.DecryptBytes(fromBase64String);
+        return new Guid(decryptBytes);
+    }
+
+    public static string EncryptGuidToString(this Encrypter encrypter, Guid guid)
+    {
+        var byteArray = guid.ToByteArray();
+        var encryptBytes = encrypter.EncryptBytes(byteArray);
+        return Convert.ToBase64String(encryptBytes);
+    }
+
+    public static byte[] DecryptBytesFromString(this Encrypter encrypter, string value)
+    {
+        var fromBase64String = Convert.FromBase64String(value);
+        return encrypter.DecryptBytes(fromBase64String);
+    }
+
+    public static string EncryptBytesToString(this Encrypter encrypter, byte[] bytes)
+    {
+        var encryptBytes = encrypter.EncryptBytes(bytes);
+        return Convert.ToBase64String(encryptBytes);
+    }
+
     public static string Serialize(this JsonConverter converter, object value, JsonSerializer serializer)
     {
         var builder = new StringBuilder();

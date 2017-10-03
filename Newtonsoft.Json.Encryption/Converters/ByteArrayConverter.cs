@@ -14,16 +14,14 @@ class ByteArrayConverter : JsonConverter
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
         var bytes = (byte[]) value;
-        var encryptBytes = encrypter.EncryptBytes(bytes);
-        var base64String = Convert.ToBase64String(encryptBytes);
+        var base64String = encrypter.EncryptBytesToString(bytes);
         writer.WriteValue(base64String);
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
         var value = (string) reader.Value;
-        var fromBase64String = Convert.FromBase64String(value);
-        return encrypter.DecryptBytes(fromBase64String);
+        return encrypter.DecryptBytesFromString(value);
     }
 
     public override bool CanConvert(Type objectType)
