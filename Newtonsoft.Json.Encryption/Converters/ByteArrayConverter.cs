@@ -13,7 +13,8 @@ class ByteArrayConverter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        var encryptBytes = encrypter.EncryptBytes((byte[]) value);
+        var bytes = (byte[]) value;
+        var encryptBytes = encrypter.EncryptBytes(bytes);
         var base64String = Convert.ToBase64String(encryptBytes);
         writer.WriteValue(base64String);
     }

@@ -1,10 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using Newtonsoft.Json;
 
 static class Extensions
 {
+    public static string Serialize(this JsonConverter converter, object value, JsonSerializer serializer)
+    {
+        var builder = new StringBuilder();
+        using (var stringWriter = new StringWriter(builder))
+        using (var textWriter = new JsonTextWriter(stringWriter))
+        {
+            converter.WriteJson(textWriter, value, serializer);
+        }
+        return builder.ToString();
+    }
+
+    public static object Deserialize(this JsonConverter converter, Type type, JsonSerializer serializer, string decrypted, object existingValue)
+    {
+        using (var stringReader = new StringReader(decrypted))
+        using (var textReader = new JsonTextReader(stringReader))
+        {
+            return converter.ReadJson(textReader, type, existingValue, serializer);
+        }
+    }
+
+    public static string Serialize(this JsonSerializer serializer, object value)
+    {
+        var builder = new StringBuilder();
+        using (var writer = new StringWriter(builder))
+        {
+            serializer.Serialize(writer, value);
+        }
+        return builder.ToString();
+    }
+
+    public static object Deserialize(this JsonSerializer serializer, Type type, string value)
+    {
+        using (var reader = new StringReader(value))
+        {
+            return serializer.Deserialize(reader, type);
+        }
+    }
+
     public static Type GetUnderlyingType(this MemberInfo member)
     {
         if (member is FieldInfo field)

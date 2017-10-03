@@ -10,17 +10,33 @@ static class JsonPropertyHelper
         Encrypter encrypter,
         JsonProperty property)
     {
-        if (!member.ContainsEncryptAttribute())
+        var containsEncryptAttribute = member.ContainsEncryptAttribute();
+        var containsNodeEncryptAttribute = member.ContainsNodeEncryptAttribute();
+        if (!containsEncryptAttribute && !containsNodeEncryptAttribute)
         {
             return;
         }
+        if (containsEncryptAttribute && containsNodeEncryptAttribute)
+        {
+            throw new Exception($"Cannot contain both {nameof(EncryptAttribute)} and {nameof(NodeEncryptAttribute)}.");
+        }
+        if (containsNodeEncryptAttribute)
+        {
+            if (property.Converter == null)
+            {
+                property.Converter = property.MemberConverter = new NodeConverter(encrypter);
+                return;
+            }
+            property.Converter = property.MemberConverter = new WrappedNodeConverter(encrypter, property.Converter);
+            return;
+        }
+
         var memberType = member.GetUnderlyingType();
 
         if (memberType == typeof(string))
         {
             VerifyConverterIsNull(property, member);
-            property.Converter = new StringConverter(encrypter);
-            property.MemberConverter = new StringConverter(encrypter);
+            property.Converter = property.MemberConverter = new StringConverter(encrypter);
             return;
         }
         if (memberType.IsStringDictionary())
@@ -39,8 +55,7 @@ static class JsonPropertyHelper
         if (memberType == typeof(Guid))
         {
             VerifyConverterIsNull(property, member);
-            property.Converter = new GuidConverter(encrypter);
-            property.MemberConverter = new GuidConverter(encrypter);
+            property.Converter = property.MemberConverter = new GuidConverter(encrypter);
             return;
         }
         if (memberType.IsGuidDictionary())
@@ -59,8 +74,7 @@ static class JsonPropertyHelper
         if (memberType == typeof(byte[]))
         {
             VerifyConverterIsNull(property, member);
-            property.Converter = new ByteArrayConverter(encrypter);
-            property.MemberConverter = new ByteArrayConverter(encrypter);
+            property.Converter = property.MemberConverter = new ByteArrayConverter(encrypter);
             return;
         }
         if (memberType.IsByteArrayDictionary())
@@ -102,6 +116,12 @@ static class JsonPropertyHelper
     {
         return member.GetCustomAttribute<EncryptAttribute>() != null;
     }
+
+    static bool ContainsNodeEncryptAttribute(this MemberInfo member)
+    {
+        return member.GetCustomAttribute<NodeEncryptAttribute>() != null;
+    }
+
     static string FriendlyName(this MemberInfo member)
     {
         return $"{member.DeclaringType.FullName}.{member.Name}";
