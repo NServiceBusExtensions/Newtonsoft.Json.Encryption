@@ -6,6 +6,10 @@ namespace Newtonsoft.Json.Encryption
 {
     public class Encrypter
     {
+        [ThreadStatic]
+        static MemoryStream CachedMemoryStream;
+        const int TargetMaxLength = 1024;
+
         Func<ICryptoTransform> encryptProvider;
         Func<ICryptoTransform> decryptProvider;
         Action<ICryptoTransform> encryptCleanup;
@@ -28,20 +32,40 @@ namespace Newtonsoft.Json.Encryption
             var encryptor = encryptProvider();
             try
             {
-                using (var memoryStream = new MemoryStream())
+                if (target.Length < TargetMaxLength)
                 {
-                    using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
-                    using (var writer = new StreamWriter(cryptoStream))
+                    var stream = CachedMemoryStream ?? (CachedMemoryStream = new MemoryStream(TargetMaxLength));
+                    try
                     {
-                        writer.Write(target);
+                        return Encrypt(target, stream, encryptor);
                     }
-                    return Convert.ToBase64String(memoryStream.ToArray());
+                    finally
+                    {
+                        stream.SetLength(0);
+                    }
+                }
+                else
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        return Encrypt(target, stream, encryptor);
+                    }
                 }
             }
             finally
             {
                 encryptCleanup(encryptor);
             }
+        }
+
+        static string Encrypt(string target, MemoryStream stream, ICryptoTransform encryptor)
+        {
+            using (var cryptoStream = new CryptoStream(stream, encryptor, CryptoStreamMode.Write))
+            using (var writer = new StreamWriter(cryptoStream))
+            {
+                writer.Write(target);
+            }
+            return Convert.ToBase64String(stream.ToArray());
         }
 
         public string Decrypt(string value)
