@@ -1,5 +1,8 @@
 # Newtonsoft.Json.Encryption
 
+Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the notes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
+
+
 ## The NuGet package [![NuGet Status](http://img.shields.io/nuget/v/Newtonsoft.Json.Encryption.svg?style=flat)](https://www.nuget.org/packages/Newtonsoft.Json.Encryption/)
 
 https://nuget.org/packages/Newtonsoft.Json.Encryption/
