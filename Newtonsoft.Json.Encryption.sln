@@ -24,6 +24,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RebusTests", "RebusTests\Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{D0FD6F65-7127-4D2C-B15E-B4F550D2CB81}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.Newtonsoft.Encryption", "MassTransit.Newtonsoft.Encryption\MassTransit.Newtonsoft.Encryption.csproj", "{A5771187-49FB-4C20-AFEC-E6D71D89F218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitSample", "MassTransitSample\MassTransitSample.csproj", "{0C2AF4F9-02E2-48BA-8B6F-2849AB76B90C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +74,14 @@ Global
 		{D0FD6F65-7127-4D2C-B15E-B4F550D2CB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0FD6F65-7127-4D2C-B15E-B4F550D2CB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0FD6F65-7127-4D2C-B15E-B4F550D2CB81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5771187-49FB-4C20-AFEC-E6D71D89F218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5771187-49FB-4C20-AFEC-E6D71D89F218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5771187-49FB-4C20-AFEC-E6D71D89F218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5771187-49FB-4C20-AFEC-E6D71D89F218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C2AF4F9-02E2-48BA-8B6F-2849AB76B90C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C2AF4F9-02E2-48BA-8B6F-2849AB76B90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C2AF4F9-02E2-48BA-8B6F-2849AB76B90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C2AF4F9-02E2-48BA-8B6F-2849AB76B90C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +94,8 @@ Global
 		{C21456CE-1F0C-47F1-B5C7-1F905B30A412} = {B88446CC-4D5A-43A1-AC2B-76B876B816D0}
 		{D425FEF0-F2C2-45F0-87E3-7CC88E466D1D} = {B88446CC-4D5A-43A1-AC2B-76B876B816D0}
 		{D0FD6F65-7127-4D2C-B15E-B4F550D2CB81} = {B88446CC-4D5A-43A1-AC2B-76B876B816D0}
+		{A5771187-49FB-4C20-AFEC-E6D71D89F218} = {B88446CC-4D5A-43A1-AC2B-76B876B816D0}
+		{0C2AF4F9-02E2-48BA-8B6F-2849AB76B90C} = {B88446CC-4D5A-43A1-AC2B-76B876B816D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9DBE1FD-2601-4F67-B85B-CE26A668FA05}

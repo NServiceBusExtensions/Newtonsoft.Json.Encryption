@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net47</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="3.*" />
+    <ProjectReference Include="..\MassTransit.Newtonsoft.Encryption\MassTransit.Newtonsoft.Encryption.csproj" />
+  </ItemGroup>
+
+</Project>
