@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="*" />
-    <PackageReference Include="ApprovalTests" Version="*" />
-    <PackageReference Include="ApprovalUtilities" Version="*" />
-    <PackageReference Include="ObjectApproval" Version="*" />
+    <PackageReference Include="NUnit" Version="3.9" />
+    <PackageReference Include="ApprovalTests" Version="3.0.13" />
+    <PackageReference Include="ApprovalUtilities" Version="3.0.13" />
+    <PackageReference Include="ObjectApproval" Version="2.1" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
   </ItemGroup>
 
