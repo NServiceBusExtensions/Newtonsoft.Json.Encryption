@@ -24,10 +24,10 @@ static class JsonPropertyHelper
         {
             if (property.Converter == null)
             {
-                property.Converter = property.MemberConverter = new NodeConverter(encrypter);
+                property.Converter = new NodeConverter(encrypter);
                 return;
             }
-            property.Converter = property.MemberConverter = new WrappedNodeConverter(encrypter, property.Converter);
+            property.Converter = new WrappedNodeConverter(encrypter, property.Converter);
             return;
         }
 
@@ -36,7 +36,7 @@ static class JsonPropertyHelper
         if (memberType == typeof(string))
         {
             VerifyConverterIsNull(property, member);
-            property.Converter = property.MemberConverter = new StringConverter(encrypter);
+            property.Converter = new StringConverter(encrypter);
             return;
         }
         if (memberType.IsStringDictionary())
@@ -55,7 +55,7 @@ static class JsonPropertyHelper
         if (memberType == typeof(Guid))
         {
             VerifyConverterIsNull(property, member);
-            property.Converter = property.MemberConverter = new GuidConverter(encrypter);
+            property.Converter = new GuidConverter(encrypter);
             return;
         }
         if (memberType.IsGuidDictionary())
@@ -74,7 +74,7 @@ static class JsonPropertyHelper
         if (memberType == typeof(byte[]))
         {
             VerifyConverterIsNull(property, member);
-            property.Converter = property.MemberConverter = new ByteArrayConverter(encrypter);
+            property.Converter = new ByteArrayConverter(encrypter);
             return;
         }
         if (memberType.IsByteArrayDictionary())
@@ -102,10 +102,6 @@ static class JsonPropertyHelper
 
     static void VerifyConverterIsNull(JsonProperty property, MemberInfo member)
     {
-        if (property.MemberConverter != null)
-        {
-            throw new Exception($"Expected JsonProperty.MemberConverter to be null. Property: {member.FriendlyName()}");
-        }
         if (property.Converter != null)
         {
             throw new Exception($"Expected JsonProperty.Converter to be null. Property: {member.FriendlyName()}");

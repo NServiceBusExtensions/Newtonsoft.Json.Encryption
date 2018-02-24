@@ -9,7 +9,7 @@
     <PackageReference Include="NUnit" Version="3.9" />
     <PackageReference Include="ApprovalTests" Version="3.0.13" />
     <PackageReference Include="ApprovalUtilities" Version="3.0.13" />
-    <PackageReference Include="ObjectApproval" Version="2.1" />
+    <PackageReference Include="ObjectApproval" Version="2.2.0" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
   </ItemGroup>
 
