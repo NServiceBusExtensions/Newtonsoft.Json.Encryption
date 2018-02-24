@@ -17,7 +17,7 @@ Any implementation of [SymmetricAlgorithm](https://msdn.microsoft.com/en-us/libr
 
 ## Decorating properties
 
-```
+```C#
 public class ClassToSerialize
 {
     [Encrypt]
@@ -28,7 +28,7 @@ public class ClassToSerialize
 
 ## Serialized
 
-```
+```C#
 {
     "Property":"wSayABpFI3g7a/D6gGTq5g=="
 }
@@ -54,7 +54,7 @@ Note that only the values in a `IDictionary` are encrypted.
 
 The full serialize and deserialization workflow:
 
-```
+```C#
 // per system (periodically rotated)
 var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 
@@ -121,7 +121,7 @@ See [SymmetricAlgorithm.Key](https://msdn.microsoft.com/en-us/library/system.sec
 
 Example Key used for [RijndaelManaged algorithm](https://msdn.microsoft.com/en-us/library/system.security.cryptography.rijndaelmanaged.aspx) in the below sample code:
 
-```
+```C#
 var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 ```
 
@@ -134,7 +134,7 @@ Generally a single instance of `EncryptionFactory` will exist per AppDomain.
 
 A single instance of `EncryptionFactory` is safe to be used for multiple instances of `JsonSerializer`. 
 
-```
+```C#
 var factory = new EncryptionFactory();
 
 var serializer = new JsonSerializer
@@ -150,7 +150,7 @@ A single encrypt session is used per serialization instance.
 
 On instantiation the `SymmetricAlgorithm` will generate a valid [IV](https://msdn.microsoft.com/en-us/library/system.security.cryptography.symmetricalgorithm.iv.aspx). This is generally a good value to use for serialization and then stored for deserialization.
 
-```
+```C#
 string serialized;
 
 // per serialize session
@@ -185,7 +185,7 @@ A single decrypt session is used per serialization instance.
  * `key` must be the same as the one use for serialization.
  * `initVector` must be the same as the one use for serialization. It is safe to be transferred with the serialized text. 
 
-```
+```C#
 using (var algorithm = new RijndaelManaged
 {
     IV = initVector,
@@ -215,7 +215,7 @@ https://nuget.org/packages/Rebus.Newtonsoft.Encryption/
 
 ### Usage
 
-```
+```C#
 var activator = new BuiltinHandlerActivator();
 
 activator.Register(() => new Handler());
@@ -259,7 +259,7 @@ https://nuget.org/packages/NServiceBus.Newtonsoft.Encryption/
 
 ### Usage
 
-```
+```C#
 var configuration = new EndpointConfiguration("NServiceBusSample");
 var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
 var encryptionFactory = new EncryptionFactory();
@@ -286,7 +286,6 @@ configuration.EnableJsonEncryption(
             IV = initVector
         });
 ```
-
 
 
 ## Icon
