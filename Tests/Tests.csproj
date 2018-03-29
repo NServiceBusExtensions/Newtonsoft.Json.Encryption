@@ -7,10 +7,14 @@
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.9" />
-    <PackageReference Include="ApprovalTests" Version="3.0.13" />
-    <PackageReference Include="ApprovalUtilities" Version="3.0.13" />
+    <PackageReference Include="ApprovalTests" Version="3.0.14" />
+    <PackageReference Include="ApprovalUtilities" Version="3.0.14" />
     <PackageReference Include="ObjectApproval" Version="2.2.0" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
 
 </Project>
