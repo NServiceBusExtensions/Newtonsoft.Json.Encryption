@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
-using NUnit.Framework;
+using Xunit;
 
 public class ReverseConverter : JsonConverter
 {
@@ -10,8 +10,8 @@ public class ReverseConverter : JsonConverter
 
     public static void AssertReadWriteCalled()
     {
-        Assert.IsTrue(WriteCalled);
-        Assert.IsTrue(ReadCalled);
+        Assert.True(WriteCalled);
+        Assert.True(ReadCalled);
     }
 
     public ReverseConverter()

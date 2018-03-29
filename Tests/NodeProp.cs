@@ -1,11 +1,15 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using NUnit.Framework;
+using Xunit;
+using Xunit.Abstractions;
 
-[TestFixture]
-public class NodeProp
+public class NodeProp: TestBase
 {
-    [Test]
+    public NodeProp(ITestOutputHelper output) : base(output)
+    {
+    }
+
+    [Fact]
     public void Node()
     {
         var target = new TargetClass
@@ -17,7 +21,7 @@ public class NodeProp
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("PropertyValue1", result.SubProperty.Property1);
+        Assert.Equal("PropertyValue1", result.SubProperty.Property1);
     }
 
     public class TargetClass
@@ -32,7 +36,7 @@ public class NodeProp
         public string Property2 { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void NodeWithConverter()
     {
         var target = new WithConverterTargetClass
@@ -40,7 +44,7 @@ public class NodeProp
             Property = "AbCd"
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("AbCd", result.Property);
+        Assert.Equal("AbCd", result.Property);
         ReverseConverter.AssertReadWriteCalled();
     }
 

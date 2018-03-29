@@ -1,11 +1,15 @@
 ﻿using System;
 using Newtonsoft.Json.Encryption;
-using NUnit.Framework;
+using Xunit;
+using Xunit.Abstractions;
 
-[TestFixture]
-public class SimpleProp
+public class SimpleProp: TestBase
 {
-    [Test]
+    public SimpleProp(ITestOutputHelper output) : base(output)
+    {
+    }
+
+    [Fact]
     public void ByteArray()
     {
         var target = new ClassWithByteArray
@@ -13,7 +17,7 @@ public class SimpleProp
             Property = new byte[]{2,3}
         };
         var result = RoundTrip.Run(target);
-        CollectionAssert.AreEqual(new byte[] { 2, 3 }, result.Property);
+        Assert.Equal(new byte[] { 2, 3 }, result.Property);
     }
 
     public class ClassWithByteArray
@@ -22,7 +26,7 @@ public class SimpleProp
         public byte[] Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void String()
     {
         var target = new ClassWithString
@@ -30,7 +34,7 @@ public class SimpleProp
             Property = "Foo"
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("Foo", result.Property);
+        Assert.Equal("Foo", result.Property);
     }
 
     public class ClassWithString
@@ -39,7 +43,7 @@ public class SimpleProp
         public string Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void Guid()
     {
         var target = new ClassWithGuid
@@ -47,7 +51,7 @@ public class SimpleProp
             Property = new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6")
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("45b14050-065c-4be7-8bb8-f3b46b8d94e6", result.Property.ToString());
+        Assert.Equal("45b14050-065c-4be7-8bb8-f3b46b8d94e6", result.Property.ToString());
     }
 
     public class ClassWithGuid

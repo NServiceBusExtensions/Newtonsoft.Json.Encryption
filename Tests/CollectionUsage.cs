@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Encryption;
-using NUnit.Framework;
+using Xunit;
+using Xunit.Abstractions;
 
-[TestFixture]
-public class CollectionUsage
+public class CollectionUsage: TestBase
 {
-    [Test]
+    public CollectionUsage(ITestOutputHelper output) : base(output)
+    {
+    }
+
+    [Fact]
     public void ByteArrayList()
     {
         var target = new ClassWithByteArrayList
@@ -19,7 +23,7 @@ public class CollectionUsage
             }
         };
         var result = RoundTrip.Run(target);
-        CollectionAssert.AreEqual(new byte[] {5, 6}, result.Property[1]);
+        Assert.Equal(new byte[] {5, 6}, result.Property[1]);
     }
 
     public class ClassWithByteArrayList
@@ -28,7 +32,7 @@ public class CollectionUsage
         public List<byte[]> Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void StringList()
     {
         var target = new ClassWithStringList
@@ -40,7 +44,7 @@ public class CollectionUsage
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("Value2", result.Property[1]);
+        Assert.Equal("Value2", result.Property[1]);
     }
 
     public class ClassWithStringList
@@ -49,7 +53,7 @@ public class CollectionUsage
         public List<string> Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void StringCollection()
     {
         var target = new ClassWithStringCollection
@@ -61,7 +65,7 @@ public class CollectionUsage
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("Value2", result.Property.Last());
+        Assert.Equal("Value2", result.Property.Last());
     }
 
     public class ClassWithStringCollection
@@ -70,7 +74,7 @@ public class CollectionUsage
         public ICollection<string> Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void StringEnumerable()
     {
         var target = new ClassWithStringEnumerable
@@ -82,7 +86,7 @@ public class CollectionUsage
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("Value2", result.Property.Last());
+        Assert.Equal("Value2", result.Property.Last());
     }
 
     public class ClassWithStringEnumerable
@@ -91,7 +95,7 @@ public class CollectionUsage
         public IEnumerable<string> Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void GuidEnumerable()
     {
         var target = new ClassWithGuidEnumerable
@@ -103,7 +107,7 @@ public class CollectionUsage
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property.Last().ToString());
+        Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property.Last().ToString());
     }
 
     public class ClassWithGuidEnumerable

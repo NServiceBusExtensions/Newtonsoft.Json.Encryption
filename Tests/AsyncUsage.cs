@@ -1,12 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using NUnit.Framework;
+using Xunit;
+using Xunit.Abstractions;
 
-[TestFixture]
-public class AsyncUsage
+public class AsyncUsage: TestBase
 {
-    [Test]
+    public AsyncUsage(ITestOutputHelper output) : base(output)
+    {
+    }
+
+    [Fact]
     public async Task Works()
     {
         var target = new ClassWithString
@@ -32,7 +36,7 @@ public class AsyncUsage
             {
                 await Task.Delay(1);
                 var result = serializer.Deserialize<ClassWithString>(serialized);
-                Assert.AreEqual("Foo", result.Property);
+                Assert.Equal("Foo", result.Property);
             }
         }
     }

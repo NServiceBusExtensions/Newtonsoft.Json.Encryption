@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Encryption;
-using NUnit.Framework;
+using Xunit;
+using Xunit.Abstractions;
 
-[TestFixture]
-public class DictionaryUsageUsage
+public class DictionaryUsageUsage: TestBase
 {
-    [Test]
+    public DictionaryUsageUsage(ITestOutputHelper output) : base(output)
+    {
+    }
+
+    [Fact]
     public void ByteArrayDictionary()
     {
         var target = new ClassWithByteArrayDictionary
@@ -22,7 +26,7 @@ public class DictionaryUsageUsage
             }
         };
         var result = RoundTrip.Run(target);
-        CollectionAssert.AreEqual(new byte[] {5, 6}, result.Property["Key2"]);
+        Assert.Equal(new byte[] {5, 6}, result.Property["Key2"]);
     }
 
     public class ClassWithByteArrayDictionary
@@ -31,7 +35,7 @@ public class DictionaryUsageUsage
         public Dictionary<string, byte[]> Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void StringDictionary()
     {
         var target = new ClassWithStringDictionary
@@ -47,7 +51,7 @@ public class DictionaryUsageUsage
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("Value2", result.Property["Key2"]);
+        Assert.Equal("Value2", result.Property["Key2"]);
     }
 
     public class ClassWithStringDictionary
@@ -56,7 +60,7 @@ public class DictionaryUsageUsage
         public Dictionary<string, string> Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void IntStringDictionary()
     {
         var target = new ClassWithIntStringDictionary
@@ -72,7 +76,7 @@ public class DictionaryUsageUsage
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("Value2", result.Property[2]);
+        Assert.Equal("Value2", result.Property[2]);
     }
 
     public class ClassWithIntStringDictionary
@@ -81,7 +85,7 @@ public class DictionaryUsageUsage
         public Dictionary<int, string> Property { get; set; }
     }
 
-    [Test]
+    [Fact]
     public void IntGuidDictionary()
     {
         var target = new ClassWithIntGuidDictionary
@@ -97,7 +101,7 @@ public class DictionaryUsageUsage
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.AreEqual("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property[2].ToString());
+        Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property[2].ToString());
     }
 
     public class ClassWithIntGuidDictionary

@@ -3,13 +3,17 @@ using System.Text;
 using ApprovalTests;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using NUnit.Framework;
 using ObjectApproval;
+using Xunit;
+using Xunit.Abstractions;
 
-[TestFixture]
-public class EncryptionFactoryTest
+public class EncryptionFactoryTest: TestBase
 {
-    [Test]
+    public EncryptionFactoryTest(ITestOutputHelper output) : base(output)
+    {
+    }
+
+    [Fact]
     public void ExampleUsage()
     {
         // per system (periodically rotated)
@@ -62,7 +66,7 @@ public class EncryptionFactoryTest
         }
     }
 
-    [Test]
+    [Fact]
     public void Simple()
     {
         var factory = new EncryptionFactory();
@@ -83,7 +87,7 @@ public class EncryptionFactoryTest
         }
     }
 
-    [Test]
+    [Fact]
     public void RoundTrip()
     {
         var factory = new EncryptionFactory();
