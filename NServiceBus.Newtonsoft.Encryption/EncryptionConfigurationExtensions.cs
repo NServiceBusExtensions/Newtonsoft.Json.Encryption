@@ -1,5 +1,5 @@
 using Newtonsoft.Json.Encryption;
-using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Settings;
 
 namespace NServiceBus.Newtonsoft.Encryption
