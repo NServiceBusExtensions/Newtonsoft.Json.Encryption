@@ -4,7 +4,7 @@
     <TargetFrameworks>net47</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.0.1" />
+    <PackageReference Include="NServiceBus" Version="7.1.4" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.0" />
     <ProjectReference Include="..\NServiceBus.Newtonsoft.Encryption\NServiceBus.Newtonsoft.Encryption.csproj" />
   </ItemGroup>
