@@ -22,9 +22,9 @@ namespace NServiceBus.Newtonsoft.Encryption
             var recoverability = configuration.Recoverability();
             recoverability.AddUnrecoverableException<KeyIdAndIvHeaderMismatchException>();
             var settings = configuration.GetSettings();
-            settings.Set<EncryptStateBuilder>(encryptStateBuilder);
-            settings.Set<DecryptStateBuilder>(decryptStateBuilder);
-            settings.Set<EncryptionFactory>(encryptionFactory);
+            settings.Set(encryptStateBuilder);
+            settings.Set(decryptStateBuilder);
+            settings.Set(encryptionFactory);
             configuration.EnableFeature<EncryptionFeature>();
         }
 
