@@ -9,8 +9,8 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)). All rights reserved</Copyright>
     <PackageTags>Newtonsoft, Encryption</PackageTags>
-    <PackageIconUrl>https://raw.githubusercontent.com/SimonCropp/Newtonsoft.Json.Encryption/master/Icon/package_icon.png</PackageIconUrl>
-    <PackageProjectUrl>http://github.com/SimonCropp/Newtonsoft.Json.Encryption</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/NServiceBusExtensions/Newtonsoft.Json.Encryption/master/Icon/package_icon.png</PackageIconUrl>
+    <PackageProjectUrl>http://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption</PackageProjectUrl>
     <PackageOutputPath>..\nugets</PackageOutputPath>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
