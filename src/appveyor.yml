@@ -4,7 +4,9 @@ build_script:
 test_script:
 - ps: >-
     dotnet test "src\Tests\Tests.csproj" --configuration Release --no-build
+
     dotnet test "src\NServiceBusTests\NServiceBusTests.csproj" --configuration Release --no-build
+
     dotnet test "src\RebusTests\RebusTests.csproj" --configuration Release --no-build
 artifacts:
 - path: nugets\**\*.nupkg
