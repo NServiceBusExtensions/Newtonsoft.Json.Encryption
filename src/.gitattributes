@@ -21,3 +21,4 @@
 *.snk binary
 *.pdb binary
 *.svg binary
+appveyor.yml eol=lf
