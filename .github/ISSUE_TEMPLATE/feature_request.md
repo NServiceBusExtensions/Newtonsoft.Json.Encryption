@@ -3,14 +3,14 @@ name: Feature request
 about: How to raise feature requests
 ---
 
-Where it is clear the below content has not read, the issue is likely to be closed with "please read the template". Please don't take offense at this. It is simply a time management decision. When someone raises an issue, without reading the template, then often too much time is spent going back and forth to obtain information that is outlined below.
+Where it is clear that the below content has not read, the issue is likely to be closed with "please read the template". Please don't take offense at this. It is simply a time management decision. When someone raises an issue, without reading the template, then often too much time is spent going back and forth to obtain information that is outlined below.
 
 
-#### Ensure you are a Patron
+#### You should already be a Patron
 
-To raise a feature request you must be a [Patron of NServiceBusExtensions](https://opencollective.com/nservicebusextensions/order/6976). The GitHub user will be verified against [Home/backers.md](https://github.com/NServiceBusExtensions/Home/blob/master/src/backers.md). See [Licensing/Patron FAQ](https://github.com/NServiceBusExtensions/Home#licensingpatron-faq) for more information.
+To be using this library you should be a [Patron of NServiceBusExtensions](https://opencollective.com/nservicebusextensions/order/6976). See [Licensing/Patron FAQ](https://github.com/NServiceBusExtensions/Home#licensingpatron-faq). With that in mind, it is assumed anyone raising a feature request is already a Patron. As such your GitHub Id may be verified against [OpenCollective contributors](https://opencollective.com/nservicebusextensions#contributors). This process will depend on the quality of the feature request, your circumstances, and the impact on the larger user base.
 
-If you not able, or don't have the time, to implement the feature, and would prefer someone else implement it for you, consider proposing a [once off donation](https://opencollective.com/nservicebusextensions/donate) amount. When considering the amount, note that features can take many hours to implement.
+If you are not able, or don't have the time, to implement the feature, and would prefer someone else implement it for you, consider proposing a [once off donation](https://opencollective.com/nservicebusextensions/donate) amount. When considering the amount, note that features can take many hours to implement.
 
 
 #### Guidance
