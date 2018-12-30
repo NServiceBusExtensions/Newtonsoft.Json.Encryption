@@ -5,8 +5,7 @@
     <LangVersion>latest</LangVersion>
     <NoWarn>CS1591</NoWarn>
     <Version>2.0.1</Version>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)). All rights reserved</Copyright>
     <PackageTags>Newtonsoft, Encryption</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/NServiceBusExtensions/Newtonsoft.Json.Encryption/master/src/icon.png</PackageIconUrl>
