@@ -13,7 +13,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Xunit" Version="2.4.1" />
     <PackageReference Include="ApprovalTests" Version="3.0.21" />
-    <PackageReference Include="ObjectApproval" Version="6.0.0" />
+    <PackageReference Include="ObjectApproval" Version="6.0.1" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
   </ItemGroup>
 
