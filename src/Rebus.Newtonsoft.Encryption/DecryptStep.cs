@@ -22,12 +22,12 @@ class DecryptStep : IIncomingStep
 
         if (!transportMessage.Headers.ReadKeyAndIv(out var keyId, out var iv))
         {
-            await next().ConfigureAwait(false);
+            await next();
             return;
         }
         using (factory.GetDecryptSession(stateBuilder(keyId, iv)))
         {
-            await next().ConfigureAwait(false);
+            await next();
         }
     }
 }

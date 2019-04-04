@@ -60,7 +60,7 @@ class Program
         Console.WriteLine("Press any key to exit");
 
         await SendMessage(bus)
-            .ConfigureAwait(false);
+            ;
         Console.ReadKey();
         bus?.Dispose();
         encryptionFactory.Dispose();

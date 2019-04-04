@@ -23,7 +23,7 @@ class EncryptStep : IOutgoingStep
         message.Headers.WriteKeyAndIv(state.keyId, state.algorithm.IV);
         using (factory.GetEncryptSession(state.algorithm))
         {
-            await next().ConfigureAwait(false);
+            await next();
         }
     }
 }

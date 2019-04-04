@@ -18,12 +18,12 @@ class DecryptBehavior : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhys
     {
         if (!context.MessageHeaders.ReadKeyAndIv(out var keyId, out var iv))
         {
-            await next(context).ConfigureAwait(false);
+            await next(context);
             return;
         }
         using (factory.GetDecryptSession(stateBuilder(keyId, iv)))
         {
-            await next(context).ConfigureAwait(false);
+            await next(context);
         }
     }
 }

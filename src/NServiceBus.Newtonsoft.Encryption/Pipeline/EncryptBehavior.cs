@@ -21,7 +21,7 @@ class EncryptBehavior : IBehavior<IOutgoingLogicalMessageContext, IOutgoingLogic
         using (factory.GetEncryptSession(state.algorithm))
         {
             await next(context)
-                .ConfigureAwait(false);
+                ;
         }
     }
 }

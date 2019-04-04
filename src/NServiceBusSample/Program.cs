@@ -44,15 +44,15 @@ class Program
         configuration.UsePersistence<LearningPersistence>();
         configuration.UseTransport<LearningTransport>();
         var endpointInstance = await Endpoint.Start(configuration)
-            .ConfigureAwait(false);
+            ;
         Console.WriteLine("Press any key to exit");
 
         await SendMessage(endpointInstance)
-            .ConfigureAwait(false);
+            ;
 
         Console.ReadKey();
         await endpointInstance.Stop()
-            .ConfigureAwait(false);
+            ;
         encryptionFactory.Dispose();
     }
 
