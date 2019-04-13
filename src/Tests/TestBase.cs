@@ -3,9 +3,13 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using Xunit.Abstractions;
 
-public abstract class TestBase
+public class TestBase:
+    XunitLoggingBase
 {
-    ITestOutputHelper output;
+    public TestBase(ITestOutputHelper output) :
+        base(output)
+    {
+    }
 
     static TestBase()
     {
@@ -15,10 +19,5 @@ public abstract class TestBase
     static void FixCurrentDirectory([CallerFilePath] string callerFilePath = "")
     {
         Environment.CurrentDirectory = Directory.GetParent(callerFilePath).FullName;
-    }
-
-    protected TestBase(ITestOutputHelper output)
-    {
-        this.output = output;
     }
 }
