@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ConfigureAwait.Fody" Version="3.1.0" PrivateAssets="All" />
-    <PackageReference Include="Fody" Version="5.0.5" PrivateAssets="All" />
+    <PackageReference Include="Fody" Version="5.0.6" PrivateAssets="All" />
     <PackageReference Include="NServiceBus" Version="7.1.8" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
