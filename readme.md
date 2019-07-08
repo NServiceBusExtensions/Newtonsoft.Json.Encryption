@@ -29,8 +29,6 @@ Thanks to all the backing developers! Support this project by [becoming a patron
 
 https://nuget.org/packages/Newtonsoft.Json.Encryption/
 
-    PM> Install-Package Newtonsoft.Json.Encryption
-
 
 ## Encryption Algorithms
 
@@ -232,8 +230,6 @@ using (var algorithm = new RijndaelManaged
 
 https://nuget.org/packages/Rebus.Newtonsoft.Encryption/
 
-    PM> Install-Package Rebus.Newtonsoft.Encryption
-
 
 ### Usage
 
@@ -275,8 +271,6 @@ configurer.EnableJsonEncryption(
 ### The NuGet package [![NuGet Status](http://img.shields.io/nuget/v/NServiceBus.Newtonsoft.Encryption.svg)](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Encryption/)
 
 https://nuget.org/packages/NServiceBus.Newtonsoft.Encryption/
-
-    PM> Install-Package NServiceBus.Newtonsoft.Encryption
 
 
 ### Usage
