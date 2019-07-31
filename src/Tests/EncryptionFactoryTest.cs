@@ -60,7 +60,7 @@ public class EncryptionFactoryTest: TestBase
                 using (factory.GetDecryptSession(algorithm))
                 {
                     var deserialized = serializer.Deserialize<ClassToSerialize>(serialized);
-                    ObjectApprover.VerifyWithJson(deserialized);
+                    ObjectApprover.Verify(deserialized);
                 }
             }
         }
@@ -110,7 +110,7 @@ public class EncryptionFactoryTest: TestBase
             using (factory.GetDecryptSession(algorithm))
             {
                 var result = serializer.Deserialize<ClassToSerialize>(serialized);
-                ObjectApprover.VerifyWithJson(result);
+                ObjectApprover.Verify(result);
             }
         }
     }
