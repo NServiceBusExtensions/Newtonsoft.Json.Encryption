@@ -1,4 +1,4 @@
-<img src="https://raw.github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption/master/src/icon.png" height="25px"> Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the notes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
+<img src="/src/icon.png" height="25px"> Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the notes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
 
 <!--- StartOpenCollectiveBackers -->
 
@@ -25,9 +25,9 @@ Thanks to all the backing developers! Support this project by [becoming a patron
 
 <a href="#" id="endofbacking"></a>
 
-## The NuGet package [![NuGet Status](http://img.shields.io/nuget/v/Newtonsoft.Json.Encryption.svg)](https://www.nuget.org/packages/Newtonsoft.Json.Encryption/)
+## The NuGet package
 
-https://nuget.org/packages/Newtonsoft.Json.Encryption/
+https://nuget.org/packages/Newtonsoft.Json.Encryption/ [![NuGet Status](http://img.shields.io/nuget/v/Newtonsoft.Json.Encryption.svg)](https://www.nuget.org/packages/Newtonsoft.Json.Encryption/)
 
 
 ## Encryption Algorithms
@@ -226,9 +226,9 @@ using (var algorithm = new RijndaelManaged
 ## Rebus
 
 
-### The NuGet package [![NuGet Status](http://img.shields.io/nuget/v/Rebus.Newtonsoft.Encryption.svg)](https://www.nuget.org/packages/Rebus.Newtonsoft.Encryption/)
+### The NuGet package
 
-https://nuget.org/packages/Rebus.Newtonsoft.Encryption/
+https://nuget.org/packages/Rebus.Newtonsoft.Encryption/ [![NuGet Status](http://img.shields.io/nuget/v/Rebus.Newtonsoft.Encryption.svg)](https://www.nuget.org/packages/Rebus.Newtonsoft.Encryption/)
 
 
 ### Usage
@@ -306,8 +306,4 @@ configuration.EnableJsonEncryption(
 
 ## Icon
 
-
-<a href="https://thenounproject.com/term/lock/59296/" target="_blank">Lock</a> designed by <a href="https://thenounproject.com/molumen/" target="_blank">Mourad Mokrane</a> from The Noun Project
-
-Lock by from the Noun Project
-
+[Lock](https://thenounproject.com/term/lock/59296/) designed by [Mourad Mokrane](https://thenounproject.com/molumen/) from [The Noun Project](https://thenounproject.com).
