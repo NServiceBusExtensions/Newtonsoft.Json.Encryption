@@ -3,7 +3,6 @@ using System.Text;
 using ApprovalTests;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using ObjectApproval;
 using Xunit;
 using Xunit.Abstractions;
 

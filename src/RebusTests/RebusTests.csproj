@@ -9,6 +9,6 @@
     <PackageReference Include="XunitLogger" Version="2.4.0" />
     <PackageReference Include="Rebus" Version="5.3.1" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.9" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.10" PrivateAssets="All" />
   </ItemGroup>
 </Project>
