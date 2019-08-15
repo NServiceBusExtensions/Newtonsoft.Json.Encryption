@@ -11,6 +11,6 @@
     <PackageReference Include="ApprovalTests" Version="4.0.0" />
     <PackageReference Include="ObjectApproval" Version="11.0.0" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.16" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.17" PrivateAssets="All" />
   </ItemGroup>
 </Project>
