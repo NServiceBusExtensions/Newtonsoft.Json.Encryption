@@ -23,7 +23,7 @@ public class SimpleProp: TestBase
     public class ClassWithByteArray
     {
         [Encrypt]
-        public byte[] Property { get; set; }
+        public byte[]? Property { get; set; }
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public class SimpleProp: TestBase
     public class ClassWithString
     {
         [Encrypt]
-        public string Property { get; set; }
+        public string? Property { get; set; }
     }
 
     [Fact]

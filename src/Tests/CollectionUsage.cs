@@ -23,13 +23,13 @@ public class CollectionUsage: TestBase
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.Equal(new byte[] {5, 6}, result.Property[1]);
+        Assert.Equal(new byte[] {5, 6}, result.Property?[1]);
     }
 
     public class ClassWithByteArrayList
     {
         [Encrypt]
-        public List<byte[]> Property { get; set; }
+        public List<byte[]>? Property { get; set; }
     }
 
     [Fact]
@@ -44,13 +44,13 @@ public class CollectionUsage: TestBase
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.Equal("Value2", result.Property[1]);
+        Assert.Equal("Value2", result.Property?[1]);
     }
 
     public class ClassWithStringList
     {
         [Encrypt]
-        public List<string> Property { get; set; }
+        public List<string>? Property { get; set; }
     }
 
     [Fact]
@@ -71,7 +71,7 @@ public class CollectionUsage: TestBase
     public class ClassWithStringCollection
     {
         [Encrypt]
-        public ICollection<string> Property { get; set; }
+        public ICollection<string>? Property { get; set; }
     }
 
     [Fact]
@@ -92,7 +92,7 @@ public class CollectionUsage: TestBase
     public class ClassWithStringEnumerable
     {
         [Encrypt]
-        public IEnumerable<string> Property { get; set; }
+        public IEnumerable<string>? Property { get; set; }
     }
 
     [Fact]
@@ -113,6 +113,6 @@ public class CollectionUsage: TestBase
     public class ClassWithGuidEnumerable
     {
         [Encrypt]
-        public IEnumerable<Guid> Property { get; set; }
+        public IEnumerable<Guid>? Property { get; set; }
     }
 }

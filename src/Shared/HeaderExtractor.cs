@@ -17,7 +17,7 @@ static class HeaderExtractor
         }
         if (keyIdIsEmpty && ivIsEmpty)
         {
-            iv = null;
+            iv = Array.Empty<byte>();
             return false;
         }
         throw new KeyIdAndIvHeaderMismatchException();

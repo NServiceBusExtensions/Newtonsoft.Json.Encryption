@@ -9,11 +9,15 @@ public class Handler :
     public Task Handle(MessageWithSecretData message)
     {
         Console.WriteLine($"Secret: '{message.Secret}'");
-        Console.WriteLine($"SubSecret: {message.SubProperty.Secret}");
-        foreach (var creditCard in message.CreditCards)
+        Console.WriteLine($"SubSecret: {message.SubProperty?.Secret}");
+        if (message.CreditCards != null)
         {
-            Console.WriteLine($"CreditCard: {creditCard.Number} is valid to {creditCard.ValidTo}");
+            foreach (var creditCard in message.CreditCards)
+            {
+                Console.WriteLine($"CreditCard: {creditCard.Number} is valid to {creditCard.ValidTo}");
+            }
         }
+
         return Task.CompletedTask;
     }
 }

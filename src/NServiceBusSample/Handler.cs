@@ -10,11 +10,15 @@ public class Handler :
     public Task Handle(MessageWithSecretData message, IMessageHandlerContext context)
     {
         log.Info($"Secret: '{message.Secret}'");
-        log.Info($"SubSecret: {message.SubProperty.Secret}");
-        foreach (var creditCard in message.CreditCards)
+        log.Info($"SubSecret: {message.SubProperty?.Secret}");
+        if (message.CreditCards != null)
         {
-            log.Info($"CreditCard: {creditCard.Number} is valid to {creditCard.ValidTo}");
+            foreach (var creditCard in message.CreditCards)
+            {
+                log.Info($"CreditCard: {creditCard.Number} is valid to {creditCard.ValidTo}");
+            }
         }
+
         return Task.CompletedTask;
     }
 }

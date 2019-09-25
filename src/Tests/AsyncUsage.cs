@@ -44,6 +44,6 @@ public class AsyncUsage: TestBase
     public class ClassWithString
     {
         [Encrypt]
-        public string Property { get; set; }
+        public string? Property { get; set; }
     }
 }

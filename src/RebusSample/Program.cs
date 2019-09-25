@@ -20,7 +20,7 @@ class Program
     {
         var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
         Console.Title = "RebusSample";
-        var directory = Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName;
+        var directory = Directory.GetParent(Assembly.GetEntryAssembly()?.Location).FullName;
 
         var activator = new BuiltinHandlerActivator();
 

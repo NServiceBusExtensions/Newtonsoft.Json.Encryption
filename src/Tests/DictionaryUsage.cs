@@ -26,13 +26,13 @@ public class DictionaryUsageUsage: TestBase
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.Equal(new byte[] {5, 6}, result.Property["Key2"]);
+        Assert.Equal(new byte[] {5, 6}, result.Property?["Key2"]);
     }
 
     public class ClassWithByteArrayDictionary
     {
         [Encrypt]
-        public Dictionary<string, byte[]> Property { get; set; }
+        public Dictionary<string, byte[]>? Property { get; set; }
     }
 
     [Fact]
@@ -51,13 +51,13 @@ public class DictionaryUsageUsage: TestBase
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.Equal("Value2", result.Property["Key2"]);
+        Assert.Equal("Value2", result.Property?["Key2"]);
     }
 
     public class ClassWithStringDictionary
     {
         [Encrypt]
-        public Dictionary<string, string> Property { get; set; }
+        public Dictionary<string, string>? Property { get; set; }
     }
 
     [Fact]
@@ -76,13 +76,13 @@ public class DictionaryUsageUsage: TestBase
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.Equal("Value2", result.Property[2]);
+        Assert.Equal("Value2", result.Property?[2]);
     }
 
     public class ClassWithIntStringDictionary
     {
         [Encrypt]
-        public Dictionary<int, string> Property { get; set; }
+        public Dictionary<int, string>? Property { get; set; }
     }
 
     [Fact]
@@ -101,12 +101,12 @@ public class DictionaryUsageUsage: TestBase
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property[2].ToString());
+        Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property?[2].ToString());
     }
 
     public class ClassWithIntGuidDictionary
     {
         [Encrypt]
-        public Dictionary<int, Guid> Property { get; set; }
+        public Dictionary<int, Guid>? Property { get; set; }
     }
 }

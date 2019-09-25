@@ -3,7 +3,8 @@ using System.Linq;
 using Newtonsoft.Json;
 using Xunit;
 
-public class ReverseConverter : JsonConverter
+public class ReverseConverter : 
+    JsonConverter
 {
     public static bool WriteCalled;
     public static bool ReadCalled;
@@ -40,7 +41,7 @@ public class ReverseConverter : JsonConverter
         }
     }
 
-    public override object ReadJson(JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
     {
         ReadCalled = true;
         if (type == typeof(string))

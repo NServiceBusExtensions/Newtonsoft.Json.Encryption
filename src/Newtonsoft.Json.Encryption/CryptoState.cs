@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-class CryptoState : IDisposable
+class CryptoState :
+    IDisposable
 {
     public CryptoState(Func<ICryptoTransform> encryptProvider)
     {
@@ -17,13 +18,13 @@ class CryptoState : IDisposable
         {
             if (!transform.CanReuseTransform)
             {
-                this.transform.Dispose();
+                this.transform?.Dispose();
                 this.transform = null;
             }
         };
     }
 
-    ICryptoTransform transform;
+    ICryptoTransform? transform;
     public readonly Func<ICryptoTransform> Provider;
     public readonly Action<ICryptoTransform> Cleanup;
 

@@ -21,19 +21,19 @@ public class NodeProp: TestBase
             }
         };
         var result = RoundTrip.Run(target);
-        Assert.Equal("PropertyValue1", result.SubProperty.Property1);
+        Assert.Equal("PropertyValue1", result.SubProperty?.Property1);
     }
 
     public class TargetClass
     {
         [NodeEncrypt]
-        public SubClass SubProperty { get; set; }
+        public SubClass? SubProperty { get; set; }
     }
 
     public class SubClass
     {
-        public string Property1 { get; set; }
-        public string Property2 { get; set; }
+        public string? Property1 { get; set; }
+        public string? Property2 { get; set; }
     }
 
     [Fact]
@@ -52,6 +52,6 @@ public class NodeProp: TestBase
     {
         [NodeEncrypt]
         [JsonConverter(typeof(ReverseConverter))]
-        public string Property { get; set; }
+        public string? Property { get; set; }
     }
 }
