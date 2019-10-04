@@ -1,4 +1,4 @@
-<img src="/src/icon.png" height="25px"> Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the notes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
+<img src="/src/icon.png" height="25px"> Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
 
 <!--- StartOpenCollectiveBackers -->
 
