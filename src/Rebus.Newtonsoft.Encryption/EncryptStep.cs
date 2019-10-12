@@ -5,7 +5,8 @@ using Rebus.Messages;
 using Rebus.Pipeline;
 
 [StepDocumentation("Encrypts nested properties of the outgoing message")]
-class EncryptStep : IOutgoingStep
+class EncryptStep :
+    IOutgoingStep
 {
     EncryptionFactory factory;
     EncryptStateBuilder stateBuilder;

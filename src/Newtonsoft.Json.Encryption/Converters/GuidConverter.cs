@@ -2,7 +2,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 
-class GuidConverter : JsonConverter
+class GuidConverter :
+    JsonConverter
 {
     Encrypter encrypter;
 

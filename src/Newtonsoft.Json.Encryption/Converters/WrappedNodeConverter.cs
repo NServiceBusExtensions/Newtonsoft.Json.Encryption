@@ -2,7 +2,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 
-class WrappedNodeConverter : JsonConverter
+class WrappedNodeConverter :
+    JsonConverter
 {
     Encrypter encrypter;
     JsonConverter innerConverter;

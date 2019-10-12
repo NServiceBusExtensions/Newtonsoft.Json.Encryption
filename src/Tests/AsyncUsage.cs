@@ -4,9 +4,11 @@ using Newtonsoft.Json.Encryption;
 using Xunit;
 using Xunit.Abstractions;
 
-public class AsyncUsage: TestBase
+public class AsyncUsage :
+    TestBase
 {
-    public AsyncUsage(ITestOutputHelper output) : base(output)
+    public AsyncUsage(ITestOutputHelper output) :
+        base(output)
     {
     }
 
@@ -31,6 +33,7 @@ public class AsyncUsage: TestBase
             await Task.Delay(1);
             serialized = serializer.Serialize(target);
         }
+
         using (factory.GetDecryptSession(algorithm))
         {
             await Task.Delay(1);

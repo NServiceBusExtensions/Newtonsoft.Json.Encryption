@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Encryption;
 using NServiceBus.Pipeline;
 
-class EncryptBehavior : IBehavior<IOutgoingLogicalMessageContext, IOutgoingLogicalMessageContext>
+class EncryptBehavior :
+    IBehavior<IOutgoingLogicalMessageContext, IOutgoingLogicalMessageContext>
 {
     EncryptionFactory factory;
     EncryptStateBuilder stateBuilder;

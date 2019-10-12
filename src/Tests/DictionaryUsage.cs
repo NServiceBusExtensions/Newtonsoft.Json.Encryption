@@ -4,9 +4,11 @@ using Newtonsoft.Json.Encryption;
 using Xunit;
 using Xunit.Abstractions;
 
-public class DictionaryUsageUsage: TestBase
+public class DictionaryUsageUsage :
+    TestBase
 {
-    public DictionaryUsageUsage(ITestOutputHelper output) : base(output)
+    public DictionaryUsageUsage(ITestOutputHelper output) :
+        base(output)
     {
     }
 

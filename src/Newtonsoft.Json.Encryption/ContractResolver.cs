@@ -3,7 +3,8 @@ using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Encryption
 {
-    public class ContractResolver : DefaultContractResolver
+    public class ContractResolver :
+        DefaultContractResolver
     {
         Encrypter encrypter;
 

@@ -6,9 +6,11 @@ using Newtonsoft.Json.Encryption;
 using Xunit;
 using Xunit.Abstractions;
 
-public class EncryptionFactoryTest: TestBase
+public class EncryptionFactoryTest :
+    TestBase
 {
-    public EncryptionFactoryTest(ITestOutputHelper output) : base(output)
+    public EncryptionFactoryTest(ITestOutputHelper output) :
+        base(output)
     {
     }
 

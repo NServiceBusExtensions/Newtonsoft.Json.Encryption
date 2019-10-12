@@ -5,9 +5,11 @@ using Newtonsoft.Json.Encryption;
 using Xunit;
 using Xunit.Abstractions;
 
-public class CollectionUsage: TestBase
+public class CollectionUsage :
+    TestBase
 {
-    public CollectionUsage(ITestOutputHelper output) : base(output)
+    public CollectionUsage(ITestOutputHelper output) :
+        base(output)
     {
     }
 

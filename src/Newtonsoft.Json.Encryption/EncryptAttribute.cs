@@ -3,7 +3,8 @@
 namespace Newtonsoft.Json.Encryption
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public class EncryptAttribute : Attribute
+    public class EncryptAttribute :
+        Attribute
     {
     }
 }

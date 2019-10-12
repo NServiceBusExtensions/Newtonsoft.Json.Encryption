@@ -1,7 +1,8 @@
 using NServiceBus.Features;
 using NServiceBus.Newtonsoft.Encryption;
 
-class EncryptionFeature : Feature
+class EncryptionFeature :
+    Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
     {

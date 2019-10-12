@@ -2,7 +2,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 
-class StringConverter : JsonConverter
+class StringConverter :
+    JsonConverter
 {
     Encrypter encrypter;
 

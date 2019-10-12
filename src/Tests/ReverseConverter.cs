@@ -3,7 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Xunit;
 
-public class ReverseConverter : 
+public class ReverseConverter :
     JsonConverter
 {
     public static bool WriteCalled;

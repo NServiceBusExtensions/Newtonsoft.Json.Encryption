@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Encryption;
 using NServiceBus.Pipeline;
 
-class DecryptBehavior : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
+class DecryptBehavior :
+    IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
 {
     EncryptionFactory factory;
     DecryptStateBuilder stateBuilder;

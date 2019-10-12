@@ -3,9 +3,11 @@ using Newtonsoft.Json.Encryption;
 using Xunit;
 using Xunit.Abstractions;
 
-public class SimpleProp: TestBase
+public class SimpleProp :
+    TestBase
 {
-    public SimpleProp(ITestOutputHelper output) : base(output)
+    public SimpleProp(ITestOutputHelper output) :
+        base(output)
     {
     }
 

@@ -1,10 +1,11 @@
 using Newtonsoft.Json.Encryption;
 using NServiceBus.Pipeline;
 
-class EncryptRegistration : RegisterStep
+class EncryptRegistration :
+    RegisterStep
 {
-    public EncryptRegistration(EncryptionFactory encryptionFactory, EncryptStateBuilder stateBuilder)
-        : base(
+    public EncryptRegistration(EncryptionFactory encryptionFactory, EncryptStateBuilder stateBuilder) :
+        base(
             stepId: "NServiceBusJsonEncryptionEncrypt",
             behavior: typeof(EncryptBehavior),
             description: "Invokes the encrypt logic",
