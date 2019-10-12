@@ -12,11 +12,9 @@ public static class Extensions
 
     public static T Deserialize<T>(this JsonSerializer serializer, string value)
     {
-        using (var reader = new StringReader(value))
-        using (var jsonReader = new JsonTextReader(reader))
-        {
-            return serializer.Deserialize<T>(jsonReader);
-        }
+        using var reader = new StringReader(value);
+        using var jsonReader = new JsonTextReader(reader);
+        return serializer.Deserialize<T>(jsonReader);
     }
 
     public static string Serialize<T>(this JsonSerializer serializer, T target)

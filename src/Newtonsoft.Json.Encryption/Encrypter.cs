@@ -28,15 +28,14 @@ namespace Newtonsoft.Json.Encryption
             var encryptor = encryptProvider();
             try
             {
-                using (var memoryStream = new MemoryStream())
+                using var memoryStream = new MemoryStream();
+                using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
                 {
-                    using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
-                    using (var writer = new StreamWriter(cryptoStream))
-                    {
-                        writer.Write(target);
-                    }
-                    return Convert.ToBase64String(memoryStream.ToArray());
+                    using var writer = new StreamWriter(cryptoStream);
+                    writer.Write(target);
                 }
+
+                return Convert.ToBase64String(memoryStream.ToArray());
             }
             finally
             {
@@ -50,12 +49,10 @@ namespace Newtonsoft.Json.Encryption
             var encrypted = Convert.FromBase64String(value);
             try
             {
-                using (var memoryStream = new MemoryStream(encrypted))
-                using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
-                using (var reader = new StreamReader(cryptoStream))
-                {
-                    return reader.ReadToEnd();
-                }
+                using var memoryStream = new MemoryStream(encrypted);
+                using var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
+                using var reader = new StreamReader(cryptoStream);
+                return reader.ReadToEnd();
             }
             finally
             {
@@ -92,14 +89,12 @@ namespace Newtonsoft.Json.Encryption
 
         byte[] PerformCryptography(ICryptoTransform cryptoTransform, byte[] data)
         {
-            using (var memoryStream = new MemoryStream())
+            using var memoryStream = new MemoryStream();
+            using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
             {
-                using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
-                {
-                    cryptoStream.Write(data, 0, data.Length);
-                }
-                return memoryStream.ToArray();
+                cryptoStream.Write(data, 0, data.Length);
             }
+            return memoryStream.ToArray();
         }
 
     }

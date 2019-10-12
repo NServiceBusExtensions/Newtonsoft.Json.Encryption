@@ -55,9 +55,9 @@ class Program
             })
             {
                 using (factory.GetDecryptSession(algorithm))
-                using (var stringReader = new StringReader(serialized))
-                using (var jsonReader = new JsonTextReader(stringReader))
                 {
+                    using var stringReader = new StringReader(serialized);
+                    using var jsonReader = new JsonTextReader(stringReader);
                     var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
                     Console.WriteLine(deserialized.Property);
                 }
