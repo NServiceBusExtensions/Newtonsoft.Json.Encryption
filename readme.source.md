@@ -304,6 +304,11 @@ configuration.EnableJsonEncryption(
 ```
 
 
+## Release Notes
+
+See [closed milestones](../../milestones?state=closed).
+
+
 ## Icon
 
 [Lock](https://thenounproject.com/term/lock/59296/) designed by [Mourad Mokrane](https://thenounproject.com/molumen/) from [The Noun Project](https://thenounproject.com).
