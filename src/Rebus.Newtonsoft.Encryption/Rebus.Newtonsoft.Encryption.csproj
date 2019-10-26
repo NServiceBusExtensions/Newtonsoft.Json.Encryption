@@ -4,7 +4,7 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ConfigureAwait.Fody" Version="3.2.0" PrivateAssets="All" />
+    <PackageReference Include="ConfigureAwait.Fody" Version="3.3.1" PrivateAssets="All" />
     <PackageReference Include="Fody" Version="6.0.2" PrivateAssets="all" />
     <PackageReference Include="Rebus" Version="5.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
