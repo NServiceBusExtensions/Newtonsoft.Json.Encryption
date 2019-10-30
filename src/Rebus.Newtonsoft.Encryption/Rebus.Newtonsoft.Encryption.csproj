@@ -13,8 +13,6 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19367-01" PrivateAssets="All" />
 
     <Compile Include="..\Shared\*.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\Newtonsoft.Json.Encryption\Guard.cs" Link="Guard.cs" />
   </ItemGroup>
 </Project>
