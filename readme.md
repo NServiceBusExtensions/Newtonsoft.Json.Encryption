@@ -7,6 +7,32 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 <img src="/src/icon.png" height="25px"> Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
 
+<!-- toc -->
+## Contents
+
+  * [Community backed](#community-backed)
+    * [Sponsors](#sponsors)
+    * [Patrons](#patrons)
+  * [NuGet package](#nuget-package)
+  * [Encryption Algorithms](#encryption-algorithms)
+  * [Decorating properties](#decorating-properties)
+  * [Serialized](#serialized)
+  * [Supported property types](#supported-property-types)
+  * [Usage](#usage)
+  * [Breakdown](#breakdown)
+    * [Key](#key)
+    * [EncryptionFactory and JsonSerializer](#encryptionfactory-and-jsonserializer)
+    * [Serialization](#serialization)
+    * [Deserialization](#deserialization)
+  * [Rebus](#rebus)
+    * [NuGet package](#nuget-package-1)
+    * [Usage](#usage-1)
+  * [NServiceBus](#nservicebus)
+    * [NuGet package](#nuget-package-2)
+    * [Usage](#usage-2)
+<!-- endtoc -->
+
+
 <!--- StartOpenCollectiveBackers -->
 
 [Already a Patron? skip past this section](#endofbacking)

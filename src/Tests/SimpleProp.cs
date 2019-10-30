@@ -29,6 +29,14 @@ public class SimpleProp :
     }
 
     [Fact]
+    public void NullString()
+    {
+        var target = new ClassWithString();
+        var result = RoundTrip.Run(target);
+        Assert.Null(result.Property);
+    }
+
+    [Fact]
     public void String()
     {
         var target = new ClassWithString
@@ -37,6 +45,17 @@ public class SimpleProp :
         };
         var result = RoundTrip.Run(target);
         Assert.Equal("Foo", result.Property);
+    }
+
+    [Fact]
+    public void EmptyString()
+    {
+        var target = new ClassWithString
+        {
+            Property = string.Empty
+        };
+        var result = RoundTrip.Run(target);
+        Assert.Empty(result.Property);
     }
 
     public class ClassWithString

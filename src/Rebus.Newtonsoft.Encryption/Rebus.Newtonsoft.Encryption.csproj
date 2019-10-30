@@ -14,4 +14,7 @@
 
     <Compile Include="..\Shared\*.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Newtonsoft.Json.Encryption\Guard.cs" Link="Guard.cs" />
+  </ItemGroup>
 </Project>

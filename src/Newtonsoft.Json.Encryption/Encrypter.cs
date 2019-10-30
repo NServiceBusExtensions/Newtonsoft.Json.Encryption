@@ -17,6 +17,10 @@ namespace Newtonsoft.Json.Encryption
             Action<ICryptoTransform> encryptCleanup,
             Action<ICryptoTransform> decryptCleanup)
         {
+            Guard.AgainstNull(nameof(encryptProvider), encryptProvider);
+            Guard.AgainstNull(nameof(decryptProvider), decryptProvider);
+            Guard.AgainstNull(nameof(encryptCleanup), encryptCleanup);
+            Guard.AgainstNull(nameof(decryptCleanup), decryptCleanup);
             this.encryptProvider = encryptProvider;
             this.decryptProvider = decryptProvider;
             this.encryptCleanup = encryptCleanup;
