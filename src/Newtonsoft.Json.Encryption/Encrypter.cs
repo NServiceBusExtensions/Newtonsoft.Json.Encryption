@@ -27,8 +27,12 @@ namespace Newtonsoft.Json.Encryption
             this.decryptCleanup = decryptCleanup;
         }
 
-        public string Encrypt(string target)
+        public string? Encrypt(string? target)
         {
+            if (target == null)
+            {
+                return null;
+            }
             var encryptor = encryptProvider();
             try
             {
@@ -47,8 +51,12 @@ namespace Newtonsoft.Json.Encryption
             }
         }
 
-        public string Decrypt(string value)
+        public string? Decrypt(string? value)
         {
+            if (value == null)
+            {
+                return null;
+            }
             var decryptor = decryptProvider();
             var encrypted = Convert.FromBase64String(value);
             try

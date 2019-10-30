@@ -55,7 +55,7 @@ static class Extensions
         return converter.ReadJson(textReader, type, existingValue, serializer);
     }
 
-    public static string Serialize(this JsonSerializer serializer, object value)
+    public static string? Serialize(this JsonSerializer serializer, object value)
     {
         var builder = new StringBuilder();
         using (var writer = new StringWriter(builder))
@@ -65,7 +65,7 @@ static class Extensions
         return builder.ToString();
     }
 
-    public static object Deserialize(this JsonSerializer serializer, Type type, string value)
+    public static object Deserialize(this JsonSerializer serializer, Type type, string? value)
     {
         using var reader = new StringReader(value);
         return serializer.Deserialize(reader, type);

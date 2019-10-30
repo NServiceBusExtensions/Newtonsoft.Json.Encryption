@@ -12,13 +12,13 @@ class StringConverter :
         this.encrypter = encrypter;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
-        var encrypted = encrypter.Encrypt((string) value);
+        var encrypted = encrypter.Encrypt((string?) value);
         writer.WriteValue(encrypted);
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
         var value = (string) reader.Value;
         return encrypter.Decrypt(value);

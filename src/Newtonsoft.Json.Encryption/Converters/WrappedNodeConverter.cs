@@ -21,10 +21,14 @@ class WrappedNodeConverter :
         writer.WriteValue(encrypted);
     }
 
-    public override object ReadJson(JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
     {
         var value = (string) reader.Value;
         var decrypted = encrypter.Decrypt(value);
+        if (decrypted == null)
+        {
+            return null;
+        }
         return innerConverter.Deserialize(type, serializer, decrypted, existingValue);
     }
 
