@@ -9,7 +9,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.27" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.28" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19554-01" PrivateAssets="All" />
 
     <Compile Include="..\Shared\*.cs" />
