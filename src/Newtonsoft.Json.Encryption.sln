@@ -4,7 +4,7 @@ VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 16.0.29201.188
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft.Json.Encryption", "Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj", "{72A1D8DC-FF19-40E0-866C-9CFD7EE4541D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{D59EEA3C-ADFD-4595-B7A3-D6412AC9867E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft.Json.Encryption.Tests", "Newtonsoft.Json.Encryption.Tests\Newtonsoft.Json.Encryption.Tests.csproj", "{D59EEA3C-ADFD-4595-B7A3-D6412AC9867E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample", "Sample\Sample.csproj", "{C87059BB-F570-4E83-ACAD-6B8094CAEDE9}"
 EndProject
@@ -16,9 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RebusSample", "RebusSample\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBusSample", "NServiceBusSample\NServiceBusSample.csproj", "{679404A8-33EE-4283-8D7E-3734D8D85BBE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBusTests", "NServiceBusTests\NServiceBusTests.csproj", "{C21456CE-1F0C-47F1-B5C7-1F905B30A412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Newtonsoft.Encryption.Tests", "NServiceBus.Newtonsoft.Encryption.Tests\NServiceBus.Newtonsoft.Encryption.Tests.csproj", "{C21456CE-1F0C-47F1-B5C7-1F905B30A412}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RebusTests", "RebusTests\RebusTests.csproj", "{D425FEF0-F2C2-45F0-87E3-7CC88E466D1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rebus.Newtonsoft.Encryption.Tests", "Rebus.Newtonsoft.Encryption.Tests\Rebus.Newtonsoft.Encryption.Tests.csproj", "{D425FEF0-F2C2-45F0-87E3-7CC88E466D1D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{D0FD6F65-7127-4D2C-B15E-B4F550D2CB81}"
 EndProject
