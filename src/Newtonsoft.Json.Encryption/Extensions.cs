@@ -9,7 +9,6 @@ using Newtonsoft.Json.Encryption;
 
 static class Extensions
 {
-
     public static Guid DecryptGuidFromString(this Encrypter encrypter, string value)
     {
         var fromBase64String = Convert.FromBase64String(value);
@@ -48,7 +47,7 @@ static class Extensions
         return builder.ToString();
     }
 
-    public static object Deserialize(this JsonConverter converter, Type type, JsonSerializer serializer, string decrypted, object existingValue)
+    public static object? Deserialize(this JsonConverter converter, Type type, JsonSerializer serializer, string decrypted, object? existingValue)
     {
         using var stringReader = new StringReader(decrypted);
         using var textReader = new JsonTextReader(stringReader);
@@ -65,7 +64,7 @@ static class Extensions
         return builder.ToString();
     }
 
-    public static object Deserialize(this JsonSerializer serializer, Type type, string? value)
+    public static object? Deserialize(this JsonSerializer serializer, Type type, string? value)
     {
         using var reader = new StringReader(value);
         return serializer.Deserialize(reader, type);

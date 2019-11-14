@@ -14,7 +14,7 @@ public static class Extensions
     {
         using var reader = new StringReader(value);
         using var jsonReader = new JsonTextReader(reader);
-        return serializer.Deserialize<T>(jsonReader);
+        return serializer.Deserialize<T>(jsonReader)!;
     }
 
     public static string Serialize<T>(this JsonSerializer serializer, T target)

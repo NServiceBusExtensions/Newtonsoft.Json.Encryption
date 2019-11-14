@@ -12,17 +12,17 @@ class GuidConverter :
         this.encrypter = encrypter;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
-        var guid = (Guid) value;
+        var guid = (Guid) value!;
         var base64String = encrypter.EncryptGuidToString(guid);
         writer.WriteValue(base64String);
     }
 
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
-        var value = (string)reader.Value;
+        var value = (string)reader.Value!;
         return encrypter.DecryptGuidFromString(value);
     }
 

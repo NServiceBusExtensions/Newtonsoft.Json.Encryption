@@ -21,7 +21,7 @@ public class ReverseConverter :
         ReadCalled = false;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         WriteCalled = true;
         if (value is string stringValue)
@@ -41,18 +41,18 @@ public class ReverseConverter :
         }
     }
 
-    public override object? ReadJson(JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type type, object? existingValue, JsonSerializer serializer)
     {
         ReadCalled = true;
         if (type == typeof(string))
         {
             var stringValue = reader.ReadAsString();
-            return stringValue.ReverseToString();
+            return stringValue!.ReverseToString();
         }
         if (type == typeof(Guid))
         {
             var stringValue = reader.ReadAsString();
-            return new Guid(stringValue.ReverseToString());
+            return new Guid(stringValue!.ReverseToString());
         }
         if (type == typeof(byte[]))
         {

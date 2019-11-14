@@ -12,16 +12,16 @@ class NodeConverter :
         this.encrypter = encrypter;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
-        var target = serializer.Serialize(value);
+        var target = serializer.Serialize(value!);
         var encrypted = encrypter.Encrypt(target);
         writer.WriteValue(encrypted);
     }
 
-    public override object ReadJson(JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type type, object? existingValue, JsonSerializer serializer)
     {
-        var value = (string) reader.Value;
+        var value = (string) reader.Value!;
         var decrypted = encrypter.Decrypt(value);
         return serializer.Deserialize(type, decrypted);
     }

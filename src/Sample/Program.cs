@@ -59,7 +59,7 @@ class Program
                     using var stringReader = new StringReader(serialized);
                     using var jsonReader = new JsonTextReader(stringReader);
                     var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
-                    Console.WriteLine(deserialized.Property);
+                    Console.WriteLine(deserialized!.Property);
                 }
             }
         }

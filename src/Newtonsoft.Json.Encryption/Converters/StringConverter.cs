@@ -18,9 +18,9 @@ class StringConverter :
         writer.WriteValue(encrypted);
     }
 
-    public override object? ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
-        var value = (string) reader.Value;
+        var value = (string) reader.Value!;
         return encrypter.Decrypt(value);
     }
 
