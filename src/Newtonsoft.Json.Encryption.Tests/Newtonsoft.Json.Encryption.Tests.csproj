@@ -9,7 +9,7 @@
     <PackageReference Include="Xunit" Version="2.4.1" />
     <PackageReference Include="Xunit.ApprovalTests" Version="4.5.0" />
     <PackageReference Include="ApprovalTests" Version="4.3.0" />
-    <PackageReference Include="MarkdownSnippets.MsBuild" Version="17.0.0-beta.2" PrivateAssets="all" />
+    <PackageReference Include="MarkdownSnippets.MsBuild" Version="17.0.0" PrivateAssets="all" />
     <PackageReference Include="ObjectApproval" Version="11.2.1" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <PackageReference Include="ProjectDefaults" Version="1.0.29" PrivateAssets="All" />
