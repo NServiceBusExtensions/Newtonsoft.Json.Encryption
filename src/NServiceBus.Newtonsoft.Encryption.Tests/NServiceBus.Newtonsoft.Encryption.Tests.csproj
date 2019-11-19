@@ -9,6 +9,6 @@
     <PackageReference Include="Xunit.ApprovalTests" Version="4.6.0" />
     <PackageReference Include="NServiceBus" Version="7.2.0" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="17.0.0" PrivateAssets="all" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.29" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.30" PrivateAssets="All" />
   </ItemGroup>
 </Project>
