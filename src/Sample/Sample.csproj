@@ -6,6 +6,6 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.30" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.32" PrivateAssets="All" />
   </ItemGroup>
 </Project>
