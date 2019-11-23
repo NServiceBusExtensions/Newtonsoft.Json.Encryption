@@ -1,13 +1,14 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using ApprovalTests;
+using System.Threading.Tasks;
+using VerifyXunit;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using Xunit;
 using Xunit.Abstractions;
 
 public class EncryptionFactoryTest :
-    TestBase
+    VerifyBase
 {
     public EncryptionFactoryTest(ITestOutputHelper output) :
         base(output)
@@ -15,7 +16,7 @@ public class EncryptionFactoryTest :
     }
 
     [Fact]
-    public void ExampleUsage()
+    public async Task ExampleUsage()
     {
         // per system (periodically rotated)
         var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
@@ -60,13 +61,13 @@ public class EncryptionFactoryTest :
             using (factory.GetDecryptSession(algorithm))
             {
                 var deserialized = serializer.Deserialize<ClassToSerialize>(serialized);
-                ObjectApprover.Verify(deserialized);
+                await Verify(deserialized);
             }
         }
     }
 
     [Fact]
-    public void Simple()
+    public async Task Simple()
     {
         var factory = new EncryptionFactory();
         var serializer = new JsonSerializer
@@ -82,12 +83,12 @@ public class EncryptionFactoryTest :
                 Property2 = "Property2Value"
             };
             var result = serializer.Serialize(instance);
-            Approvals.Verify(result);
+            await Verify(result);
         }
     }
 
     [Fact]
-    public void RoundTrip()
+    public async Task RoundTrip()
     {
         var factory = new EncryptionFactory();
         var serializer = new JsonSerializer
@@ -108,7 +109,7 @@ public class EncryptionFactoryTest :
         using (factory.GetDecryptSession(algorithm))
         {
             var result = serializer.Deserialize<ClassToSerialize>(serialized);
-            ObjectApprover.Verify(result);
+            await Verify(result);
         }
     }
 

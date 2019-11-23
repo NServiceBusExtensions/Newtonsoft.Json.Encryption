@@ -1,4 +1,4 @@
-﻿{
+{
   Property1: 'Property1Value',
   Property2: 'Property2Value'
 }

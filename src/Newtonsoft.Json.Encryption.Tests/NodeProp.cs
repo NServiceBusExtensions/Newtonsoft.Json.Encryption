@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class NodeProp :
-    TestBase
+    VerifyBase
 {
     public NodeProp(ITestOutputHelper output) :
         base(output)
@@ -12,7 +14,7 @@ public class NodeProp :
     }
 
     [Fact]
-    public void Node()
+    public async Task Node()
     {
         var target = new TargetClass
         {
@@ -22,7 +24,7 @@ public class NodeProp :
                 Property2 = "PropertyValue2"
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("PropertyValue1", result.SubProperty?.Property1);
     }
 
@@ -39,13 +41,13 @@ public class NodeProp :
     }
 
     [Fact]
-    public void NodeWithConverter()
+    public async Task NodeWithConverter()
     {
         var target = new WithConverterTargetClass
         {
             Property = "AbCd"
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("AbCd", result.Property);
         ReverseConverter.AssertReadWriteCalled();
     }

@@ -1,10 +1,11 @@
-﻿using ApprovalTests;
+﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
+using VerifyXunit;
 
 public static class RoundTrip
 {
-    public static T Run<T>(T instance)
+    public static async Task<T> Run<T>(this VerifyBase verifyBase,T instance)
     {
         using var factory = new EncryptionFactory();
         using var algorithm = CryptoBuilder.Build();
@@ -19,7 +20,7 @@ public static class RoundTrip
             result = serializer.Serialize(instance);
         }
 
-        Approvals.Verify(result);
+        await verifyBase.Verify(result);
         using (factory.GetDecryptSession(algorithm))
         {
             return serializer.Deserialize<T>(result);

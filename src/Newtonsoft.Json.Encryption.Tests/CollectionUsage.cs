@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Encryption;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class CollectionUsage :
-    TestBase
+    VerifyBase
 {
     public CollectionUsage(ITestOutputHelper output) :
         base(output)
@@ -14,7 +16,7 @@ public class CollectionUsage :
     }
 
     [Fact]
-    public void ByteArrayList()
+    public async Task ByteArrayList()
     {
         var target = new ClassWithByteArrayList
         {
@@ -24,7 +26,7 @@ public class CollectionUsage :
                 new byte[] {5, 6}
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal(new byte[] {5, 6}, result.Property?[1]);
     }
 
@@ -35,7 +37,7 @@ public class CollectionUsage :
     }
 
     [Fact]
-    public void StringList()
+    public async Task StringList()
     {
         var target = new ClassWithStringList
         {
@@ -45,7 +47,7 @@ public class CollectionUsage :
                 "Value2"
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("Value2", result.Property?[1]);
     }
 
@@ -56,7 +58,7 @@ public class CollectionUsage :
     }
 
     [Fact]
-    public void StringCollection()
+    public async Task StringCollection()
     {
         var target = new ClassWithStringCollection
         {
@@ -66,7 +68,7 @@ public class CollectionUsage :
                 "Value2"
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("Value2", result.Property.Last());
     }
 
@@ -77,7 +79,7 @@ public class CollectionUsage :
     }
 
     [Fact]
-    public void StringEnumerable()
+    public async Task StringEnumerable()
     {
         var target = new ClassWithStringEnumerable
         {
@@ -87,7 +89,7 @@ public class CollectionUsage :
                 "Value2"
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("Value2", result.Property.Last());
     }
 
@@ -98,7 +100,7 @@ public class CollectionUsage :
     }
 
     [Fact]
-    public void GuidEnumerable()
+    public async Task GuidEnumerable()
     {
         var target = new ClassWithGuidEnumerable
         {
@@ -108,7 +110,7 @@ public class CollectionUsage :
                 new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property.Last().ToString());
     }
 

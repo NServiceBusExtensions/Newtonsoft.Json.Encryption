@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Encryption;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class DictionaryUsageUsage :
-    TestBase
+    VerifyBase
 {
     public DictionaryUsageUsage(ITestOutputHelper output) :
         base(output)
@@ -13,7 +15,7 @@ public class DictionaryUsageUsage :
     }
 
     [Fact]
-    public void ByteArrayDictionary()
+    public async Task ByteArrayDictionary()
     {
         var target = new ClassWithByteArrayDictionary
         {
@@ -27,7 +29,7 @@ public class DictionaryUsageUsage :
                 }
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal(new byte[] {5, 6}, result.Property?["Key2"]);
     }
 
@@ -38,7 +40,7 @@ public class DictionaryUsageUsage :
     }
 
     [Fact]
-    public void StringDictionary()
+    public async Task StringDictionary()
     {
         var target = new ClassWithStringDictionary
         {
@@ -52,7 +54,7 @@ public class DictionaryUsageUsage :
                 }
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("Value2", result.Property?["Key2"]);
     }
 
@@ -63,7 +65,7 @@ public class DictionaryUsageUsage :
     }
 
     [Fact]
-    public void IntStringDictionary()
+    public async Task IntStringDictionary()
     {
         var target = new ClassWithIntStringDictionary
         {
@@ -77,7 +79,7 @@ public class DictionaryUsageUsage :
                 }
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("Value2", result.Property?[2]);
     }
 
@@ -88,7 +90,7 @@ public class DictionaryUsageUsage :
     }
 
     [Fact]
-    public void IntGuidDictionary()
+    public async Task IntGuidDictionary()
     {
         var target = new ClassWithIntGuidDictionary
         {
@@ -102,7 +104,7 @@ public class DictionaryUsageUsage :
                 }
             }
         };
-        var result = RoundTrip.Run(target);
+        var result = await this.Run(target);
         Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property?[2].ToString());
     }
 
