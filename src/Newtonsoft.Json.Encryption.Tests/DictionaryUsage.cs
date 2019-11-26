@@ -6,10 +6,10 @@ using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
-public class DictionaryUsageUsage :
+public class DictionaryUsage :
     VerifyBase
 {
-    public DictionaryUsageUsage(ITestOutputHelper output) :
+    public DictionaryUsage(ITestOutputHelper output) :
         base(output)
     {
     }
