@@ -7,6 +7,6 @@
     <PackageReference Include="NServiceBus" Version="7.2.0" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
     <ProjectReference Include="..\NServiceBus.Newtonsoft.Encryption\NServiceBus.Newtonsoft.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.33" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.34" PrivateAssets="All" />
   </ItemGroup>
 </Project>
