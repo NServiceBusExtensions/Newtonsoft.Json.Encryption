@@ -13,7 +13,6 @@ To change this file edit the source file and then run MarkdownSnippets.
   * [Community backed](#community-backed)
     * [Sponsors](#sponsors)
     * [Patrons](#patrons)
-  * [NuGet package](#nuget-package)
   * [Encryption Algorithms](#encryption-algorithms)
   * [Decorating properties](#decorating-properties)
   * [Serialized](#serialized)
@@ -25,13 +24,9 @@ To change this file edit the source file and then run MarkdownSnippets.
     * [Serialization](#serialization)
     * [Deserialization](#deserialization)
   * [Rebus](#rebus)
-    * [NuGet package](#nuget-package-1)
     * [Usage](#usage-1)
   * [NServiceBus](#nservicebus)
-    * [NuGet package](#nuget-package-2)
-    * [Usage](#usage-2)
-<!-- endtoc -->
-
+    * [Usage](#usage-2)<!-- endtoc -->
 
 <!--- StartOpenCollectiveBackers -->
 
