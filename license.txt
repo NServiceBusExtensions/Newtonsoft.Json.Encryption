@@ -1,5 +1,8 @@
 It is expected that all developers become a Patron to use this library.
-See: https://github.com/NServiceBusExtensions/Home/#licensingpatron-faq
+
+https://github.com/NServiceBusExtensions/Home/#licensingpatron-faq
+
+From a legal and liability perspective the MIT License applies:
 
 MIT License
 
