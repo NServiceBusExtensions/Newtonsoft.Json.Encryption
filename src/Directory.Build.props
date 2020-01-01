@@ -2,7 +2,14 @@
 <Project>
   <PropertyGroup>
     <NoWarn>CS1591</NoWarn>
-    <Version>2.1.1</Version>
+    <Version>2.1.2</Version>
     <PackageTags>Newtonsoft, Encryption</PackageTags>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileFullPath)\..\..\license.txt"
+          Pack="true"
+          PackagePath="license.txt"/>
+  </ItemGroup>
 </Project>
