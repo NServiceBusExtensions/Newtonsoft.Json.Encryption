@@ -1,6 +1,9 @@
+It is expected that all developers become a Patron to use this library.
+See: https://github.com/NServiceBusExtensions/Home/#licensingpatron-faq
+
 MIT License
 
-Copyright (c) 2017 Simon Cropp
+Copyright (c) Simon Cropp
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
