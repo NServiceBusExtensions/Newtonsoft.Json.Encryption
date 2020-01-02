@@ -15,23 +15,6 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
 
-<!-- toc -->
-## Contents
-
-  * [Community backed](#community-backed)
-  * [Encryption Algorithms](#encryption-algorithms)
-  * [Decorating properties](#decorating-properties)
-  * [Serialized](#serialized)
-  * [Supported property types](#supported-property-types)
-  * [Usage](#usage)
-  * [Breakdown](#breakdown)
-    * [Key](#key)
-    * [EncryptionFactory and JsonSerializer](#encryptionfactory-and-jsonserializer)
-    * [Serialization](#serialization)
-    * [Deserialization](#deserialization)
-  * [Rebus](#rebus)
-  * [NServiceBus](#nservicebus)<!-- endtoc -->
-
 <!--- StartOpenCollectiveBackers -->
 
 [Already a Patron? skip past this section](#endofbacking)
@@ -48,6 +31,22 @@ Thanks to the current backers.
 <a href="#" id="endofbacking"></a>
 
 <!--- EndOpenCollectiveBackers -->
+
+<!-- toc -->
+## Contents
+
+  * [Encryption Algorithms](#encryption-algorithms)
+  * [Decorating properties](#decorating-properties)
+  * [Serialized](#serialized)
+  * [Supported property types](#supported-property-types)
+  * [Usage](#usage)
+  * [Breakdown](#breakdown)
+    * [Key](#key)
+    * [EncryptionFactory and JsonSerializer](#encryptionfactory-and-jsonserializer)
+    * [Serialization](#serialization)
+    * [Deserialization](#deserialization)
+  * [Rebus](#rebus)
+  * [NServiceBus](#nservicebus)<!-- endtoc -->
 
 
 ## NuGet packages
