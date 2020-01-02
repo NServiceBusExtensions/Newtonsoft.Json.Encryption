@@ -330,7 +330,7 @@ configuration.EnableJsonEncryption(
             IV = initVector
         });
 ```
-<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L14-L40' title='File snippet `nsbusage` was extracted from'>snippet source</a> | <a href='#snippet-nsbusage' title='Navigate to start of snippet `nsbusage`'>anchor</a></sup>
+<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L11-L37' title='File snippet `nsbusage` was extracted from'>snippet source</a> | <a href='#snippet-nsbusage' title='Navigate to start of snippet `nsbusage`'>anchor</a></sup>
 <!-- endsnippet -->
 
 
