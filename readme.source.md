@@ -1,4 +1,12 @@
-<img src="/src/icon.png" height="25px"> Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
+# <img src="/src/icon.png" height="25px"> Newtonsoft.Json.Encryption
+
+[![Build status](https://ci.appveyor.com/api/projects/status/qciwf7sdysdeu693/branch/master?svg=true)](https://ci.appveyor.com/project/SimonCropp/newtonsoft-json-encryption)
+[![NuGet Status](https://img.shields.io/nuget/v/Newtonsoft.Json.Encryption.svg?label=Newtonsoft.Json.Encryption)](https://www.nuget.org/packages/Newtonsoft.Json.Encryption/)
+[![NuGet Status](https://img.shields.io/nuget/v/Rebus.Newtonsoft.Encryption.svg?label=Rebus.Newtonsoft.Encryption)](https://www.nuget.org/packages/Rebus.Newtonsoft.Encryption/)
+[![NuGet Status](https://img.shields.io/nuget/v/NServiceBus.Newtonsoft.Encryption.svg?label=NServiceBus.Newtonsoft.Encryption)](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Encryption/)
+
+
+Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
 
 toc
 
@@ -9,27 +17,22 @@ toc
 
 ## Community backed
 
-**It is expected that all developers [become a Patron](https://opencollective.com/nservicebusextensions/order/6976) to use any of these libraries. [Go to licensing FAQ](https://github.com/NServiceBusExtensions/Home/blob/master/readme.md#licensingpatron-faq)**
+**It is expected that all developers [become a Patron](https://opencollective.com/nservicebusextensions/order/6976) to use this tool. [Go to licensing FAQ](https://github.com/NServiceBusExtensions/Home/#licensingpatron-faq)**
 
-
-### Sponsors
-
-Support this project by [becoming a Sponsors](https://opencollective.com/nservicebusextensions/order/6972). The company avatar will show up here with a link to your website. The avatar will also be added to all GitHub repositories under this organization.
-
-
-### Patrons
-
-Thanks to all the backing developers! Support this project by [becoming a patron](https://opencollective.com/nservicebusextensions/order/6976).
+Thanks to the current backers.
 
 <img src="https://opencollective.com/nservicebusextensions/tiers/patron.svg?width=890&avatarHeight=60&button=false">
 
+<a href="#" id="endofbacking"></a>
+
 <!--- EndOpenCollectiveBackers -->
 
-<a href="#" id="endofbacking"></a>
 
 ## NuGet package
 
-https://nuget.org/packages/Newtonsoft.Json.Encryption/ [![NuGet Status](https://img.shields.io/nuget/v/Newtonsoft.Json.Encryption.svg)](https://www.nuget.org/packages/Newtonsoft.Json.Encryption/)
+  * https://nuget.org/packages/Newtonsoft.Json.Encryption/
+  * https://nuget.org/packages/Rebus.Newtonsoft.Encryption/
+  * https://nuget.org/packages/NServiceBus.Newtonsoft.Encryption/
 
 
 ## Encryption Algorithms
@@ -227,14 +230,6 @@ using (var algorithm = new RijndaelManaged
 
 ## Rebus
 
-
-### NuGet package
-
-https://nuget.org/packages/Rebus.Newtonsoft.Encryption/ [![NuGet Status](https://img.shields.io/nuget/v/Rebus.Newtonsoft.Encryption.svg)](https://www.nuget.org/packages/Rebus.Newtonsoft.Encryption/)
-
-
-### Usage
-
 ```C#
 var activator = new BuiltinHandlerActivator();
 
@@ -268,14 +263,6 @@ configurer.EnableJsonEncryption(
 
 
 ## NServiceBus
-
-
-### NuGet package
-
-https://nuget.org/packages/NServiceBus.Newtonsoft.Encryption/ [![NuGet Status](https://img.shields.io/nuget/v/NServiceBus.Newtonsoft.Encryption.svg)](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Encryption/)
-
-
-### Usage
 
 ```C#
 var configuration = new EndpointConfiguration("NServiceBusSample");
