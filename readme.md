@@ -50,7 +50,7 @@ Thanks to the current backers.
 <!--- EndOpenCollectiveBackers -->
 
 
-## NuGet package
+## NuGet packages
 
   * https://nuget.org/packages/Newtonsoft.Json.Encryption/
   * https://nuget.org/packages/Rebus.Newtonsoft.Encryption/
