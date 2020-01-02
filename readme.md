@@ -99,63 +99,66 @@ Note that only the values in a `IDictionary` are encrypted.
 ## Usage
 
 The full serialize and deserialization workflow:
-
-```C#
+<!-- snippet: Workflow -->
+<a id='snippet-workflow'/></a>
+```cs
 // per system (periodically rotated)
 var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 
 // per app domain
-using (var factory = new EncryptionFactory())
+using var factory = new EncryptionFactory();
+var serializer = new JsonSerializer
 {
-    var serializer = new JsonSerializer
-    {
-        ContractResolver = factory.GetContractResolver()
-    };
+    ContractResolver = factory.GetContractResolver()
+};
 
-    // transferred as meta data with the serialized payload
-    byte[] initVector;
+// transferred as meta data with the serialized payload
+byte[] initVector;
 
-    string serialized;
+string serialized;
 
-    // per serialize session
-    using (var algorithm = new RijndaelManaged
+// per serialize session
+using (var algorithm = new RijndaelManaged
+{
+    Key = key
+})
+{
+    //TODO: store initVector for use in deserialization
+    initVector = algorithm.IV;
+    using (factory.GetEncryptSession(algorithm))
     {
-        Key = key
-    })
-    {
-        initVector = algorithm.IV;
-        using (factory.GetEncryptSession(algorithm))
+        var instance = new ClassToSerialize
         {
-            var instance = new ClassToSerialize
-            {
-                Property = "PropertyValue",
-            };
-            var builder = new StringBuilder();
-            using (var writer = new StringWriter(builder))
-            {
-                serializer.Serialize(writer, instance);
-            }
-            serialized = builder.ToString();
+            Property = "PropertyValue",
+        };
+        var builder = new StringBuilder();
+        using (var writer = new StringWriter(builder))
+        {
+            serializer.Serialize(writer, instance);
         }
+
+        serialized = builder.ToString();
     }
+}
 
-    // per deserialize session
-    using (var algorithm = new RijndaelManaged
+// per deserialize session
+using (var algorithm = new RijndaelManaged
+{
+    IV = initVector,
+    Key = key
+})
+{
+    using (factory.GetDecryptSession(algorithm))
     {
-        IV = initVector,
-        Key = key
-    })
-    {
-        using (factory.GetDecryptSession(algorithm))
-        using (var stringReader = new StringReader(serialized))
-        using (var jsonReader = new JsonTextReader(stringReader))
-        {
-            var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
-            Console.WriteLine(deserialized.Property);
-        }
+        using var stringReader = new StringReader(serialized);
+        using var jsonReader = new JsonTextReader(stringReader);
+        var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
+        Console.WriteLine(deserialized!.Property);
     }
 }
 ```
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L12-L73' title='File snippet `workflow` was extracted from'>snippet source</a> | <a href='#snippet-workflow' title='Navigate to start of snippet `workflow`'>anchor</a></sup>
+<!-- endsnippet -->
 
 
 ## Breakdown
@@ -196,9 +199,9 @@ A single encrypt session is used per serialization instance.
 
 On instantiation the `SymmetricAlgorithm` will generate a valid [IV](https://msdn.microsoft.com/en-us/library/system.security.cryptography.symmetricalgorithm.iv.aspx). This is generally a good value to use for serialization and then stored for deserialization.
 
-```C#
-string serialized;
-
+<!-- snippet: serialize -->
+<a id='snippet-serialize'/></a>
+```cs
 // per serialize session
 using (var algorithm = new RijndaelManaged
 {
@@ -206,7 +209,7 @@ using (var algorithm = new RijndaelManaged
 })
 {
     //TODO: store initVector for use in deserialization
-    var initVector = algorithm.IV;
+    initVector = algorithm.IV;
     using (factory.GetEncryptSession(algorithm))
     {
         var instance = new ClassToSerialize
@@ -218,10 +221,13 @@ using (var algorithm = new RijndaelManaged
         {
             serializer.Serialize(writer, instance);
         }
+
         serialized = builder.ToString();
     }
 }
 ```
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L29-L53' title='File snippet `serialize` was extracted from'>snippet source</a> | <a href='#snippet-serialize' title='Navigate to start of snippet `serialize`'>anchor</a></sup>
+<!-- endsnippet -->
 
 
 ### Deserialization
@@ -231,7 +237,11 @@ A single decrypt session is used per serialization instance.
  * `key` must be the same as the one use for serialization.
  * `initVector` must be the same as the one use for serialization. It is safe to be transferred with the serialized text. 
 
-```C#
+
+<!-- snippet: deserialize -->
+<a id='snippet-deserialize'/></a>
+```cs
+// per deserialize session
 using (var algorithm = new RijndaelManaged
 {
     IV = initVector,
@@ -239,19 +249,23 @@ using (var algorithm = new RijndaelManaged
 })
 {
     using (factory.GetDecryptSession(algorithm))
-    using (var stringReader = new StringReader(serialized))
-    using (var jsonReader = new JsonTextReader(stringReader))
     {
+        using var stringReader = new StringReader(serialized);
+        using var jsonReader = new JsonTextReader(stringReader);
         var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
-        Console.WriteLine(deserialized.Property);
+        Console.WriteLine(deserialized!.Property);
     }
 }
 ```
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L55-L72' title='File snippet `deserialize` was extracted from'>snippet source</a> | <a href='#snippet-deserialize' title='Navigate to start of snippet `deserialize`'>anchor</a></sup>
+<!-- endsnippet -->
 
 
 ## Rebus
 
-```C#
+<!-- snippet: RebugsUsage -->
+<a id='snippet-rebugsusage'/></a>
+```cs
 var activator = new BuiltinHandlerActivator();
 
 activator.Register(() => new Handler());
@@ -267,13 +281,13 @@ configurer.Serialization(s => { s.UseNewtonsoftJson(settings); });
 configurer.EnableJsonEncryption(
     encryptionFactory: encryptionFactory,
     encryptStateBuilder: () =>
-        (
+    (
         algorithm: new RijndaelManaged
         {
             Key = key
         },
         keyId: "1"
-        ),
+    ),
     decryptStateBuilder: (keyId, initVector) =>
         new RijndaelManaged
         {
@@ -281,11 +295,15 @@ configurer.EnableJsonEncryption(
             IV = initVector
         });
 ```
+<sup><a href='/src/Rebus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L14-L43' title='File snippet `rebugsusage` was extracted from'>snippet source</a> | <a href='#snippet-rebugsusage' title='Navigate to start of snippet `rebugsusage`'>anchor</a></sup>
+<!-- endsnippet -->
 
 
 ## NServiceBus
 
-```C#
+<!-- snippet: NsbUsage -->
+<a id='snippet-nsbusage'/></a>
+```cs
 var configuration = new EndpointConfiguration("NServiceBusSample");
 var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
 var encryptionFactory = new EncryptionFactory();
@@ -298,13 +316,13 @@ serialization.Settings(
 configuration.EnableJsonEncryption(
     encryptionFactory: encryptionFactory,
     encryptStateBuilder: () =>
-        (
+    (
         algorithm: new RijndaelManaged
         {
             Key = key
         },
         keyId: "1"
-        ),
+    ),
     decryptStateBuilder: (keyId, initVector) =>
         new RijndaelManaged
         {
@@ -312,6 +330,8 @@ configuration.EnableJsonEncryption(
             IV = initVector
         });
 ```
+<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L14-L40' title='File snippet `nsbusage` was extracted from'>snippet source</a> | <a href='#snippet-nsbusage' title='Navigate to start of snippet `nsbusage`'>anchor</a></sup>
+<!-- endsnippet -->
 
 
 ## Release Notes

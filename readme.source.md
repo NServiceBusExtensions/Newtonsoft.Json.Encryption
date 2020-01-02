@@ -78,63 +78,7 @@ Note that only the values in a `IDictionary` are encrypted.
 ## Usage
 
 The full serialize and deserialization workflow:
-
-```C#
-// per system (periodically rotated)
-var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
-
-// per app domain
-using (var factory = new EncryptionFactory())
-{
-    var serializer = new JsonSerializer
-    {
-        ContractResolver = factory.GetContractResolver()
-    };
-
-    // transferred as meta data with the serialized payload
-    byte[] initVector;
-
-    string serialized;
-
-    // per serialize session
-    using (var algorithm = new RijndaelManaged
-    {
-        Key = key
-    })
-    {
-        initVector = algorithm.IV;
-        using (factory.GetEncryptSession(algorithm))
-        {
-            var instance = new ClassToSerialize
-            {
-                Property = "PropertyValue",
-            };
-            var builder = new StringBuilder();
-            using (var writer = new StringWriter(builder))
-            {
-                serializer.Serialize(writer, instance);
-            }
-            serialized = builder.ToString();
-        }
-    }
-
-    // per deserialize session
-    using (var algorithm = new RijndaelManaged
-    {
-        IV = initVector,
-        Key = key
-    })
-    {
-        using (factory.GetDecryptSession(algorithm))
-        using (var stringReader = new StringReader(serialized))
-        using (var jsonReader = new JsonTextReader(stringReader))
-        {
-            var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
-            Console.WriteLine(deserialized.Property);
-        }
-    }
-}
-```
+snippet: Workflow
 
 
 ## Breakdown
@@ -175,32 +119,7 @@ A single encrypt session is used per serialization instance.
 
 On instantiation the `SymmetricAlgorithm` will generate a valid [IV](https://msdn.microsoft.com/en-us/library/system.security.cryptography.symmetricalgorithm.iv.aspx). This is generally a good value to use for serialization and then stored for deserialization.
 
-```C#
-string serialized;
-
-// per serialize session
-using (var algorithm = new RijndaelManaged
-{
-    Key = key
-})
-{
-    //TODO: store initVector for use in deserialization
-    var initVector = algorithm.IV;
-    using (factory.GetEncryptSession(algorithm))
-    {
-        var instance = new ClassToSerialize
-        {
-            Property = "PropertyValue",
-        };
-        var builder = new StringBuilder();
-        using (var writer = new StringWriter(builder))
-        {
-            serializer.Serialize(writer, instance);
-        }
-        serialized = builder.ToString();
-    }
-}
-```
+snippet: serialize
 
 
 ### Deserialization
@@ -210,87 +129,18 @@ A single decrypt session is used per serialization instance.
  * `key` must be the same as the one use for serialization.
  * `initVector` must be the same as the one use for serialization. It is safe to be transferred with the serialized text. 
 
-```C#
-using (var algorithm = new RijndaelManaged
-{
-    IV = initVector,
-    Key = key
-})
-{
-    using (factory.GetDecryptSession(algorithm))
-    using (var stringReader = new StringReader(serialized))
-    using (var jsonReader = new JsonTextReader(stringReader))
-    {
-        var deserialized = serializer.Deserialize<ClassToSerialize>(jsonReader);
-        Console.WriteLine(deserialized.Property);
-    }
-}
-```
+
+snippet: deserialize
 
 
 ## Rebus
 
-```C#
-var activator = new BuiltinHandlerActivator();
-
-activator.Register(() => new Handler());
-var configurer = Configure.With(activator);
-
-var encryptionFactory = new EncryptionFactory();
-var settings = new JsonSerializerSettings
-{
-    TypeNameHandling = TypeNameHandling.All,
-    ContractResolver = encryptionFactory.GetContractResolver()
-};
-configurer.Serialization(s => { s.UseNewtonsoftJson(settings); });
-configurer.EnableJsonEncryption(
-    encryptionFactory: encryptionFactory,
-    encryptStateBuilder: () =>
-        (
-        algorithm: new RijndaelManaged
-        {
-            Key = key
-        },
-        keyId: "1"
-        ),
-    decryptStateBuilder: (keyId, initVector) =>
-        new RijndaelManaged
-        {
-            Key = key,
-            IV = initVector
-        });
-```
+snippet: RebugsUsage
 
 
 ## NServiceBus
 
-```C#
-var configuration = new EndpointConfiguration("NServiceBusSample");
-var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
-var encryptionFactory = new EncryptionFactory();
-serialization.Settings(
-    new JsonSerializerSettings
-    {
-        ContractResolver = encryptionFactory.GetContractResolver()
-    });
-
-configuration.EnableJsonEncryption(
-    encryptionFactory: encryptionFactory,
-    encryptStateBuilder: () =>
-        (
-        algorithm: new RijndaelManaged
-        {
-            Key = key
-        },
-        keyId: "1"
-        ),
-    decryptStateBuilder: (keyId, initVector) =>
-        new RijndaelManaged
-        {
-            Key = key,
-            IV = initVector
-        });
-```
+snippet: NsbUsage
 
 
 ## Release Notes

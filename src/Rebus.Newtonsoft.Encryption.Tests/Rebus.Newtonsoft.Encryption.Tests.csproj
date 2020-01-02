@@ -1,16 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Xunit" Version="2.4.1" />
+    <PackageReference Include="Rebus" Version="5.4.1" />
     <PackageReference Include="XunitContext" Version="1.5.2" />
     <PackageReference Include="Verify.Xunit" Version="1.5.5" />
     <PackageReference Include="Rebus" Version="5.4.1" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="17.6.0" PrivateAssets="all" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
+    <ProjectReference Include="..\Rebus.Newtonsoft.Encryption\Rebus.Newtonsoft.Encryption.csproj" />
     <PackageReference Include="ProjectDefaults" Version="1.0.39" PrivateAssets="All" />
   </ItemGroup>
 </Project>
