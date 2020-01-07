@@ -19,5 +19,15 @@ namespace Newtonsoft.Json.Encryption
             JsonPropertyHelper.Manipulate(member, encrypter, property);
             return property;
         }
+
+        protected override JsonProperty CreatePropertyFromConstructorParameter(JsonProperty? matchingMemberProperty, ParameterInfo parameterInfo)
+        {
+            var property = base.CreatePropertyFromConstructorParameter(matchingMemberProperty, parameterInfo);
+            if (matchingMemberProperty != null)
+            {
+                property.ItemConverter = matchingMemberProperty.ItemConverter;
+            }
+            return property;
+        }
     }
 }

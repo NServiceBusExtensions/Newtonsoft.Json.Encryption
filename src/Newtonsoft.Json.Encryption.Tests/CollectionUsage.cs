@@ -119,4 +119,29 @@ public class CollectionUsage :
         [Encrypt]
         public IEnumerable<Guid>? Property { get; set; }
     }
+
+    [Fact]
+    public async Task WithConstructorEnumerableParameter()
+    {
+        var target = new ClassWithConstructorEnumerableParameter(
+            new List<Guid>
+            {
+                new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6"),
+                new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
+            });
+
+        var result = await this.Run(target);
+        Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property.Last().ToString());
+    }
+
+    public class ClassWithConstructorEnumerableParameter
+    {
+        [Encrypt]
+        public IEnumerable<Guid>? Property { get; set; }
+
+        public ClassWithConstructorEnumerableParameter(IEnumerable<Guid> property)
+        {
+            Property = property;
+        }
+    }
 }
