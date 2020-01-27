@@ -46,7 +46,8 @@ Thanks to the current backers.
     * [Serialization](#serialization)
     * [Deserialization](#deserialization)
   * [Rebus](#rebus)
-  * [NServiceBus](#nservicebus)<!-- endtoc -->
+  * [NServiceBus](#nservicebus)
+  * [Security contact information](#security-contact-information)<!-- endtoc -->
 
 
 ## NuGet packages
@@ -334,9 +335,9 @@ configuration.EnableJsonEncryption(
 <!-- endsnippet -->
 
 
-## Release Notes
+## Security contact information
 
-See [closed milestones](../../milestones?state=closed).
+To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon
