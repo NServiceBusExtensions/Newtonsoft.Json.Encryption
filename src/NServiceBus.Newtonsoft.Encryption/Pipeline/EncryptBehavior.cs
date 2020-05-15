@@ -21,8 +21,7 @@ class EncryptBehavior :
         context.Headers.WriteKeyAndIv(state.keyId, state.algorithm.IV);
         using (factory.GetEncryptSession(state.algorithm))
         {
-            await next(context)
-                ;
+            await next(context);
         }
     }
 }
