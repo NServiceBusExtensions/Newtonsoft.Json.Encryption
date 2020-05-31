@@ -25,7 +25,7 @@ Support this project by [becoming a Sponsor](https://opencollective.com/nservice
 
 ### Patrons
 
-Thanks to all the backing developers! Support this project by [becoming a patron](https://opencollective.com/nservicebusextensions/contribute/patron-6976).
+Thanks to all the backing developers. Support this project by [becoming a patron](https://opencollective.com/nservicebusextensions/contribute/patron-6976).
 
 <img src="https://opencollective.com/nservicebusextensions/tiers/patron.svg?width=890&avatarHeight=60&button=false">
 
