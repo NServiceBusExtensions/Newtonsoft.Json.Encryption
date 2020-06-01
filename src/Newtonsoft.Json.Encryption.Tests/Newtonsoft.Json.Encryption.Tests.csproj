@@ -5,13 +5,13 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
-    <PackageReference Include="Fody" Version="6.1.2" PrivateAssets="all" />
+    <PackageReference Include="Fody" Version="6.2.0" PrivateAssets="all" />
     <PackageReference Include="ModuleInit.Fody" Version="2.1.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Xunit" Version="2.4.1" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="19.0.0-beta.1" PrivateAssets="all" />
     <PackageReference Include="XunitContext" Version="1.9.3" />
-    <PackageReference Include="Verify.Xunit" Version="4.0.2" />
+    <PackageReference Include="Verify.Xunit" Version="4.1.0" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <PackageReference Include="ProjectDefaults" Version="1.0.43" PrivateAssets="All" />
   </ItemGroup>
