@@ -3,16 +3,10 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Encryption;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class SimpleProp :
-    VerifyBase
+[UsesVerify]
+public class SimpleProp
 {
-    public SimpleProp(ITestOutputHelper output) :
-        base(output)
-    {
-    }
-
     [Fact]
     public async Task ByteArray()
     {
@@ -20,7 +14,7 @@ public class SimpleProp :
         {
             Property = new byte[]{2,3}
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal(new byte[] { 2, 3 }, result.Property);
     }
 
@@ -34,7 +28,7 @@ public class SimpleProp :
     public async Task NullString()
     {
         var target = new ClassWithString();
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Null(result.Property);
     }
 
@@ -45,7 +39,7 @@ public class SimpleProp :
         {
             Property = "Foo"
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("Foo", result.Property);
     }
 
@@ -56,7 +50,7 @@ public class SimpleProp :
         {
             Property = string.Empty
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Empty(result.Property);
     }
 
@@ -73,7 +67,7 @@ public class SimpleProp :
         {
             Property = new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6")
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("45b14050-065c-4be7-8bb8-f3b46b8d94e6", result.Property.ToString());
     }
 

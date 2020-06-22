@@ -5,16 +5,10 @@ using VerifyXunit;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using Xunit;
-using Xunit.Abstractions;
 
-public class EncryptionFactoryTest :
-    VerifyBase
+[UsesVerify]
+public class EncryptionFactoryTest
 {
-    public EncryptionFactoryTest(ITestOutputHelper output) :
-        base(output)
-    {
-    }
-
     [Fact]
     public async Task ExampleUsage()
     {
@@ -61,7 +55,7 @@ public class EncryptionFactoryTest :
             using (factory.GetDecryptSession(algorithm))
             {
                 var deserialized = serializer.Deserialize<ClassToSerialize>(serialized);
-                await Verify(deserialized);
+                await Verifier.Verify(deserialized);
             }
         }
     }
@@ -83,7 +77,7 @@ public class EncryptionFactoryTest :
                 Property2 = "Property2Value"
             };
             var result = serializer.Serialize(instance);
-            await Verify(result);
+            await Verifier.Verify(result);
         }
     }
 
@@ -109,7 +103,7 @@ public class EncryptionFactoryTest :
         using (factory.GetDecryptSession(algorithm))
         {
             var result = serializer.Deserialize<ClassToSerialize>(serialized);
-            await Verify(result);
+            await Verifier.Verify(result);
         }
     }
 

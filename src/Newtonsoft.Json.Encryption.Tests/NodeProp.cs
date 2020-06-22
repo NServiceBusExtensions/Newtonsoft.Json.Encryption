@@ -3,16 +3,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class NodeProp :
-    VerifyBase
+[UsesVerify]
+public class NodeProp
 {
-    public NodeProp(ITestOutputHelper output) :
-        base(output)
-    {
-    }
-
     [Fact]
     public async Task Node()
     {
@@ -24,7 +18,7 @@ public class NodeProp :
                 Property2 = "PropertyValue2"
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("PropertyValue1", result.SubProperty?.Property1);
     }
 
@@ -47,7 +41,7 @@ public class NodeProp :
         {
             Property = "AbCd"
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("AbCd", result.Property);
         ReverseConverter.AssertReadWriteCalled();
     }

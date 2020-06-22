@@ -4,16 +4,10 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Encryption;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class DictionaryUsage :
-    VerifyBase
+[UsesVerify]
+public class DictionaryUsage
 {
-    public DictionaryUsage(ITestOutputHelper output) :
-        base(output)
-    {
-    }
-
     [Fact]
     public async Task ByteArrayDictionary()
     {
@@ -29,7 +23,7 @@ public class DictionaryUsage :
                 }
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal(new byte[] {5, 6}, result.Property?["Key2"]);
     }
 
@@ -54,7 +48,7 @@ public class DictionaryUsage :
                 }
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("Value2", result.Property?["Key2"]);
     }
 
@@ -79,7 +73,7 @@ public class DictionaryUsage :
                 }
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("Value2", result.Property?[2]);
     }
 
@@ -104,7 +98,7 @@ public class DictionaryUsage :
                 }
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property?[2].ToString());
     }
 

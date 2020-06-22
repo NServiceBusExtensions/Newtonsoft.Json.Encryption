@@ -1,18 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class AsyncUsage :
-    VerifyBase
+public class AsyncUsage
 {
-    public AsyncUsage(ITestOutputHelper output) :
-        base(output)
-    {
-    }
-
     [Fact]
     public async Task Works()
     {

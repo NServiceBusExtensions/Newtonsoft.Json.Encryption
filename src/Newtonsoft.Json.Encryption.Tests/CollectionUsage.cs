@@ -5,16 +5,10 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Encryption;
 using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class CollectionUsage :
-    VerifyBase
+[UsesVerify]
+public class CollectionUsage
 {
-    public CollectionUsage(ITestOutputHelper output) :
-        base(output)
-    {
-    }
-
     [Fact]
     public async Task ByteArrayList()
     {
@@ -26,7 +20,7 @@ public class CollectionUsage :
                 new byte[] {5, 6}
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal(new byte[] {5, 6}, result.Property?[1]);
     }
 
@@ -47,7 +41,7 @@ public class CollectionUsage :
                 "Value2"
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("Value2", result.Property?[1]);
     }
 
@@ -68,7 +62,7 @@ public class CollectionUsage :
                 "Value2"
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("Value2", result.Property.Last());
     }
 
@@ -89,7 +83,7 @@ public class CollectionUsage :
                 "Value2"
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("Value2", result.Property.Last());
     }
 
@@ -110,7 +104,7 @@ public class CollectionUsage :
                 new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
             }
         };
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property.Last().ToString());
     }
 
@@ -130,7 +124,7 @@ public class CollectionUsage :
                 new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
             });
 
-        var result = await this.Run(target);
+        var result = await RoundTrip.Run(target);
         Assert.Equal("74b69ad1-f9e8-4549-8524-cce4a8b4c38b", result.Property.Last().ToString());
     }
 
