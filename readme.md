@@ -115,7 +115,7 @@ Note that only the values in a `IDictionary` are encrypted.
 
 The full serialize and deserialization workflow:
 <!-- snippet: Workflow -->
-<a id='snippet-workflow'/></a>
+<a id='snippet-workflow'></a>
 ```cs
 // per system (periodically rotated)
 var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
@@ -215,7 +215,7 @@ A single encrypt session is used per serialization instance.
 On instantiation the `SymmetricAlgorithm` will generate a valid [IV](https://msdn.microsoft.com/en-us/library/system.security.cryptography.symmetricalgorithm.iv.aspx). This is generally a good value to use for serialization and then stored for deserialization.
 
 <!-- snippet: serialize -->
-<a id='snippet-serialize'/></a>
+<a id='snippet-serialize'></a>
 ```cs
 // per serialize session
 using (var algorithm = new RijndaelManaged
@@ -254,7 +254,7 @@ A single decrypt session is used per serialization instance.
 
 
 <!-- snippet: deserialize -->
-<a id='snippet-deserialize'/></a>
+<a id='snippet-deserialize'></a>
 ```cs
 // per deserialize session
 using (var algorithm = new RijndaelManaged
@@ -279,7 +279,7 @@ using (var algorithm = new RijndaelManaged
 ## Rebus
 
 <!-- snippet: RebugsUsage -->
-<a id='snippet-rebugsusage'/></a>
+<a id='snippet-rebugsusage'></a>
 ```cs
 var activator = new BuiltinHandlerActivator();
 
@@ -317,7 +317,7 @@ configurer.EnableJsonEncryption(
 ## NServiceBus
 
 <!-- snippet: NsbUsage -->
-<a id='snippet-nsbusage'/></a>
+<a id='snippet-nsbusage'></a>
 ```cs
 var configuration = new EndpointConfiguration("NServiceBusSample");
 var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
