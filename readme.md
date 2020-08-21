@@ -61,7 +61,7 @@ Support is available via a [Tidelift Subscription](https://tidelift.com/subscrip
     * [Deserialization](#deserialization)
   * [Rebus](#rebus)
   * [NServiceBus](#nservicebus)
-  * [Security contact information](#security-contact-information)<!-- endtoc -->
+  * [Security contact information](#security-contact-information)<!-- endToc -->
 
 
 ## NuGet packages
@@ -173,7 +173,7 @@ using (var algorithm = new RijndaelManaged
 }
 ```
 <sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L12-L73' title='File snippet `workflow` was extracted from'>snippet source</a> | <a href='#snippet-workflow' title='Navigate to start of snippet `workflow`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ## Breakdown
@@ -242,7 +242,7 @@ using (var algorithm = new RijndaelManaged
 }
 ```
 <sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L29-L53' title='File snippet `serialize` was extracted from'>snippet source</a> | <a href='#snippet-serialize' title='Navigate to start of snippet `serialize`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ### Deserialization
@@ -273,7 +273,7 @@ using (var algorithm = new RijndaelManaged
 }
 ```
 <sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L55-L72' title='File snippet `deserialize` was extracted from'>snippet source</a> | <a href='#snippet-deserialize' title='Navigate to start of snippet `deserialize`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ## Rebus
@@ -311,7 +311,7 @@ configurer.EnableJsonEncryption(
         });
 ```
 <sup><a href='/src/Rebus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L14-L43' title='File snippet `rebugsusage` was extracted from'>snippet source</a> | <a href='#snippet-rebugsusage' title='Navigate to start of snippet `rebugsusage`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ## NServiceBus
@@ -346,7 +346,7 @@ configuration.EnableJsonEncryption(
         });
 ```
 <sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L11-L37' title='File snippet `nsbusage` was extracted from'>snippet source</a> | <a href='#snippet-nsbusage' title='Navigate to start of snippet `nsbusage`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ## Security contact information
