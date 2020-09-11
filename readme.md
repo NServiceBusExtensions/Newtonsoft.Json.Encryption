@@ -43,7 +43,7 @@ Thanks to all the backing developers. Support this project by [becoming a patron
 
 ## Support via TideLift
 
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-nservicebus.json.encryption?utm_source=nuget-nservicebus.json.encryption&utm_medium=referral&utm_campaign=enterprise).
+Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-newtonsoft.json.encryption?utm_source=undefined&utm_medium=referral&utm_campaign=enterprise).
 
 
 <!-- toc -->
