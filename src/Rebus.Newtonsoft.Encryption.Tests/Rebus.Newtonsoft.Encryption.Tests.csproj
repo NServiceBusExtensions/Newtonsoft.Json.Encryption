@@ -9,7 +9,7 @@
     <PackageReference Include="Xunit" Version="2.4.1" />
     <PackageReference Include="Verify.Xunit" Version="6.23.0" />
     <PackageReference Include="Rebus" Version="6.4.1" />
-    <PackageReference Include="MarkdownSnippets.MsBuild" Version="21.0.7" PrivateAssets="all" />
+    <PackageReference Include="MarkdownSnippets.MsBuild" Version="21.1.0" PrivateAssets="all" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <ProjectReference Include="..\Rebus.Newtonsoft.Encryption\Rebus.Newtonsoft.Encryption.csproj" />
     <PackageReference Include="ProjectDefaults" Version="1.0.46" PrivateAssets="All" />
