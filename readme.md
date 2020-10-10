@@ -115,7 +115,7 @@ Note that only the values in a `IDictionary` are encrypted.
 
 The full serialize and deserialization workflow:
 <!-- snippet: Workflow -->
-<a id='899531e0'></a>
+<a id='workflow'></a>
 ```cs
 // per system (periodically rotated)
 var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
@@ -172,7 +172,7 @@ using (var algorithm = new RijndaelManaged
     }
 }
 ```
-<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L12-L73' title='Snippet source file'>snippet source</a> | <a href='#899531e0' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L12-L73' title='Snippet source file'>snippet source</a> | <a href='#workflow' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -215,7 +215,7 @@ A single encrypt session is used per serialization instance.
 On instantiation the `SymmetricAlgorithm` will generate a valid [IV](https://msdn.microsoft.com/en-us/library/system.security.cryptography.symmetricalgorithm.iv.aspx). This is generally a good value to use for serialization and then stored for deserialization.
 
 <!-- snippet: serialize -->
-<a id='8b98a923'></a>
+<a id='serialize'></a>
 ```cs
 // per serialize session
 using (var algorithm = new RijndaelManaged
@@ -241,7 +241,7 @@ using (var algorithm = new RijndaelManaged
     }
 }
 ```
-<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L29-L53' title='Snippet source file'>snippet source</a> | <a href='#8b98a923' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L29-L53' title='Snippet source file'>snippet source</a> | <a href='#serialize' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -254,7 +254,7 @@ A single decrypt session is used per serialization instance.
 
 
 <!-- snippet: deserialize -->
-<a id='59df4159'></a>
+<a id='deserialize'></a>
 ```cs
 // per deserialize session
 using (var algorithm = new RijndaelManaged
@@ -272,14 +272,14 @@ using (var algorithm = new RijndaelManaged
     }
 }
 ```
-<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L55-L72' title='Snippet source file'>snippet source</a> | <a href='#59df4159' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L55-L72' title='Snippet source file'>snippet source</a> | <a href='#deserialize' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
 ## Rebus
 
 <!-- snippet: RebugsUsage -->
-<a id='851b545a'></a>
+<a id='rebugsusage'></a>
 ```cs
 var activator = new BuiltinHandlerActivator();
 
@@ -310,14 +310,14 @@ configurer.EnableJsonEncryption(
             IV = initVector
         });
 ```
-<sup><a href='/src/Rebus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L14-L43' title='Snippet source file'>snippet source</a> | <a href='#851b545a' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Rebus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L14-L43' title='Snippet source file'>snippet source</a> | <a href='#rebugsusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
 ## NServiceBus
 
 <!-- snippet: NsbUsage -->
-<a id='816fec78'></a>
+<a id='nsbusage'></a>
 ```cs
 var configuration = new EndpointConfiguration("NServiceBusSample");
 var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
@@ -345,7 +345,7 @@ configuration.EnableJsonEncryption(
             IV = initVector
         });
 ```
-<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L11-L37' title='Snippet source file'>snippet source</a> | <a href='#816fec78' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L11-L37' title='Snippet source file'>snippet source</a> | <a href='#nsbusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
