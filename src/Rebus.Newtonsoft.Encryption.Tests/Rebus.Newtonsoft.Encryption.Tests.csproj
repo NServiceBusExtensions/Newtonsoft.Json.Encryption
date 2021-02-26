@@ -8,7 +8,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Include="Xunit" Version="2.4.1" />
     <PackageReference Include="Verify.Xunit" Version="10.9.1" />
-    <PackageReference Include="Rebus" Version="6.5.2" />
+    <PackageReference Include="Rebus" Version="6.5.3" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="23.0.2" PrivateAssets="all" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <ProjectReference Include="..\Rebus.Newtonsoft.Encryption\Rebus.Newtonsoft.Encryption.csproj" />
