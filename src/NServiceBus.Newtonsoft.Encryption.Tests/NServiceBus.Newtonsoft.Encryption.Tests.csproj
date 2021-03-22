@@ -9,7 +9,7 @@
     <PackageReference Include="Verify.Xunit" Version="11.0.2" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
     <PackageReference Include="NServiceBus" Version="7.4.4" />
-    <PackageReference Include="MarkdownSnippets.MsBuild" Version="23.1.0" PrivateAssets="all" />
+    <PackageReference Include="MarkdownSnippets.MsBuild" Version="23.1.1" PrivateAssets="all" />
     <PackageReference Include="ProjectDefaults" Version="1.0.54" PrivateAssets="All" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <ProjectReference Include="..\NServiceBus.Newtonsoft.Encryption\NServiceBus.Newtonsoft.Encryption.csproj" />
