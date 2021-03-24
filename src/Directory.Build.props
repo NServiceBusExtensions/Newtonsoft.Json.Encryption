@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
   <PropertyGroup>
-    <NoWarn>CS1591</NoWarn>
-    <Version>2.1.4</Version>
+    <NoWarn>CS1591;NU1608</NoWarn>
+    <Version>2.2.0</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <PackageTags>Newtonsoft, Encryption</PackageTags>
   </PropertyGroup>
