@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Verify.Xunit
+    versions:
+    - 10.9.0
+    - 11.1.0
+  - dependency-name: Newtonsoft.Json
+    versions:
+    - 13.0.1
