@@ -157,11 +157,6 @@ snippet: RebugsUsage
 snippet: NsbUsage
 
 
-## Security contact information
-
-To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
-
-
 ## Icon
 
 [Lock](https://thenounproject.com/term/lock/59296/) designed by [Mourad Mokrane](https://thenounproject.com/molumen/) from [The Noun Project](https://thenounproject.com).
