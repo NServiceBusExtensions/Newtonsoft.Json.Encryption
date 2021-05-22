@@ -60,8 +60,7 @@ Support is available via a [Tidelift Subscription](https://tidelift.com/subscrip
     * [Serialization](#serialization)
     * [Deserialization](#deserialization)
   * [Rebus](#rebus)
-  * [NServiceBus](#nservicebus)
-  * [Security contact information](#security-contact-information)<!-- endToc -->
+  * [NServiceBus](#nservicebus)<!-- endToc -->
 
 
 ## NuGet packages
@@ -347,11 +346,6 @@ configuration.EnableJsonEncryption(
 ```
 <sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L11-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-nsbusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
-
-
-## Security contact information
-
-To report a security vulnerability, use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
 
 
 ## Icon
