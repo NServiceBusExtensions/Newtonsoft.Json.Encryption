@@ -14,7 +14,7 @@ public class CollectionUsage
     {
         var target = new ClassWithByteArrayList
         {
-            Property = new List<byte[]>
+            Property = new()
             {
                 new byte[] {2, 3},
                 new byte[] {5, 6}
@@ -35,7 +35,7 @@ public class CollectionUsage
     {
         var target = new ClassWithStringList
         {
-            Property = new List<string>
+            Property = new()
             {
                 "Value1",
                 "Value2"
@@ -100,8 +100,8 @@ public class CollectionUsage
         {
             Property = new List<Guid>
             {
-                new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6"),
-                new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
+                new("45b14050-065c-4be7-8bb8-f3b46b8d94e6"),
+                new("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
             }
         };
         var result = await RoundTrip.Run(target);
@@ -120,8 +120,8 @@ public class CollectionUsage
         var target = new ClassWithConstructorEnumerableParameter(
             new List<Guid>
             {
-                new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6"),
-                new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
+                new("45b14050-065c-4be7-8bb8-f3b46b8d94e6"),
+                new("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
             });
 
         var result = await RoundTrip.Run(target);

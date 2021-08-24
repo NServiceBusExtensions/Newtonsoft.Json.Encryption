@@ -13,7 +13,7 @@ public class DictionaryUsage
     {
         var target = new ClassWithByteArrayDictionary
         {
-            Property = new Dictionary<string, byte[]>
+            Property = new()
             {
                 {
                     "Key1", new byte[] {2, 3}
@@ -38,7 +38,7 @@ public class DictionaryUsage
     {
         var target = new ClassWithStringDictionary
         {
-            Property = new Dictionary<string, string>
+            Property = new()
             {
                 {
                     "Key1", "Value1"
@@ -63,7 +63,7 @@ public class DictionaryUsage
     {
         var target = new ClassWithIntStringDictionary
         {
-            Property = new Dictionary<int, string>
+            Property = new()
             {
                 {
                     1, "Value1"
@@ -88,13 +88,13 @@ public class DictionaryUsage
     {
         var target = new ClassWithIntGuidDictionary
         {
-            Property = new Dictionary<int, Guid>
+            Property = new()
             {
                 {
-                    1, new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6")
+                    1, new("45b14050-065c-4be7-8bb8-f3b46b8d94e6")
                 },
                 {
-                    2, new Guid("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
+                    2, new("74b69ad1-f9e8-4549-8524-cce4a8b4c38b")
                 }
             }
         };

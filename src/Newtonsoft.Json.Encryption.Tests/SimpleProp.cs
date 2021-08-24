@@ -65,7 +65,7 @@ public class SimpleProp
     {
         var target = new ClassWithGuid
         {
-            Property = new Guid("45b14050-065c-4be7-8bb8-f3b46b8d94e6")
+            Property = new("45b14050-065c-4be7-8bb8-f3b46b8d94e6")
         };
         var result = await RoundTrip.Run(target);
         Assert.Equal("45b14050-065c-4be7-8bb8-f3b46b8d94e6", result.Property.ToString());

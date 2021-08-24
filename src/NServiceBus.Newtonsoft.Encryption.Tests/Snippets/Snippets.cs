@@ -1,5 +1,4 @@
 ﻿using System.Security.Cryptography;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using NServiceBus;
 using NServiceBus.Newtonsoft.Encryption;
@@ -13,7 +12,7 @@ class Snippets
         var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
         var encryptionFactory = new EncryptionFactory();
         serialization.Settings(
-            new JsonSerializerSettings
+            new()
             {
                 ContractResolver = encryptionFactory.GetContractResolver()
             });

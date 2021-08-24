@@ -13,7 +13,7 @@ static class Extensions
     {
         var fromBase64String = Convert.FromBase64String(value);
         var decryptBytes = encrypter.DecryptBytes(fromBase64String);
-        return new Guid(decryptBytes);
+        return new(decryptBytes);
     }
 
     public static string EncryptGuidToString(this Encrypter encrypter, Guid guid)

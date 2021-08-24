@@ -322,7 +322,7 @@ var configuration = new EndpointConfiguration("NServiceBusSample");
 var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
 var encryptionFactory = new EncryptionFactory();
 serialization.Settings(
-    new JsonSerializerSettings
+    new()
     {
         ContractResolver = encryptionFactory.GetContractResolver()
     });
@@ -344,7 +344,7 @@ configuration.EnableJsonEncryption(
             IV = initVector
         });
 ```
-<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L11-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-nsbusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L10-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-nsbusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 

@@ -16,11 +16,6 @@ namespace Rebus.Newtonsoft.Encryption
         /// </summary>
         public static void EnableJsonEncryption(this RebusConfigurer configurer, EncryptionFactory encryptionFactory, EncryptStateBuilder encryptStateBuilder, DecryptStateBuilder decryptStateBuilder)
         {
-            Guard.AgainstNull(nameof(configurer), configurer);
-            Guard.AgainstNull(nameof(encryptionFactory), encryptionFactory);
-            Guard.AgainstNull(nameof(encryptStateBuilder), encryptStateBuilder);
-            Guard.AgainstNull(nameof(decryptStateBuilder), decryptStateBuilder);
-
             configurer.Options(options =>
             {
                 options.Decorate<IPipeline>(

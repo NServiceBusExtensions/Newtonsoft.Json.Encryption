@@ -14,11 +14,6 @@ namespace NServiceBus.Newtonsoft.Encryption
         /// </summary>
         public static void EnableJsonEncryption(this EndpointConfiguration configuration, EncryptionFactory encryptionFactory, EncryptStateBuilder encryptStateBuilder, DecryptStateBuilder decryptStateBuilder)
         {
-            Guard.AgainstNull(nameof(configuration), configuration);
-            Guard.AgainstNull(nameof(encryptionFactory), encryptionFactory);
-            Guard.AgainstNull(nameof(encryptStateBuilder), encryptStateBuilder);
-            Guard.AgainstNull(nameof(decryptStateBuilder), decryptStateBuilder);
-
             var recoverability = configuration.Recoverability();
             recoverability.AddUnrecoverableException<KeyIdAndIvHeaderMismatchException>();
             var settings = configuration.GetSettings();

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -73,18 +72,18 @@ class Program
         var message = new MessageWithSecretData
         {
             Secret = "betcha can't guess my secret",
-            SubProperty = new MySecretSubProperty
+            SubProperty = new()
             {
                 Secret = "My sub secret"
             },
-            CreditCards = new List<CreditCardDetails>
+            CreditCards = new()
             {
-                new CreditCardDetails
+                new()
                 {
                     ValidTo = DateTime.UtcNow.AddYears(1),
                     Number = "312312312312312"
                 },
-                new CreditCardDetails
+                new()
                 {
                     ValidTo = DateTime.UtcNow.AddYears(2),
                     Number = "543645546546456"

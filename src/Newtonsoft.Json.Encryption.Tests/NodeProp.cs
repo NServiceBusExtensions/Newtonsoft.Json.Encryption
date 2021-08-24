@@ -12,7 +12,7 @@ public class NodeProp
     {
         var target = new TargetClass
         {
-            SubProperty = new SubClass
+            SubProperty = new()
             {
                 Property1 = "PropertyValue1",
                 Property2 = "PropertyValue2"

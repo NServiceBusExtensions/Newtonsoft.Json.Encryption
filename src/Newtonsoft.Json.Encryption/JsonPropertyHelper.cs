@@ -18,7 +18,7 @@ static class JsonPropertyHelper
         }
         if (containsEncryptAttribute && containsNodeEncryptAttribute)
         {
-            throw new Exception($"Cannot contain both {nameof(EncryptAttribute)} and {nameof(NodeEncryptAttribute)}.");
+            throw new($"Cannot contain both {nameof(EncryptAttribute)} and {nameof(NodeEncryptAttribute)}.");
         }
         if (containsNodeEncryptAttribute)
         {
@@ -89,14 +89,14 @@ static class JsonPropertyHelper
             property.ItemConverter = new ByteArrayConverter(encrypter);
             return;
         }
-        throw new Exception("Expected a string, a IDictionary<T,string>, a IEnumerable<string>, a Guid, a IDictionary<T,Guid>, a IEnumerable<Guid>, a byte[], a IDictionary<T,byte[]>, or a IEnumerable<byte[]>.");
+        throw new("Expected a string, a IDictionary<T,string>, a IEnumerable<string>, a Guid, a IDictionary<T,Guid>, a IEnumerable<Guid>, a byte[], a IDictionary<T,byte[]>, or a IEnumerable<byte[]>.");
     }
 
     static void VerifyItemConverterIsNull(JsonProperty property, MemberInfo member)
     {
         if (property.ItemConverter != null)
         {
-            throw new Exception($"Expected JsonProperty.ItemConverter to be null. Property: {member.FriendlyName()}");
+            throw new($"Expected JsonProperty.ItemConverter to be null. Property: {member.FriendlyName()}");
         }
     }
 
@@ -104,7 +104,7 @@ static class JsonPropertyHelper
     {
         if (property.Converter != null)
         {
-            throw new Exception($"Expected JsonProperty.Converter to be null. Property: {member.FriendlyName()}");
+            throw new($"Expected JsonProperty.Converter to be null. Property: {member.FriendlyName()}");
         }
     }
 

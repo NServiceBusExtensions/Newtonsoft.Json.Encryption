@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using NServiceBus;
 using NServiceBus.Newtonsoft.Encryption;
@@ -19,7 +17,7 @@ class Program
         var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
         var encryptionFactory = new EncryptionFactory();
         serialization.Settings(
-            new JsonSerializerSettings
+            new()
             {
                 ContractResolver = encryptionFactory.GetContractResolver()
             });
@@ -61,18 +59,18 @@ class Program
         var message = new MessageWithSecretData
         {
             Secret = "betcha can't guess my secret",
-            SubProperty = new MySecretSubProperty
+            SubProperty = new()
             {
                 Secret = "My sub secret"
             },
-            CreditCards = new List<CreditCardDetails>
+            CreditCards = new()
             {
-                new CreditCardDetails
+                new()
                 {
                     ValidTo = DateTime.UtcNow.AddYears(1),
                     Number = "312312312312312"
                 },
-                new CreditCardDetails
+                new()
                 {
                     ValidTo = DateTime.UtcNow.AddYears(2),
                     Number = "543645546546456"
