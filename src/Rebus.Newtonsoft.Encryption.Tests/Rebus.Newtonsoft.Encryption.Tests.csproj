@@ -12,6 +12,6 @@
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="24.1.0" PrivateAssets="all" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <ProjectReference Include="..\Rebus.Newtonsoft.Encryption\Rebus.Newtonsoft.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.56" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.58" PrivateAssets="All" />
   </ItemGroup>
 </Project>
