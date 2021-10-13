@@ -309,7 +309,7 @@ configurer.EnableJsonEncryption(
             IV = initVector
         });
 ```
-<sup><a href='/src/Rebus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L14-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-rebugsusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Rebus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L15-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-rebugsusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -344,7 +344,7 @@ configuration.EnableJsonEncryption(
             IV = initVector
         });
 ```
-<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L10-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-nsbusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/NServiceBus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L11-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-nsbusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
