@@ -12,6 +12,6 @@
     <PackageReference Include="Verify.Xunit" Version="13.1.0" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="24.1.0" PrivateAssets="all" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.58" PrivateAssets="All" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.60" PrivateAssets="all" />
   </ItemGroup>
 </Project>
