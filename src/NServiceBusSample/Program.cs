@@ -1,10 +1,8 @@
-﻿using System;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
 using Newtonsoft.Json.Encryption;
 using NServiceBus;
 using NServiceBus.Newtonsoft.Encryption;
+// ReSharper disable UnusedParameter.Local
 
 class Program
 {

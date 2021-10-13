@@ -6,6 +6,7 @@ using Rebus.Config;
 using Rebus.Handlers;
 using Rebus.Newtonsoft.Encryption;
 using Rebus.Serialization.Json;
+// ReSharper disable UnusedParameter.Local
 
 class Snippets
 {

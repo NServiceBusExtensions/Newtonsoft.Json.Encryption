@@ -1,9 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using Rebus.Activation;
@@ -12,6 +7,7 @@ using Rebus.Config;
 using Rebus.Newtonsoft.Encryption;
 using Rebus.Serialization.Json;
 using Rebus.Transport.FileSystem;
+// ReSharper disable UnusedParameter.Local
 
 class Program
 {

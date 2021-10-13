@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Encryption;
 using NServiceBus;
 using NServiceBus.Newtonsoft.Encryption;
+// ReSharper disable UnusedParameter.Local
 
 class Snippets
 {

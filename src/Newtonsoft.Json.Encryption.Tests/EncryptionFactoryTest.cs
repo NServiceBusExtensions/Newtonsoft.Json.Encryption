@@ -1,6 +1,4 @@
 ﻿using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using VerifyXunit;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Rebus.Handlers;
+﻿using Rebus.Handlers;
 
 public class Handler :
     IHandleMessages<MessageWithSecretData>

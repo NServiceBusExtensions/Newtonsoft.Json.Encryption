@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Xunit;
 
 public class ReverseConverter :

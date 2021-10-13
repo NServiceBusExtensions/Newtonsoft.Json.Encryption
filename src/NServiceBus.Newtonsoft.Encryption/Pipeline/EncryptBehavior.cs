@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Newtonsoft.Json.Encryption;
 using NServiceBus.Pipeline;
 

@@ -171,7 +171,7 @@ using (var algorithm = new RijndaelManaged
     }
 }
 ```
-<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L12-L73' title='Snippet source file'>snippet source</a> | <a href='#snippet-workflow' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L9-L70' title='Snippet source file'>snippet source</a> | <a href='#snippet-workflow' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -240,7 +240,7 @@ using (var algorithm = new RijndaelManaged
     }
 }
 ```
-<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L29-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-serialize' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L26-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-serialize' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -271,7 +271,7 @@ using (var algorithm = new RijndaelManaged
     }
 }
 ```
-<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L55-L72' title='Snippet source file'>snippet source</a> | <a href='#snippet-deserialize' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Newtonsoft.Json.Encryption.Tests/Snippets/Snippets.cs#L52-L69' title='Snippet source file'>snippet source</a> | <a href='#snippet-deserialize' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Encryption;
+﻿using Newtonsoft.Json.Encryption;
 using Rebus.Messages;
 using Rebus.Pipeline;
 
