@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using Xunit;
 
 public class AsyncUsage
 {

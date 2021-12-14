@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json.Encryption;
-using VerifyXunit;
-using Xunit;
 
 [UsesVerify]
 public class DictionaryUsage

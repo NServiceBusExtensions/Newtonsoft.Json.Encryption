@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Xunit;
 
 public class ReverseConverter :
     JsonConverter

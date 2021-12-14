@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Encryption
 {

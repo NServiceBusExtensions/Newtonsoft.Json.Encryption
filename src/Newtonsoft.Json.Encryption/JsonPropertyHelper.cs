@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Newtonsoft.Json.Encryption;
+﻿using Newtonsoft.Json.Encryption;
 using Newtonsoft.Json.Serialization;
 
 static class JsonPropertyHelper

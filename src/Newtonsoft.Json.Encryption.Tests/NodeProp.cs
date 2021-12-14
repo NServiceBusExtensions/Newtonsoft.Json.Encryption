@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using VerifyXunit;
-using Xunit;
 
 [UsesVerify]
 public class NodeProp

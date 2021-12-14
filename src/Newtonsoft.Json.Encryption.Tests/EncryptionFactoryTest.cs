@@ -1,8 +1,6 @@
 ﻿using System.Security.Cryptography;
-using VerifyXunit;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using Xunit;
 
 [UsesVerify]
 public class EncryptionFactoryTest
@@ -53,7 +51,7 @@ public class EncryptionFactoryTest
             using (factory.GetDecryptSession(algorithm))
             {
                 var deserialized = serializer.Deserialize<ClassToSerialize>(serialized);
-                await Verifier.Verify(deserialized);
+                await Verify(deserialized);
             }
         }
     }
@@ -75,7 +73,7 @@ public class EncryptionFactoryTest
                 Property2 = "Property2Value"
             };
             var result = serializer.Serialize(instance);
-            await Verifier.Verify(result);
+            await Verify(result);
         }
     }
 
@@ -101,7 +99,7 @@ public class EncryptionFactoryTest
         using (factory.GetDecryptSession(algorithm))
         {
             var result = serializer.Deserialize<ClassToSerialize>(serialized);
-            await Verifier.Verify(result);
+            await Verify(result);
         }
     }
 

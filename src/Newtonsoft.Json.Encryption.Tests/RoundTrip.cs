@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
-using VerifyXunit;
 
 public static class RoundTrip
 {
@@ -19,7 +18,7 @@ public static class RoundTrip
             result = serializer.Serialize(instance);
         }
 
-        await Verifier.Verify(result,null,sourceFile);
+        await Verify(result, null, sourceFile);
         using (factory.GetDecryptSession(algorithm))
         {
             return serializer.Deserialize<T>(result);
