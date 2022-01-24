@@ -15,7 +15,7 @@ Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at seri
 
 ## Community backed
 
-**It is expected that all developers either [become a Patron](https://opencollective.com/nservicebusextensions/contribute/patron-6976) or have a [Tidelift Subscription](#support-via-tidelift) to use NServiceBusExtensions. [Go to licensing FAQ](https://github.com/NServiceBusExtensions/Home/#licensingpatron-faq)**
+**It is expected that all developers either [become a Patron](https://opencollective.com/nservicebusextensions/contribute/patron-6976) to use NServiceBusExtensions. [Go to licensing FAQ](https://github.com/NServiceBusExtensions/Home/#licensingpatron-faq)**
 
 
 ### Sponsors
@@ -32,11 +32,6 @@ Thanks to all the backing developers. Support this project by [becoming a patron
 <a href="#" id="endofbacking"></a>
 
 <!--- EndOpenCollectiveBackers -->
-
-
-## Support via TideLift
-
-Support is available via a [Tidelift Subscription](https://tidelift.com/subscription/pkg/nuget-newtonsoft.json.encryption?utm_source=undefined&utm_medium=referral&utm_campaign=enterprise).
 
 
 toc
