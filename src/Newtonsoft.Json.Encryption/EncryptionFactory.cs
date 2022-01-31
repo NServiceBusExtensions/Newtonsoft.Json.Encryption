@@ -37,8 +37,8 @@ namespace Newtonsoft.Json.Encryption
 
         public void Dispose()
         {
-            encrypt?.Value?.Dispose();
-            decrypt?.Value?.Dispose();
+            encrypt.Value?.Dispose();
+            decrypt.Value?.Dispose();
         }
     }
 }

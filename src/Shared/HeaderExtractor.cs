@@ -13,11 +13,13 @@ static class HeaderExtractor
             iv = Convert.FromBase64String(ivString);
             return true;
         }
+
         if (keyIdIsEmpty && ivIsEmpty)
         {
-            iv = Enumerable.Empty<byte>();
+            iv = Array.Empty<byte>();
             return false;
         }
+
         throw new KeyIdAndIvHeaderMismatchException();
     }
 
