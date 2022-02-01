@@ -12,6 +12,6 @@
     <PackageReference Include="Rebus" Version="6.6.2" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <ProjectReference Include="..\Rebus.Newtonsoft.Encryption\Rebus.Newtonsoft.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.64" PrivateAssets="all" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.68" PrivateAssets="all" />
   </ItemGroup>
 </Project>
