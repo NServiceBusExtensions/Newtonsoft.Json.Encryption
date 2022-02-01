@@ -1,6 +1,6 @@
 # <img src="/src/icon.png" height="25px"> Newtonsoft.Json.Encryption
 
-[![Build status](https://ci.appveyor.com/api/projects/status/qciwf7sdysdeu693/branch/master?svg=true)](https://ci.appveyor.com/project/SimonCropp/newtonsoft-json-encryption)
+[![Build status](https://ci.appveyor.com/api/projects/status/qciwf7sdysdeu693/branch/main?svg=true)](https://ci.appveyor.com/project/SimonCropp/newtonsoft-json-encryption)
 [![NuGet Status](https://img.shields.io/nuget/v/Newtonsoft.Json.Encryption.svg?label=Newtonsoft.Json.Encryption)](https://www.nuget.org/packages/Newtonsoft.Json.Encryption/)
 [![NuGet Status](https://img.shields.io/nuget/v/Rebus.Newtonsoft.Encryption.svg?label=Rebus.Newtonsoft.Encryption)](https://www.nuget.org/packages/Rebus.Newtonsoft.Encryption/)
 [![NuGet Status](https://img.shields.io/nuget/v/NServiceBus.Newtonsoft.Encryption.svg?label=NServiceBus.Newtonsoft.Encryption)](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Encryption/)
