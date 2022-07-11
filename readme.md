@@ -314,7 +314,7 @@ configurer.EnableJsonEncryption(
 <a id='snippet-nsbusage'></a>
 ```cs
 var configuration = new EndpointConfiguration("NServiceBusSample");
-var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
+var serialization = configuration.UseSerialization<NewtonsoftJsonSerializer>();
 var encryptionFactory = new EncryptionFactory();
 serialization.Settings(
     new()
