@@ -2,10 +2,8 @@
 
 public static class Extensions
 {
-    public static string ReverseToString(this string value)
-    {
-        return new(value.Reverse().ToArray());
-    }
+    public static string ReverseToString(this string value) =>
+        new(value.Reverse().ToArray());
 
     public static T Deserialize<T>(this JsonSerializer serializer, string value)
     {

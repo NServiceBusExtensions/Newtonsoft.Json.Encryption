@@ -6,10 +6,8 @@ class StringConverter :
 {
     Encrypter encrypter;
 
-    public StringConverter(Encrypter encrypter)
-    {
+    public StringConverter(Encrypter encrypter) =>
         this.encrypter = encrypter;
-    }
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
@@ -23,8 +21,6 @@ class StringConverter :
         return encrypter.Decrypt(value);
     }
 
-    public override bool CanConvert(Type objectType)
-    {
+    public override bool CanConvert(Type objectType) =>
         throw new NotImplementedException();
-    }
 }

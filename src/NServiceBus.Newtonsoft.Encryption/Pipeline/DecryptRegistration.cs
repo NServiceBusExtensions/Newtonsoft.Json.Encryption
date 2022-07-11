@@ -9,8 +9,6 @@ class DecryptRegistration :
             stepId: "NServiceBusJsonEncryptionDecrypt",
             behavior: typeof(DecryptBehavior),
             description: "Invokes the decryption logic",
-            factoryMethod: _ => new DecryptBehavior(encryptionFactory, stateBuilder))
-    {
+            factoryMethod: _ => new DecryptBehavior(encryptionFactory, stateBuilder)) =>
         InsertBefore("MutateIncomingTransportMessage");
-    }
 }

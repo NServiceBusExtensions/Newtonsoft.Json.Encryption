@@ -9,8 +9,6 @@ class EncryptRegistration :
             stepId: "NServiceBusJsonEncryptionEncrypt",
             behavior: typeof(EncryptBehavior),
             description: "Invokes the encrypt logic",
-            factoryMethod: _ => new EncryptBehavior(encryptionFactory, stateBuilder))
-    {
+            factoryMethod: _ => new EncryptBehavior(encryptionFactory, stateBuilder)) =>
         InsertAfter("MutateOutgoingMessages");
-    }
 }

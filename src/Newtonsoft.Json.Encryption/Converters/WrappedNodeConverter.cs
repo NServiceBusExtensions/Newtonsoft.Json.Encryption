@@ -31,8 +31,6 @@ class WrappedNodeConverter :
         return innerConverter.Deserialize(type, serializer, decrypted, existingValue);
     }
 
-    public override bool CanConvert(Type objectType)
-    {
+    public override bool CanConvert(Type objectType) =>
         throw new NotImplementedException();
-    }
 }

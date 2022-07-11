@@ -6,10 +6,8 @@ class ByteArrayConverter :
 {
     Encrypter encrypter;
 
-    public ByteArrayConverter(Encrypter encrypter)
-    {
+    public ByteArrayConverter(Encrypter encrypter) =>
         this.encrypter = encrypter;
-    }
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
@@ -24,8 +22,6 @@ class ByteArrayConverter :
         return encrypter.DecryptBytesFromString(value);
     }
 
-    public override bool CanConvert(Type objectType)
-    {
+    public override bool CanConvert(Type objectType) =>
         throw new NotImplementedException();
-    }
 }

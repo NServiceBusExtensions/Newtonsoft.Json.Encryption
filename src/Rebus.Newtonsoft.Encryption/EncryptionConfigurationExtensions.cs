@@ -14,8 +14,7 @@ public static class ConfigurationExtensions
     /// <summary>
     /// Configures Rebus to encrypt messages.
     /// </summary>
-    public static void EnableJsonEncryption(this RebusConfigurer configurer, EncryptionFactory encryptionFactory, EncryptStateBuilder encryptStateBuilder, DecryptStateBuilder decryptStateBuilder)
-    {
+    public static void EnableJsonEncryption(this RebusConfigurer configurer, EncryptionFactory encryptionFactory, EncryptStateBuilder encryptStateBuilder, DecryptStateBuilder decryptStateBuilder) =>
         configurer.Options(options =>
         {
             options.Decorate<IPipeline>(
@@ -33,5 +32,4 @@ public static class ConfigurationExtensions
                     return injector;
                 });
         });
-    }
 }

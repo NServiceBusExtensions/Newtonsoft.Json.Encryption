@@ -27,8 +27,6 @@ class CryptoState :
     public readonly Func<ICryptoTransform> Provider;
     public readonly Action<ICryptoTransform> Cleanup;
 
-    public void Dispose()
-    {
+    public void Dispose() =>
         transform?.Dispose();
-    }
 }

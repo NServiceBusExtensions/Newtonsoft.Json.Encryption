@@ -106,18 +106,12 @@ static class JsonPropertyHelper
         }
     }
 
-    static bool ContainsEncryptAttribute(this MemberInfo member)
-    {
-        return member.GetCustomAttribute<EncryptAttribute>() != null;
-    }
+    static bool ContainsEncryptAttribute(this MemberInfo member) =>
+        member.GetCustomAttribute<EncryptAttribute>() != null;
 
-    static bool ContainsNodeEncryptAttribute(this MemberInfo member)
-    {
-        return member.GetCustomAttribute<NodeEncryptAttribute>() != null;
-    }
+    static bool ContainsNodeEncryptAttribute(this MemberInfo member) =>
+        member.GetCustomAttribute<NodeEncryptAttribute>() != null;
 
-    static string FriendlyName(this MemberInfo member)
-    {
-        return $"{member.DeclaringType.FullName}.{member.Name}";
-    }
+    static string FriendlyName(this MemberInfo member) =>
+        $"{member.DeclaringType.FullName}.{member.Name}";
 }

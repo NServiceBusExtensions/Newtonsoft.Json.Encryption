@@ -12,7 +12,7 @@ class Program
         Console.Title = "NServiceBusSample";
 
         var configuration = new EndpointConfiguration("NServiceBusSample");
-        var serialization = configuration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = configuration.UseSerialization<NewtonsoftJsonSerializer>();
         var encryptionFactory = new EncryptionFactory();
         serialization.Settings(
             new()

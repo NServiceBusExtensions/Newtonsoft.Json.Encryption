@@ -6,10 +6,8 @@ class GuidConverter :
 {
     Encrypter encrypter;
 
-    public GuidConverter(Encrypter encrypter)
-    {
+    public GuidConverter(Encrypter encrypter) =>
         this.encrypter = encrypter;
-    }
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
@@ -25,8 +23,6 @@ class GuidConverter :
         return encrypter.DecryptGuidFromString(value);
     }
 
-    public override bool CanConvert(Type objectType)
-    {
+    public override bool CanConvert(Type objectType) =>
         throw new NotImplementedException();
-    }
 }

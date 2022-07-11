@@ -59,10 +59,8 @@ public class ReverseConverter :
         return null;
     }
 
-    public override bool CanConvert(Type objectType)
-    {
-        return objectType == typeof(string) ||
-               objectType == typeof(byte[]) ||
-               objectType == typeof(Guid);
-    }
+    public override bool CanConvert(Type objectType) =>
+        objectType == typeof(string) ||
+        objectType == typeof(byte[]) ||
+        objectType == typeof(Guid);
 }

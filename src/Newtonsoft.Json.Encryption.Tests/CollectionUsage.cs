@@ -127,9 +127,7 @@ public class CollectionUsage
         [Encrypt]
         public IEnumerable<Guid>? Property { get; set; }
 
-        public ClassWithConstructorEnumerableParameter(IEnumerable<Guid> property)
-        {
+        public ClassWithConstructorEnumerableParameter(IEnumerable<Guid> property) =>
             Property = property;
-        }
     }
 }

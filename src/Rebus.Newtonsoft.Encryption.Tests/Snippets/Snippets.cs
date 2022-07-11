@@ -46,6 +46,6 @@ class Snippets
 
 }
 
-internal class Handler: IHandleMessages
+class Handler: IHandleMessages
 {
 }

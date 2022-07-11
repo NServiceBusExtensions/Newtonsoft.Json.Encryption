@@ -118,20 +118,14 @@ static class Extensions
     static TypeInfo guidEnumerable = typeof(IEnumerable<Guid>).GetTypeInfo();
     static TypeInfo byteArrayEnumerable = typeof(IEnumerable<byte[]>).GetTypeInfo();
 
-    public static bool IsStringDictionary(this Type type)
-    {
-        return IsDictionary(type, typeof(string));
-    }
+    public static bool IsStringDictionary(this Type type) =>
+        IsDictionary(type, typeof(string));
 
-    public static bool IsGuidDictionary(this Type type)
-    {
-        return IsDictionary(type, typeof(Guid));
-    }
+    public static bool IsGuidDictionary(this Type type) =>
+        IsDictionary(type, typeof(Guid));
 
-    public static bool IsByteArrayDictionary(this Type type)
-    {
-        return IsDictionary(type, typeof(byte[]));
-    }
+    public static bool IsByteArrayDictionary(this Type type) =>
+        IsDictionary(type, typeof(byte[]));
 
     static bool IsDictionary(Type type, Type valueTypeToCheck)
     {
@@ -153,18 +147,12 @@ static class Extensions
         return valueType == valueTypeToCheck;
     }
 
-    public static bool IsStringEnumerable(this Type type)
-    {
-        return stringEnumerable.IsAssignableFrom(type.GetTypeInfo());
-    }
+    public static bool IsStringEnumerable(this Type type) =>
+        stringEnumerable.IsAssignableFrom(type.GetTypeInfo());
 
-    public static bool IsGuidEnumerable(this Type type)
-    {
-        return guidEnumerable.IsAssignableFrom(type.GetTypeInfo());
-    }
+    public static bool IsGuidEnumerable(this Type type) =>
+        guidEnumerable.IsAssignableFrom(type.GetTypeInfo());
 
-    public static bool IsByteArrayEnumerable(this Type type)
-    {
-        return byteArrayEnumerable.IsAssignableFrom(type.GetTypeInfo());
-    }
+    public static bool IsByteArrayEnumerable(this Type type) =>
+        byteArrayEnumerable.IsAssignableFrom(type.GetTypeInfo());
 }

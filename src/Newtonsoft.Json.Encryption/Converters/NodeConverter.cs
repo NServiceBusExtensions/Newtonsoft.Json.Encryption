@@ -6,10 +6,8 @@ class NodeConverter :
 {
     Encrypter encrypter;
 
-    public NodeConverter(Encrypter encrypter)
-    {
+    public NodeConverter(Encrypter encrypter) =>
         this.encrypter = encrypter;
-    }
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
@@ -25,8 +23,6 @@ class NodeConverter :
         return serializer.Deserialize(type, decrypted);
     }
 
-    public override bool CanConvert(Type objectType)
-    {
+    public override bool CanConvert(Type objectType) =>
         throw new NotImplementedException();
-    }
 }
