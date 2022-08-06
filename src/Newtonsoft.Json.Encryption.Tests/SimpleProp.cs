@@ -47,7 +47,7 @@ public class SimpleProp
             Property = string.Empty
         };
         var result = await RoundTrip.Run(target);
-        Assert.Empty(result.Property);
+        Assert.Empty(result.Property!);
     }
 
     public class ClassWithString
