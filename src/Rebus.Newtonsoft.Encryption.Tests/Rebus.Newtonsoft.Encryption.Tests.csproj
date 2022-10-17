@@ -7,7 +7,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" PrivateAssets="all" />
     <PackageReference Include="Xunit" Version="2.4.2" />
-    <PackageReference Include="Verify.Xunit" Version="18.0.0-beta.25" />
+    <PackageReference Include="Verify.Xunit" Version="18.0.0-beta.27" />
     <PackageReference Include="Rebus" Version="6.6.5" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="24.5.0" PrivateAssets="all" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
