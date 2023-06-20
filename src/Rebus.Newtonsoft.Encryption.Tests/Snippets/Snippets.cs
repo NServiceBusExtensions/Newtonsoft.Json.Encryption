@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿#pragma warning disable SYSLIB0022
+using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
 using Rebus.Activation;

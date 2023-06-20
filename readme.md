@@ -304,7 +304,7 @@ configurer.EnableJsonEncryption(
             IV = initVector
         });
 ```
-<sup><a href='/src/Rebus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L15-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-rebugsusage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Rebus.Newtonsoft.Encryption.Tests/Snippets/Snippets.cs#L16-L45' title='Snippet source file'>snippet source</a> | <a href='#snippet-rebugsusage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 

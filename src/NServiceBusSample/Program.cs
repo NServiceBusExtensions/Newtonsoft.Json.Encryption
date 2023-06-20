@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 using Newtonsoft.Json.Encryption;
-using NServiceBus;
 using NServiceBus.Newtonsoft.Encryption;
 // ReSharper disable UnusedParameter.Local
+#pragma warning disable SYSLIB0022
 
 class Program
 {

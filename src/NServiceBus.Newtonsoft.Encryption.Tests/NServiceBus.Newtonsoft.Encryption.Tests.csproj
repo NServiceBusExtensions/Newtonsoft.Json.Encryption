@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" PrivateAssets="all" />
     <PackageReference Include="Xunit" Version="2.4.2" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0" />
-    <PackageReference Include="NServiceBus" Version="8.0.3" />
-    <PackageReference Include="Verify.Xunit" Version="20.3.2" />
+    <PackageReference Include="NServiceBus" Version="8.1.1" />
+    <PackageReference Include="Verify.Xunit" Version="20.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="ProjectDefaults" Version="1.0.91" PrivateAssets="all" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />

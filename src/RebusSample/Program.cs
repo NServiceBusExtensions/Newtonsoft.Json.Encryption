@@ -8,6 +8,7 @@ using Rebus.Newtonsoft.Encryption;
 using Rebus.Serialization.Json;
 using Rebus.Transport.FileSystem;
 // ReSharper disable UnusedParameter.Local
+#pragma warning disable SYSLIB0022
 
 class Program
 {
@@ -15,7 +16,7 @@ class Program
     {
         var key = Encoding.UTF8.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
         Console.Title = "RebusSample";
-        var directory = Directory.GetParent(Assembly.GetEntryAssembly()?.Location).FullName;
+        var directory = Directory.GetParent(Assembly.GetEntryAssembly()?.Location!)!.FullName;
 
         var activator = new BuiltinHandlerActivator();
 
@@ -28,17 +29,20 @@ class Program
             TypeNameHandling = TypeNameHandling.All,
             ContractResolver = encryptionFactory.GetContractResolver()
         };
-        configurer.Serialization(s => { s.UseNewtonsoftJson(settings); });
+        configurer.Serialization(s =>
+        {
+            s.UseNewtonsoftJson(settings);
+        });
         configurer.EnableJsonEncryption(
             encryptionFactory: encryptionFactory,
             encryptStateBuilder: () =>
-                (
+            (
                 algorithm: new RijndaelManaged
                 {
                     Key = key
                 },
                 keyId: "1"
-                ),
+            ),
             decryptStateBuilder: (keyId, initVector) =>
                 new RijndaelManaged
                 {

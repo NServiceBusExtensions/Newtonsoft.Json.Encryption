@@ -23,12 +23,12 @@ public static class EncryptionConfigurationExtensions
         configuration.EnableFeature<EncryptionFeature>();
     }
 
-    internal static EncryptionFactory GetEncryptionFactory(this ReadOnlySettings settings) =>
+    internal static EncryptionFactory GetEncryptionFactory(this IReadOnlySettings settings) =>
         settings.Get<EncryptionFactory>();
 
-    internal static EncryptStateBuilder GetEncryptStateBuilder(this ReadOnlySettings settings) =>
+    internal static EncryptStateBuilder GetEncryptStateBuilder(this IReadOnlySettings settings) =>
         settings.Get<EncryptStateBuilder>();
 
-    internal static DecryptStateBuilder GetDecryptStateBuilder(this ReadOnlySettings settings) =>
+    internal static DecryptStateBuilder GetDecryptStateBuilder(this IReadOnlySettings settings) =>
         settings.Get<DecryptStateBuilder>();
 }

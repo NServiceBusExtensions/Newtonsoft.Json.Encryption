@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Encryption;
+#pragma warning disable SYSLIB0022
 
 class Program
 {

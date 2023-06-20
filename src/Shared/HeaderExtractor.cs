@@ -2,7 +2,7 @@
 
 static class HeaderExtractor
 {
-    public static bool ReadKeyAndIv(this IReadOnlyDictionary<string, string> headers, out string keyId, out byte[] iv)
+    public static bool ReadKeyAndIv(this IReadOnlyDictionary<string, string> headers, out string? keyId, out byte[] iv)
     {
         headers.TryGetValue(KeyId, out keyId);
         headers.TryGetValue(Iv, out var ivString);
@@ -10,7 +10,7 @@ static class HeaderExtractor
         var keyIdIsEmpty = string.IsNullOrWhiteSpace(keyId);
         if (!keyIdIsEmpty && !ivIsEmpty)
         {
-            iv = Convert.FromBase64String(ivString);
+            iv = Convert.FromBase64String(ivString!);
             return true;
         }
 

@@ -1,5 +1,4 @@
-﻿using NServiceBus;
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
 public class Handler :
     IHandleMessages<MessageWithSecretData>

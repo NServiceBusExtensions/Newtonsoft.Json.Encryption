@@ -2,7 +2,7 @@
 <Project>
   <PropertyGroup>
     <NoWarn>CS1591;NU1608</NoWarn>
-    <Version>2.2.0</Version>
+    <Version>2.3.0</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <PackageTags>Newtonsoft, Encryption</PackageTags>
   </PropertyGroup>

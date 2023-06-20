@@ -20,7 +20,7 @@ class DecryptBehavior :
             await next(context);
             return;
         }
-        using (factory.GetDecryptSession(stateBuilder(keyId, iv)))
+        using (factory.GetDecryptSession(stateBuilder(keyId!, iv)))
         {
             await next(context);
         }

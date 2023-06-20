@@ -24,7 +24,7 @@ class DecryptStep :
             await next();
             return;
         }
-        using (factory.GetDecryptSession(stateBuilder(keyId, iv)))
+        using (factory.GetDecryptSession(stateBuilder(keyId!, iv)))
         {
             await next();
         }
