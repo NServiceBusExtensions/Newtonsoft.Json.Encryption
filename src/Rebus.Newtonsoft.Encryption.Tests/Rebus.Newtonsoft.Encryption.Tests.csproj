@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" PrivateAssets="all" />
-    <PackageReference Include="Xunit" Version="2.5.2" />
+    <PackageReference Include="Xunit" Version="2.5.3" />
     <PackageReference Include="Verify.Xunit" Version="22.1.4" />
     <PackageReference Include="Rebus" Version="7.2.1" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="25.1.0" />
