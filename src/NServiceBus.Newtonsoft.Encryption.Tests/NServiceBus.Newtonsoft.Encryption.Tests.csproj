@@ -10,7 +10,7 @@
     <PackageReference Include="NServiceBus" Version="8.1.4" />
     <PackageReference Include="Verify.Xunit" Version="22.1.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.100" PrivateAssets="all" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.101" PrivateAssets="all" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <ProjectReference Include="..\NServiceBus.Newtonsoft.Encryption\NServiceBus.Newtonsoft.Encryption.csproj" />
   </ItemGroup>
