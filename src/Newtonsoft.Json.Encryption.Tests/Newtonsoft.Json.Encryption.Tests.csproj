@@ -11,6 +11,6 @@
     <PackageReference Include="Xunit" Version="2.5.3" />
     <PackageReference Include="Verify.Xunit" Version="22.1.4" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.100" PrivateAssets="all" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.101" PrivateAssets="all" />
   </ItemGroup>
 </Project>
