@@ -9,7 +9,7 @@
     <PackageReference Include="ModuleInit.Fody" Version="2.1.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" PrivateAssets="all" />
     <PackageReference Include="Xunit" Version="2.6.1" />
-    <PackageReference Include="Verify.Xunit" Version="22.1.4" />
+    <PackageReference Include="Verify.Xunit" Version="22.2.0" />
     <ProjectReference Include="..\Newtonsoft.Json.Encryption\Newtonsoft.Json.Encryption.csproj" />
     <PackageReference Include="ProjectDefaults" Version="1.0.101" PrivateAssets="all" />
   </ItemGroup>
